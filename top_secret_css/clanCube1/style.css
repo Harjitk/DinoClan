@@ -1,0 +1,75 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.container {
+  color: #222;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.wrap {
+  perspective: 1800px;
+      perspective-origin: 50% -400px;
+}
+
+.cube {
+  position: relative;
+  width: 200px;
+  transform-style: preserve-3d;
+}
+
+.cube div {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+}
+
+.cube-face {
+      outline: 1px solid floralwhite;
+      background-color: rgba(68,	215,	168, 0.8);
+      text-align: center;
+      line-height: 200px;
+      font-size: 20px;
+      font-weight: 600;
+      color: white;
+  /* box-shadow: inset 0px 0px 0px 3px grey; */
+}
+
+.back {
+  transform: translateZ(-100px) rotateY(180deg);
+
+}
+.right {
+  transform: rotateY(-270deg) translateX(100px);
+  transform-origin: top right;
+
+}
+.left {
+  transform: rotateY(270deg) translateX(-100px);
+  transform-origin: center left;
+
+}
+.top {
+  transform: rotateX(-90deg) translateY(-100px);
+  transform-origin: top center;
+}
+.bottom {
+  transform: rotateX(90deg) translateY(100px);
+  transform-origin: bottom center;
+}
+.front {
+  transform: translateZ(100px);
+}
+
+@keyframes spin {
+  from { transform: rotateY(0); }
+  to { transform: rotateY(360deg); }
+}
+
+.cube {
+  animation: spin 5s infinite linear;
+}
