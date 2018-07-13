@@ -16,7 +16,7 @@ public class TestParkStaff {
     public void setUp() throws Exception {
         park = new Park("DinoClan");
         parkStaff = new ParkStaff("Mr Dino Lover", 100, park);
-        paddock = new Paddock("T-Rex Duplex", 1, "Temperate", park);
+        paddock = new Paddock("T-Rex Duplex", 1, park);
         meat = new Meat();
         velociraptor = new Velociraptor();
 

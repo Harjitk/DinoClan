@@ -22,9 +22,9 @@ public abstract class Dinosaur {
     public Dinosaur() {
     }
 
-    public Dinosaur(String name, DietType dietType, int weight, int price, Park park, Paddock paddock, int bellyCapacity) {
+    public Dinosaur(String name, int weight, int price, int bellyCapacity, Park park, Paddock paddock) {
         this.name = name;
-        this.dietType = dietType;
+        this.dietType = null;
         this.attackValue = 0;
         this.happiness = 50;
         this.weight = weight;
@@ -34,6 +34,18 @@ public abstract class Dinosaur {
         this.paddock = paddock;
         this.bellyCapacity = bellyCapacity;
     }
+
+
+
+    public void eat(){
+
+        Food food = paddock.getFoodStore().get(0);
+        getBelly().add(food);
+        setHappiness(this.happiness += 5);
+    }
+
+//    ADD .RAMPAGE FUNCTION
+
 
     public String getName() {
         return name;

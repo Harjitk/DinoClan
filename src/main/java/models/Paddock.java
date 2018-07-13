@@ -7,7 +7,6 @@ public class Paddock {
 
     private String name;
     private int capacity;
-    private String environment;
     private int health;
     private List<Dinosaur> dinosaursInPaddock;
     private List<Food> foodStore;
@@ -17,16 +16,19 @@ public class Paddock {
     public Paddock() {
     }
 
-    public Paddock(String name, int capacity, String environment, Park park) {
+    public Paddock(String name, int capacity, Park park) {
         this.name = name;
         this.capacity = capacity;
-        this.environment = environment;
         this.health = 1;
         this.dinosaursInPaddock = new ArrayList<Dinosaur>();
         this.foodStore = new ArrayList<Food>();
         this.visitorsInPaddock = new ArrayList<Visitor>();
         this.park = park;
 
+    }
+
+    public void addDinosaurToPaddock(Dinosaur dinosaur){
+        getDinosaursInPaddock().add(dinosaur);
     }
 
     public String getName() {
@@ -43,14 +45,6 @@ public class Paddock {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }
-
-    public String getEnvironment() {
-        return environment;
-    }
-
-    public void setEnvironment(String environment) {
-        this.environment = environment;
     }
 
     public int getHealth() {
