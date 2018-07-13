@@ -4,6 +4,7 @@ import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Visitor extends Human {
@@ -12,6 +13,7 @@ public class Visitor extends Human {
     private List<Paddock> paddocksSeen;
     private Paddock paddock;
     private Park park;
+
 
     public Visitor() {
     }

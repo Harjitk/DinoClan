@@ -48,10 +48,9 @@ public class Park {
                 paddock.getDinosaursInPaddock().add(dinosaur);
                 setTill(this.till - dinosaur.getPrice());
             }
-
         }
-
     }
+
 
     public void addPaddock(Paddock paddock){
         this.paddocks.add(paddock);

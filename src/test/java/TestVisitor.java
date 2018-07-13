@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class TestVisitor {
 
@@ -30,8 +32,9 @@ public class TestVisitor {
         park.buyDinosaur(velociraptor2, paddock);
 
         meat = new Meat();
+        }
 
-    }
+
 
     @Test
     public void canTauntAllDinosaursInPaddock() {
@@ -39,5 +42,16 @@ public class TestVisitor {
         visitor.tauntDinosaursInPaddock();
         assertEquals(45, velociraptor.getHappiness());
         assertEquals(45, velociraptor2.getHappiness());
+    }
+
+    @Test
+    public void canGetRandomName() {
+        assertNotNull(visitor.randName());
+    }
+
+    @Test
+    public void randomWalletAbove2000(){
+        assertTrue(visitor.randWallet() >= 2000);
+//        assertTrue(visitor.randWallet() >= 2000);
     }
 }
