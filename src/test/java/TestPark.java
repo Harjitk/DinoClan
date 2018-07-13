@@ -12,6 +12,7 @@ public class TestPark {
     Meat meat;
     Velociraptor velociraptor;
     Velociraptor velociraptor2;
+    Stegosaurus stegosaurus;
 
 
     @Before
@@ -20,8 +21,9 @@ public class TestPark {
         visitor = new Visitor("Mr Dino Lover", 100, park);
         paddock = new Paddock("T-Rex Duplex", 1, park);
         meat = new Meat();
-        velociraptor = new Velociraptor("Trouble",DietType.Omnivore, 100, 500000, 5,park, paddock);
-        velociraptor2 = new Velociraptor("More Trouble", DietType.Omnivore, 150, 700000, 8, park, paddock);
+        velociraptor = new Velociraptor("Trouble", 100, 500000, 5,park, paddock);
+        velociraptor2 = new Velociraptor("More Trouble", 150, 700000, 8, park, paddock);
+        stegosaurus = new Stegosaurus("Robert", 700, 400000, 20, park, paddock);
 
     }
 
@@ -38,8 +40,11 @@ public class TestPark {
         assertEquals(199500000, park.getTill());
     }
 
-//    @Test
-//    public void cannotAddMultipleDinosaurTypesToSamePaddock() {
-//        park.buyDinosaur(velociraptor, paddock);
-//    }
+    @Test
+    public void cannotAddMultipleDinosaurTypesToSamePaddock() {
+        park.buyDinosaur(velociraptor, paddock);
+        park.buyDinosaur(stegosaurus, paddock);
+        assertEquals(1, paddock.getDinosaursInPaddock().size());
+
+    }
 }

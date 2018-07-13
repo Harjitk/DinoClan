@@ -47,6 +47,10 @@ public class Park {
 
     }
 
+    public void addFoodToParkStock(Food food){
+        this.foodStock.add(food);
+    }
+
     public String getName() {
         return name;
     }

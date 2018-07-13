@@ -20,8 +20,8 @@ public class TestVisitor {
         paddock = new Paddock("T-Rex Duplex", 1, park);
         park.addVisitorToPaddock(visitor, paddock);
 
-        velociraptor = new Velociraptor("Trouble", DietType.Omnivore, 100, 500000, 5, park, paddock);
-        velociraptor2 = new Velociraptor("More Trouble", DietType.Omnivore, 150, 700000, 8, park, paddock);
+        velociraptor = new Velociraptor("Trouble", 100, 500000, 5, park, paddock);
+        velociraptor2 = new Velociraptor("More Trouble", 150, 700000, 8, park, paddock);
 
         park.buyDinosaur(velociraptor, paddock);
         park.buyDinosaur(velociraptor2, paddock);

@@ -1,5 +1,8 @@
 package models;
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+import javassist.expr.Instanceof;
+
 public class ParkStaff extends Human {
 
     private Park park;
@@ -21,9 +24,30 @@ public class ParkStaff extends Human {
     }
 
     public void addFoodToStore(Paddock paddock){
+//
         Food food = park.getFoodStock().get(0);
-        paddock.getFoodStore().add(food);
-//        needs to be conditional
+
+        if (paddock.getDinosaursInPaddock().size() > 0){
+
+            if ((food instanceof Meat) && paddock.getDinosaursInPaddock().get(0).getDietType() == DietType.Carnivore) {
+                paddock.getFoodStore().add(food);
+            }
+
+            else if ((food instanceof Plant) && paddock.getDinosaursInPaddock().get(0).getDietType() == DietType.Herbivore) {
+               paddock.getFoodStore().add(food);
+            }
+
+            else if (paddock.getDinosaursInPaddock().get(0).getDietType() == DietType.Omnivore){
+                paddock.getFoodStore().add(food);
+            }
+
+        }
+
+        if (paddock.getDinosaursInPaddock().size() == 0){
+            paddock.getFoodStore().add(food);
+        }
+
+
     }
 
     public void transferDinosaur(Dinosaur dinosaur, Paddock paddock){

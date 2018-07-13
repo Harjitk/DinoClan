@@ -19,7 +19,7 @@ public class VelociraptorTest {
         meat = new Meat();
         park = new Park("Dino Park");
         paddock = new Paddock("Velo Pen", 4, park);
-        velociraptor = new Velociraptor("Swifty", DietType.Carnivore, 10, 500000, 5, park, paddock);
+        velociraptor = new Velociraptor("Swifty", 10, 500000, 5, park, paddock);
         paddock.addDinosaurToPaddock(velociraptor);
         paddock.getFoodStore().add(meat);
     }
