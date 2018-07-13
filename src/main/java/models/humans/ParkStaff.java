@@ -1,7 +1,12 @@
-package models;
+package models.humans;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-import javassist.expr.Instanceof;
+import models.Paddock;
+import models.Park;
+import models.dinosaurs.Dinosaur;
+import models.enums.DietType;
+import models.foods.Food;
+import models.foods.Meat;
+import models.foods.Plant;
 
 public class ParkStaff extends Human {
 
@@ -53,6 +58,17 @@ public class ParkStaff extends Human {
     public void transferDinosaur(Dinosaur dinosaur, Paddock paddock){
         paddock.getDinosaursInPaddock().add(dinosaur);
 //        needs to be conditional
+    }
+
+    public void calmDinosaursInPadddock(Paddock paddock){
+        int calm = 5;
+        int currentHappiness;
+        int newHappiness;
+        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()) {
+            currentHappiness = dinosaur.getHappiness();
+            newHappiness = currentHappiness += calm;
+            dinosaur.setHappiness(newHappiness);
+        }
     }
 
     public Park getPark() {

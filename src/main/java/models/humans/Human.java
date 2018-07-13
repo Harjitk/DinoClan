@@ -1,4 +1,7 @@
-package models;
+package models.humans;
+
+import models.interfaces.Iedible;
+import models.interfaces.Imeaty;
 
 public abstract class Human implements Iedible, Imeaty {
 

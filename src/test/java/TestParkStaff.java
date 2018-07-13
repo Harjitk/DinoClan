@@ -1,4 +1,10 @@
 import models.*;
+import models.dinosaurs.Stegosaurus;
+import models.dinosaurs.Tyrannosaurus;
+import models.dinosaurs.Velociraptor;
+import models.foods.Meat;
+import models.foods.Plant;
+import models.humans.ParkStaff;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,6 +20,7 @@ public class TestParkStaff {
     Velociraptor velociraptor;
     Tyrannosaurus tyrannosaurus;
     Stegosaurus stegosaurus;
+    Stegosaurus stegosaurus2;
 
     @Before
     public void setUp() throws Exception {
@@ -25,6 +32,7 @@ public class TestParkStaff {
         velociraptor = new Velociraptor("Swifty", 10, 500000, 5, park, paddock);
         tyrannosaurus = new Tyrannosaurus("FML", 100000, 1000000, 40, park, paddock);
         stegosaurus = new Stegosaurus("Stig", 700, 400000, 20, park, paddock);
+        stegosaurus2 = new Stegosaurus("Stig", 700, 400000, 20, park, paddock);
 
 
     }
@@ -79,5 +87,14 @@ public class TestParkStaff {
         parkStaff.transferDinosaur(velociraptor, paddock);
         assertEquals(1, paddock.getDinosaursInPaddock().size());
 
+    }
+
+    @Test
+    public void canMakeDinosaursHappy() {
+        park.buyDinosaur(stegosaurus, paddock);
+        park.buyDinosaur(stegosaurus2, paddock);
+        parkStaff.calmDinosaursInPadddock(paddock);
+        assertEquals(55, paddock.getDinosaursInPaddock().get(0).getHappiness());
+        assertEquals(55, paddock.getDinosaursInPaddock().get(1).getHappiness());
     }
 }

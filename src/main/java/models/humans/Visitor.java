@@ -1,4 +1,8 @@
-package models;
+package models.humans;
+
+import models.Paddock;
+import models.Park;
+import models.dinosaurs.Dinosaur;
 
 import java.util.List;
 
@@ -20,8 +24,8 @@ public class Visitor extends Human {
 
     public void tauntDinosaursInPaddock(){
         int taunt = 5;
-        int currentHappiness = 0;
-        int newHappiness = 0;
+        int currentHappiness;
+        int newHappiness;
         for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
             currentHappiness = dinosaur.getHappiness();
             newHappiness = currentHappiness -= taunt;

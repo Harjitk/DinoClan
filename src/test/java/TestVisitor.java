@@ -1,4 +1,7 @@
 import models.*;
+import models.dinosaurs.Velociraptor;
+import models.foods.Meat;
+import models.humans.Visitor;
 import org.junit.Before;
 import org.junit.Test;
 
