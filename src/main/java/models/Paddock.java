@@ -27,6 +27,10 @@ public class Paddock {
 
     }
 
+    public void addDinosaurToPaddock(Dinosaur dinosaur){
+        getDinosaursInPaddock().add(dinosaur);
+    }
+
     public String getName() {
         return name;
     }
