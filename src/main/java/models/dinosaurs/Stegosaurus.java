@@ -1,4 +1,8 @@
-package models;
+package models.dinosaurs;
+
+import models.enums.DietType;
+import models.Paddock;
+import models.Park;
 
 public class Stegosaurus extends Dinosaur {
 

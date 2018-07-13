@@ -1,5 +1,10 @@
-package models;
+package models.dinosaurs;
 
+
+import models.enums.DietType;
+import models.foods.Food;
+import models.Paddock;
+import models.Park;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,16 +42,13 @@ public abstract class Dinosaur {
     }
 
 
-
     public void eat(){
-
         Food food = paddock.getFoodStore().get(0);
         getBelly().add(food);
         setHappiness(this.happiness += 5);
     }
 
 //    ADD .RAMPAGE FUNCTION
-
 
     public String getName() {
         return name;

@@ -1,5 +1,9 @@
 package models;
 
+import models.dinosaurs.Dinosaur;
+import models.foods.Food;
+import models.humans.Visitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +33,10 @@ public class Paddock {
 
     public void addDinosaurToPaddock(Dinosaur dinosaur){
         getDinosaursInPaddock().add(dinosaur);
+    }
+
+    public void removeDinosaurFromPaddock(Dinosaur dinosaur){
+        getDinosaursInPaddock().remove(dinosaur);
     }
 
     public String getName() {
