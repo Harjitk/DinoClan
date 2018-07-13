@@ -30,6 +30,23 @@ public class Park {
         this.entryFee = 1000;
     }
 
+    public void addVisitorToPaddock(Visitor visitor, Paddock paddock){
+        paddock.getVisitorsInPaddock().add(visitor);
+        visitor.setPaddock(paddock);
+    }
+
+    public void buyDinosaur(Dinosaur dinosaur, Paddock paddock) {
+        if (this.till - dinosaur.getPrice() >= 0) {
+            if (paddock.getDinosaursInPaddock().size() == 0 ||
+                    paddock.getDinosaursInPaddock().get(0).getDietType() == dinosaur.getDietType() ){
+                paddock.getDinosaursInPaddock().add(dinosaur);
+                setTill(this.till - dinosaur.getPrice());
+            }
+
+        }
+
+    }
+
     public String getName() {
         return name;
     }
@@ -93,4 +110,6 @@ public class Park {
     public void setEntryFee(int entryFee) {
         this.entryFee = entryFee;
     }
+
+
 }

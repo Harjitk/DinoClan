@@ -22,7 +22,7 @@ public abstract class Dinosaur {
     public Dinosaur() {
     }
 
-    public Dinosaur(String name, DietType dietType, int weight, int price, Park park, Paddock paddock, int bellyCapacity) {
+    public Dinosaur(String name, DietType dietType, int weight, int price, int bellyCapacity, Park park, Paddock paddock) {
         this.name = name;
         this.dietType = dietType;
         this.attackValue = 0;
