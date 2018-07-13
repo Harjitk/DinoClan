@@ -22,6 +22,7 @@ public abstract class Dinosaur {
     public Dinosaur() {
     }
 
+
     public Dinosaur(String name, int weight, int price, int bellyCapacity, Park park, Paddock paddock) {
         this.name = name;
         this.dietType = null;
