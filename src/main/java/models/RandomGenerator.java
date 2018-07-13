@@ -20,6 +20,7 @@ public class RandomGenerator {
     public Visitor generateVisitor(){
         Visitor generatedVisitor;
         generatedVisitor = new Visitor(visitor.randName(), visitor.randWallet(), park);
+        park.addVisitor(generatedVisitor);
         return generatedVisitor;
     }
 

@@ -37,4 +37,16 @@ public class RandomGeneratorTest {
         ArrayList<Visitor> generatedVisitors = randomGenerator.generatedVisitors(50);
         assertEquals(50, generatedVisitors.size());
     }
+
+    @Test
+    public void generatingVisitorsAddsTicketRevenue(){
+        randomGenerator.generatedVisitors(50);
+        assertEquals(200050000, park.getTill());
+    }
+
+    @Test
+    public void generatedVisitorsHaveReducedWallet() {
+        randomGenerator.generatedVisitors(50);
+        assertTrue(visitor.getWallet() <= 2000);
+    }
 }
