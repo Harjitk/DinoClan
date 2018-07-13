@@ -1,5 +1,10 @@
-package models;
+package models.foods;
 
+
+import models.Paddock;
+import models.Park;
+import models.dinosaurs.Dinosaur;
+import models.interfaces.Iedible;
 
 import javax.persistence.*;
 
@@ -15,6 +20,7 @@ public abstract class Food implements Iedible {
     private Paddock paddock;
 
     public Food() {
+
     }
 
     public void Iedible() {

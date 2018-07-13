@@ -1,5 +1,11 @@
 package models;
 
+import models.dinosaurs.Dinosaur;
+import models.foods.Food;
+import models.humans.Human;
+import models.humans.ParkStaff;
+import models.humans.Visitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,9 +48,42 @@ public class Park {
                 paddock.getDinosaursInPaddock().add(dinosaur);
                 setTill(this.till - dinosaur.getPrice());
             }
-
         }
+    }
 
+    public void addPaddock(Paddock paddock){
+        this.paddocks.add(paddock);
+    }
+
+    public void removePaddock(Paddock paddock){
+        this.paddocks.remove(paddock);
+    }
+
+    public void removeDinosaur(Dinosaur dinosaur){
+        this.dinosaursInPark.remove(dinosaursInPark);
+    }
+
+    public void addVisitor(Visitor visitor){
+        this.visitors.add(visitor);
+        int visitorWallet = visitor.getWallet();
+        setTill(till += entryFee);
+        visitor.setWallet(visitorWallet -= entryFee);
+    }
+
+    public void removeVisitor(Visitor visitor){
+        this.visitors.remove(visitor);
+    }
+
+    public void addParkStaff(ParkStaff parkStaff){
+        this.parkStaff.add(parkStaff);
+    }
+
+    public void removeParkStaff(ParkStaff parkStaff){
+        this.parkStaff.remove(parkStaff);
+    }
+
+    public void addFoodToParkStock(Food food){
+        this.foodStock.add(food);
     }
 
     public String getName() {

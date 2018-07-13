@@ -1,8 +1,9 @@
 import models.*;
+import models.dinosaurs.Velociraptor;
+import models.foods.Meat;
+import models.humans.ParkStaff;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,7 +20,7 @@ public class VelociraptorTest {
         meat = new Meat();
         park = new Park("Dino Park");
         paddock = new Paddock("Velo Pen", 4, park);
-        velociraptor = new Velociraptor("Swifty", DietType.Carnivore, 10, 500000, 5, park, paddock);
+        velociraptor = new Velociraptor("Swifty", 10, 500000, 5, park, paddock);
         paddock.addDinosaurToPaddock(velociraptor);
         paddock.getFoodStore().add(meat);
     }
