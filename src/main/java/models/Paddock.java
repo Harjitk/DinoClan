@@ -1,25 +1,32 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Paddock {
 
     private String name;
     private int capacity;
     private String environment;
     private int health;
+    private List<Dinosaur> dinosaursInPaddock;
+    private List<Food> foodStore;
+    private List<Visitor> visitorsInPaddock;
+    private Park park;
 
     public Paddock() {
     }
 
-    public Paddock(String name, int capacity, String environment) {
+    public Paddock(String name, int capacity, String environment, Park park) {
         this.name = name;
         this.capacity = capacity;
         this.environment = environment;
         this.health = 1;
-//        need to add:
-//        List<Dinosaur> dinosaursInPaddock;
-//        List<iEdible> foodStore;
-//        List<Visitor> visitorsInPaddock;
-//        Park park;
+        this.dinosaursInPaddock = new ArrayList<Dinosaur>();
+        this.foodStore = new ArrayList<Food>();
+        this.visitorsInPaddock = new ArrayList<Visitor>();
+        this.park = park;
+
     }
 
     public String getName() {
@@ -52,5 +59,37 @@ public class Paddock {
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public List<Dinosaur> getDinosaursInPaddock() {
+        return dinosaursInPaddock;
+    }
+
+    public void setDinosaursInPaddock(List<Dinosaur> dinosaursInPaddock) {
+        this.dinosaursInPaddock = dinosaursInPaddock;
+    }
+
+    public List<Food> getFoodStore() {
+        return foodStore;
+    }
+
+    public void setFoodStore(List<Food> foodStore) {
+        this.foodStore = foodStore;
+    }
+
+    public List<Visitor> getVisitorsInPaddock() {
+        return visitorsInPaddock;
+    }
+
+    public void setVisitorsInPaddock(List<Visitor> visitorsInPaddock) {
+        this.visitorsInPaddock = visitorsInPaddock;
+    }
+
+    public Park getPark() {
+        return park;
+    }
+
+    public void setPark(Park park) {
+        this.park = park;
     }
 }
