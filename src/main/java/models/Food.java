@@ -44,7 +44,6 @@ public abstract class Food implements Iedible {
     public void setPaddock(Paddock paddock) {
         this.paddock = paddock;
     }
-
 }
 
 //
