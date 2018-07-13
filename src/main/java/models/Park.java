@@ -78,7 +78,7 @@ public class Park {
     }
 
     public void removeParkStaff(ParkStaff parkStaff){
-        this.parkStaff.remove(parkStaff)
+        this.parkStaff.remove(parkStaff);
     }
 
     public void addFoodToParkStock(Food food){
