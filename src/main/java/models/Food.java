@@ -10,13 +10,39 @@ import javax.persistence.*;
 public abstract class Food implements Iedible {
 
 //    private int id;
-//    private Park park;
+    private Park park;
+    private Dinosaur dinosaur;
+    private Paddock paddock;
 
     public Food() {
     }
 
     public void Iedible() {
 
+    }
+
+    public Park getPark() {
+        return park;
+    }
+
+    public void setPark(Park park) {
+        this.park = park;
+    }
+
+    public Dinosaur getDinosaur() {
+        return dinosaur;
+    }
+
+    public void setDinosaur(Dinosaur dinosaur) {
+        this.dinosaur = dinosaur;
+    }
+
+    public Paddock getPaddock() {
+        return paddock;
+    }
+
+    public void setPaddock(Paddock paddock) {
+        this.paddock = paddock;
     }
 }
 
