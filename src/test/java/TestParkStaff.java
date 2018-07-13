@@ -1,5 +1,4 @@
-import models.Paddock;
-import models.ParkStaff;
+import models.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,11 +8,18 @@ public class TestParkStaff {
 
     ParkStaff parkStaff;
     Paddock paddock;
+    Park park;
+    Meat meat;
+    Velociraptor velociraptor;
 
     @Before
     public void setUp() throws Exception {
-        parkStaff = new ParkStaff("Mr Dino Lover", 100);
-        paddock = new Paddock("T-Rex Duplex", 1, "Temperate");
+        park = new Park("DinoClan");
+        parkStaff = new ParkStaff("Mr Dino Lover", 100, park);
+        paddock = new Paddock("T-Rex Duplex", 1, "Temperate", park);
+        meat = new Meat();
+        velociraptor = new Velociraptor();
+
     }
 
     @Test
@@ -21,5 +27,24 @@ public class TestParkStaff {
         paddock.setHealth(0);
         parkStaff.repairPaddock(paddock);
         assertEquals(1, paddock.getHealth());
+    }
+
+    @Test
+    public void canAddFoodToPaddock() {
+        park.getFoodStock().add(meat);
+        parkStaff.addFoodToStore(paddock);
+        assertEquals(1, paddock.getFoodStore().size());
+    }
+
+    @Test
+    public void paddockStartsEmpty() {
+        assertEquals(0, paddock.getDinosaursInPaddock().size());
+    }
+
+    @Test
+    public void canTransferDinosaurToPaddock() {
+        parkStaff.transferDinosaur(velociraptor, paddock);
+        assertEquals(1, paddock.getDinosaursInPaddock().size());
+
     }
 }

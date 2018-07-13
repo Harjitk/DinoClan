@@ -16,6 +16,14 @@ public abstract class Human implements Iedible, Imeaty {
 //        randWallet method;
     }
 
+    public void Iedible() {
+
+    }
+
+    public void Imeaty() {
+
+    }
+
     public String getName() {
         return name;
     }
@@ -31,5 +39,6 @@ public abstract class Human implements Iedible, Imeaty {
     public void setWallet(int wallet) {
         this.wallet = wallet;
     }
+
 
 }

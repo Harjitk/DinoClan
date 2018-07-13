@@ -1,5 +1,6 @@
 package models;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,6 +113,5 @@ public abstract class Dinosaur {
     public void setBellyCapacity(int bellyCapacity) {
         this.bellyCapacity = bellyCapacity;
     }
-
 
 }
