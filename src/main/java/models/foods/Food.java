@@ -19,8 +19,10 @@ public abstract class Food implements Iedible {
     private Dinosaur dinosaur;
     private Paddock paddock;
 
-    public Food() {
+    //Only one constructor - do we need two for DB?
+    //One constructor with ID, one empty?
 
+    public Food() {
     }
 
     public void Iedible() {
