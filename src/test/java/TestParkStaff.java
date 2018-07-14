@@ -1,4 +1,5 @@
 import models.*;
+import models.dinosaurs.Diplodocus;
 import models.dinosaurs.Stegosaurus;
 import models.dinosaurs.Tyrannosaurus;
 import models.dinosaurs.Velociraptor;
@@ -9,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class TestParkStaff {
 
@@ -21,6 +23,7 @@ public class TestParkStaff {
     Tyrannosaurus tyrannosaurus;
     Stegosaurus stegosaurus;
     Stegosaurus stegosaurus2;
+    Diplodocus diplodocus;
 
     @Before
     public void setUp() throws Exception {
@@ -33,8 +36,7 @@ public class TestParkStaff {
         tyrannosaurus = new Tyrannosaurus("FML", 100000, 1000000, 40, park, paddock);
         stegosaurus = new Stegosaurus("Stig", 700, 400000, 20, park, paddock);
         stegosaurus2 = new Stegosaurus("Stig", 700, 400000, 20, park, paddock);
-
-
+        diplodocus = new Diplodocus("Dip by Dip you Dip", 15000, 1000000, 50, park, paddock);
     }
 
     @Test
@@ -94,7 +96,25 @@ public class TestParkStaff {
     public void canTransferDinosaurToPaddock() {
         parkStaff.transferDinosaur(velociraptor, paddock);
         assertEquals(1, paddock.getDinosaursInPaddock().size());
+    }
 
+    @Test
+    public void cantAddCarnivoreToOmnivoreEnclosure() {
+        parkStaff.transferDinosaur(velociraptor, paddock);
+        parkStaff.transferDinosaur(tyrannosaurus, paddock);
+        assertEquals(1, paddock.getDinosaursInPaddock().size());
+    }
+
+    @Test
+    public void cantAddHerbivoreToCarnivoreEnclosure() {
+        parkStaff.transferDinosaur(tyrannosaurus, paddock);
+        parkStaff.transferDinosaur(stegosaurus, paddock);
+        assertEquals(1, paddock.getDinosaursInPaddock().size());
+    }
+
+    @Test
+    public void canAddDifferentHerbivoresToHerbivoreEnclosure() {
+        parkStaff.transferDinosaur(stegosaurus, paddock);
     }
 
     @Test

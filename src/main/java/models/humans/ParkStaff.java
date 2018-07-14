@@ -20,7 +20,6 @@ public class ParkStaff extends Human {
         super(name, wallet);
         this.park = park;
 
-//        calmDinosaur(dinosaur)
     }
 
 
@@ -29,7 +28,7 @@ public class ParkStaff extends Human {
     }
 
     public void addFoodToStore(Paddock paddock){
-//
+
         int foodCount = 0;
         if (foodCount == 0){
 
@@ -51,21 +50,24 @@ public class ParkStaff extends Human {
                         paddock.getFoodStore().add(food);
                         foodCount += 1;
                     }
-
                 }
 
                 if (paddock.getDinosaursInPaddock().size() == 0 && foodCount == 0){
                     paddock.getFoodStore().add(food);
                     foodCount += 1;
-
                 }
             }
         }
     }
 
-    public void transferDinosaur(Dinosaur dinosaur, Paddock paddock){
-        paddock.getDinosaursInPaddock().add(dinosaur);
-//        needs to be conditional
+    public void transferDinosaur(Dinosaur dinosaur, Paddock paddock) {
+
+        if (paddock.getDinosaursInPaddock().size() == 0) {
+            paddock.getDinosaursInPaddock().add(dinosaur);
+        } else if (paddock.getDinosaursInPaddock().get(0).getDietType() == dinosaur.getDietType()){
+            paddock.getDinosaursInPaddock().add(dinosaur);
+        }
+
     }
 
     public void calmDinosaursInPadddock(Paddock paddock){
