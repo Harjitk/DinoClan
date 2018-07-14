@@ -82,8 +82,9 @@ public class Paddock {
         getDinosaursInPaddock().remove(dinosaur);
     }
 
+//ONE TO MANY??
+//    @OneToMany(mappedBy = "paddock")
 
-    @OneToMany(mappedBy = "paddock")
     public List<Dinosaur> getDinosaursInPaddock() {
         return dinosaursInPaddock;
     }
@@ -92,8 +93,9 @@ public class Paddock {
         this.dinosaursInPaddock = dinosaursInPaddock;
     }
 
+//ONE TO MANY??
+//    @OneToMany(mappedBy = "paddock")
 
-    @OneToMany(mappedBy = "paddock")
     public List<Food> getFoodStore() {
         return foodStore;
     }

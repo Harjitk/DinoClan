@@ -133,7 +133,8 @@ public abstract class Dinosaur {
 
 //    ADD .RAMPAGE FUNCTION
 
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;
     }

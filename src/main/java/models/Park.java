@@ -133,8 +133,9 @@ public class Park {
         this.foodStock.add(food);
     }
 
+//ONE TO MANY??
+//    @OneToMany(mappedBy = "dinosaur")
 
-    @OneToMany(mappedBy = "dinosaur")
     public List<Dinosaur> getDinosaursInPark() {
         return dinosaursInPark;
     }
@@ -164,8 +165,9 @@ public class Park {
         this.visitors = visitors;
     }
 
+//ONE TO MANY??
+//    @OneToMany(mappedBy = "park")
 
-    @OneToMany(mappedBy = "park")
     public List<Food> getFoodStock() {
         return foodStock;
     }
