@@ -22,6 +22,7 @@ public abstract class Dinosaur {
     private Park park;
     private List<Food> belly;
     private List<Human> humanBelly;
+    private List <Human> humanVisitors;
     private Paddock paddock;
     private int bellyCapacity;
 
@@ -40,25 +41,32 @@ public abstract class Dinosaur {
         this.park = park;
         this.belly = new ArrayList<Food>();
         this.humanBelly = new ArrayList<Human>();
+        this.humanVisitors = new ArrayList<Human>();
         this.paddock = paddock;
         this.bellyCapacity = bellyCapacity;
     }
 
 
     public void eat(){
+        //      NEEDS TO RETURN STRING IF CONDITION NOT MET
         if (this.belly.size() < this.bellyCapacity) {
             Food food = paddock.getFoodStore().get(0);
             getBelly().add(food);
             paddock.getFoodStore().remove(food);
-            setHappiness(this.happiness += 5);
+            if (this.happiness <= 95) {
+                setHappiness(this.happiness += 5);
+            }
         }
     }
 
     public void eatHuman(Human human){
+        //      NEEDS TO RETURN STRING IF CONDITION NOT MET
         if (this.humanBelly.size() < this.bellyCapacity) {
             getHumanBelly().add(human);
             park.getVisitors().remove(human);
-            setHappiness(this.happiness += 5);
+            if (this.happiness <= 95) {
+                setHappiness(this.happiness += 5);
+            }
         }
     }
 
@@ -150,5 +158,13 @@ public abstract class Dinosaur {
 
     public void setHumanBelly(List<Human> humanBelly) {
         this.humanBelly = humanBelly;
+    }
+
+    public List<Human> getHumanVisitors() {
+        return humanVisitors;
+    }
+
+    public void setHumanVisitors(List<Human> humanVisitors) {
+        this.humanVisitors = humanVisitors;
     }
 }

@@ -32,9 +32,8 @@ public class VelociraptorTest {
         parkStaff = new ParkStaff(visitor.randName(), visitor.randWallet(), park);
         parkStaff.transferDinosaur(velociraptor, paddock);
         park.generateFoodStock(10);
-        parkStaff.addFoodToStore(paddock);
-        parkStaff.addFoodToStore(paddock);
-        parkStaff.addFoodToStore(paddock);
+        parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock);
+        parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock);
         randomGenerator = new RandomGenerator(visitor, park);
         randomGenerator.generateMultipleVisitors(50);
 

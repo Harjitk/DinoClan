@@ -28,6 +28,7 @@ public class ParkStaff extends Human {
     }
 
     public void addFoodToStore(Paddock paddock){
+        //      NEEDS TO RETURN STRING IF CONDITION NOT MET
 
         int foodCount = 0;
         if (foodCount == 0){
@@ -62,16 +63,20 @@ public class ParkStaff extends Human {
 
     public String transferDinosaur(Dinosaur dinosaur, Paddock paddock) {
 
-        if (paddock.getDinosaursInPaddock().size() == 0) {
-            paddock.getDinosaursInPaddock().add(dinosaur);
-        } else if (paddock.getDinosaursInPaddock().get(0).getDietType() == dinosaur.getDietType()) {
-            paddock.getDinosaursInPaddock().add(dinosaur);
-        } else {
-            return "This dinosaur is a(n) " + dinosaur.getDietType() + ", but the paddock is full of " + paddock.getDinosaursInPaddock().get(0).getDietType() + "s";
+        if (paddock.getCapacity() > paddock.getDinosaursInPaddock().size()) {
+
+            if (paddock.getDinosaursInPaddock().size() == 0) {
+                paddock.getDinosaursInPaddock().add(dinosaur);
+            } else if (paddock.getDinosaursInPaddock().get(0).getDietType() == dinosaur.getDietType()) {
+                paddock.getDinosaursInPaddock().add(dinosaur);
+            } else {
+                return "This dinosaur is a(n) " + dinosaur.getDietType() + ", but the paddock is full of " + paddock.getDinosaursInPaddock().get(0).getDietType() + "s";
+            }
+
+
+
         }
-
         return null;
-
     }
 
 

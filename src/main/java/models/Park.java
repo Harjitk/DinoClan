@@ -24,8 +24,6 @@ public class Park {
     private int till;
     private int entryFee;
 
-//    need to write: populateFoodStock
-
     public Park() {
     }
 
@@ -43,15 +41,22 @@ public class Park {
     public void addVisitorToPaddock(Visitor visitor, Paddock paddock) {
         paddock.getVisitorsInPaddock().add(visitor);
         visitor.setPaddock(paddock);
+        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
+            visitor.getDinosSeen().add(dinosaur);
+        }
     }
 
     public void buyDinosaur(Dinosaur dinosaur, Paddock paddock) {
 //      NEEDS TO RETURN STRING IF CONDITION NOT MET
-        if (this.till - dinosaur.getPrice() >= 0) {
-            if (paddock.getDinosaursInPaddock().size() == 0 ||
-                    paddock.getDinosaursInPaddock().get(0).getDietType() == dinosaur.getDietType()) {
-                paddock.getDinosaursInPaddock().add(dinosaur);
-                setTill(this.till - dinosaur.getPrice());
+
+        if (paddock.getCapacity() > paddock.getDinosaursInPaddock().size()) {
+
+            if (this.till - dinosaur.getPrice() >= 0) {
+                if (paddock.getDinosaursInPaddock().size() == 0 ||
+                        paddock.getDinosaursInPaddock().get(0).getDietType() == dinosaur.getDietType()) {
+                    paddock.getDinosaursInPaddock().add(dinosaur);
+                    setTill(this.till - dinosaur.getPrice());
+                }
             }
         }
     }

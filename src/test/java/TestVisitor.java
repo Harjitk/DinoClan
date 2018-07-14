@@ -25,7 +25,7 @@ public class TestVisitor {
         park = new Park("DinoClan");
         visitor = new Visitor("Mr Dino Lover", 100, park);
         parkStaff = new ParkStaff(visitor.randName(), visitor.randWallet(), park);
-        paddock = new Paddock("T-Rex Duplex", 1, park);
+        paddock = new Paddock("T-Rex Duplex", 2, park);
         park.addVisitorToPaddock(visitor, paddock);
 
         velociraptor = new Velociraptor("Trouble", 100, 500000, 5, park, paddock);
