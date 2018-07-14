@@ -2,11 +2,13 @@ package models;
 
 import models.dinosaurs.Dinosaur;
 import models.foods.Food;
+import models.foods.Plant;
 import models.humans.Human;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Park {
@@ -36,7 +38,7 @@ public class Park {
         this.entryFee = 1000;
     }
 
-    public void addVisitorToPaddock(Visitor visitor, Paddock paddock){
+    public void addVisitorToPaddock(Visitor visitor, Paddock paddock) {
         paddock.getVisitorsInPaddock().add(visitor);
         visitor.setPaddock(paddock);
     }
@@ -44,7 +46,7 @@ public class Park {
     public void buyDinosaur(Dinosaur dinosaur, Paddock paddock) {
         if (this.till - dinosaur.getPrice() >= 0) {
             if (paddock.getDinosaursInPaddock().size() == 0 ||
-                    paddock.getDinosaursInPaddock().get(0).getDietType() == dinosaur.getDietType() ){
+                    paddock.getDinosaursInPaddock().get(0).getDietType() == dinosaur.getDietType()) {
                 paddock.getDinosaursInPaddock().add(dinosaur);
                 setTill(this.till - dinosaur.getPrice());
             }
@@ -53,35 +55,35 @@ public class Park {
 
     }
 
-    public void addPaddock(Paddock paddock){
+    public void addPaddock(Paddock paddock) {
         this.paddocks.add(paddock);
     }
 
-    public void removePaddock(Paddock paddock){
+    public void removePaddock(Paddock paddock) {
         this.paddocks.remove(paddock);
     }
 
-    public void removeDinosaur(Dinosaur dinosaur){
+    public void removeDinosaur(Dinosaur dinosaur) {
         this.dinosaursInPark.remove(dinosaursInPark);
     }
 
-    public void addVisitor(Visitor visitor){
+    public void addVisitor(Visitor visitor) {
         this.visitors.add(visitor);
     }
 
-    public void removeVisitor(Visitor visitor){
+    public void removeVisitor(Visitor visitor) {
         this.visitors.remove(visitor);
     }
 
-    public void addParkStaff(ParkStaff parkStaff){
+    public void addParkStaff(ParkStaff parkStaff) {
         this.parkStaff.add(parkStaff);
     }
 
-    public void removeParkStaff(ParkStaff parkStaff){
+    public void removeParkStaff(ParkStaff parkStaff) {
         this.parkStaff.remove(parkStaff);
     }
 
-    public void addFoodToParkStock(Food food){
+    public void addFoodToParkStock(Food food) {
         this.foodStock.add(food);
     }
 
@@ -149,5 +151,23 @@ public class Park {
         this.entryFee = entryFee;
     }
 
+    //    Write a method for the Park class which takes in an integer.
+//        It should create new Food objects and add them to the Park's food stock ArrayList.
+//        NEWING UP FOOD OBJECTS IN FOR LOOP
+//        SAME LOOP- ADDING TO PARKS FOOD STOCK ARRAYLIST
+//
+//        It will stop creating new Food objects and
+//        adding them to the food stock when the integer being passed in is reached.
 
+    public ArrayList<Food> generateFoodStock(int num) {
+        ArrayList<Food> generateFoodStock = new ArrayList<Food>();
+
+        for (int index = 0; index < num; index++) {
+
+            Plant plant = new Plant();
+            foodStock.add(plant);
+        }
+
+        return generateFoodStock;
+    }
 }
