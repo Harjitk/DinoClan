@@ -9,12 +9,11 @@ import models.dinosaurs.Dinosaur;
 import javax.persistence.*;
 
 @Entity
-
-//@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 
 public abstract class Food {
 
-//    private int id;
+    private int id;
     private Park park;
     private Dinosaur dinosaur;
     private Paddock paddock;
@@ -24,11 +23,22 @@ public abstract class Food {
 
     public Food() {
     }
+//
+//    Unable to make empty constuctor
 
-    public void Iedible() {
-
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    public int getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="park_id", nullable = true)
     public Park getPark() {
         return park;
     }
@@ -37,6 +47,8 @@ public abstract class Food {
         this.park = park;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="dinosaur_id", nullable = true)
     public Dinosaur getDinosaur() {
         return dinosaur;
     }
@@ -45,6 +57,8 @@ public abstract class Food {
         this.dinosaur = dinosaur;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="paddock_id", nullable = true)
     public Paddock getPaddock() {
         return paddock;
     }
@@ -53,26 +67,3 @@ public abstract class Food {
         this.paddock = paddock;
     }
 }
-
-//
-//
-////    @Id
-////    @GeneratedValue
-////    @Column(name="id")
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-//
-////    @Column(name="park")
-//    public Park getPark() {
-//        return park;
-//    }
-//
-//    public void setPark(Park park) {
-//        this.park = park;
-//    }
-//}

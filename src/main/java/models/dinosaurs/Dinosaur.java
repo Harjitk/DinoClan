@@ -7,8 +7,12 @@ import models.Paddock;
 import models.Park;
 import models.humans.Human;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 
 public abstract class Dinosaur {
 
@@ -26,10 +30,6 @@ public abstract class Dinosaur {
     private int bellyCapacity;
 
 
-    public Dinosaur() {
-    }
-
-
     public Dinosaur(String name, int weight, int price, int bellyCapacity, Park park, Paddock paddock) {
         this.name = name;
         this.dietType = null;
@@ -44,15 +44,21 @@ public abstract class Dinosaur {
         this.bellyCapacity = bellyCapacity;
     }
 
-
-    public void eat(){
-        Food food = paddock.getFoodStore().get(0);
-        getBelly().add(food);
-        setHappiness(this.happiness += 5);
+    public Dinosaur() {
     }
 
-//    ADD .RAMPAGE FUNCTION
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name="name")
     public String getName() {
         return name;
     }
@@ -61,6 +67,8 @@ public abstract class Dinosaur {
         this.name = name;
     }
 
+
+    @Enumerated(value = EnumType.STRING)
     public DietType getDietType() {
         return dietType;
     }
@@ -68,6 +76,8 @@ public abstract class Dinosaur {
     public void setDietType(DietType dietType) {
         this.dietType = dietType;
     }
+
+    @Column(name="attackValue")
     public int getAttackValue() {
         return attackValue;
     }
@@ -76,6 +86,7 @@ public abstract class Dinosaur {
         this.attackValue = attackValue;
     }
 
+    @Column(name="happiness")
     public int getHappiness() {
         return happiness;
     }
@@ -84,6 +95,7 @@ public abstract class Dinosaur {
         this.happiness = happiness;
     }
 
+    @Column(name="weight")
     public int getWeight() {
         return weight;
     }
@@ -96,9 +108,29 @@ public abstract class Dinosaur {
         return price;
     }
 
+    @Column(name="price")
     public void setPrice(int price) {
         this.price = price;
     }
+
+    @Column(name="bellyCapacity")
+    public int getBellyCapacity() {
+        return bellyCapacity;
+    }
+
+    public void setBellyCapacity(int bellyCapacity) {
+        this.bellyCapacity = bellyCapacity;
+    }
+
+
+    public void eat(){
+        Food food = paddock.getFoodStore().get(0);
+        getBelly().add(food);
+        setHappiness(this.happiness += 5);
+    }
+
+//    ADD .RAMPAGE FUNCTION
+
 
     public Park getPark() {
         return park;
@@ -108,6 +140,7 @@ public abstract class Dinosaur {
         this.park = park;
     }
 
+    @OneToMany(mappedBy = "dinosaur")
     public List<Food> getBelly() {
         return belly;
     }
@@ -124,13 +157,7 @@ public abstract class Dinosaur {
         this.paddock = paddock;
     }
 
-    public int getBellyCapacity() {
-        return bellyCapacity;
-    }
 
-    public void setBellyCapacity(int bellyCapacity) {
-        this.bellyCapacity = bellyCapacity;
-    }
 
     public List<Human> getHumanBelly() {
         return humanBelly;

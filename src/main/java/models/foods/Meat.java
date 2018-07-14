@@ -5,6 +5,5 @@ public class Meat extends Food  {
     public Meat() {
     }
 
-
     }
 

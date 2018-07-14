@@ -4,8 +4,15 @@ import models.dinosaurs.Dinosaur;
 import models.foods.Food;
 import models.humans.Visitor;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+
+@Entity
+@Table(name="paddocks")
 
 public class Paddock {
 
@@ -31,14 +38,7 @@ public class Paddock {
 
     }
 
-    public void addDinosaurToPaddock(Dinosaur dinosaur){
-        getDinosaursInPaddock().add(dinosaur);
-    }
-
-    public void removeDinosaurFromPaddock(Dinosaur dinosaur){
-        getDinosaursInPaddock().remove(dinosaur);
-    }
-
+    @Column(name="name")
     public String getName() {
         return name;
     }
@@ -47,6 +47,7 @@ public class Paddock {
         this.name = name;
     }
 
+    @Column(name="capacity")
     public int getCapacity() {
         return capacity;
     }
@@ -55,6 +56,7 @@ public class Paddock {
         this.capacity = capacity;
     }
 
+    @Column(name="health")
     public int getHealth() {
         return health;
     }
@@ -62,6 +64,16 @@ public class Paddock {
     public void setHealth(int health) {
         this.health = health;
     }
+
+
+    public void addDinosaurToPaddock(Dinosaur dinosaur){
+        getDinosaursInPaddock().add(dinosaur);
+    }
+
+    public void removeDinosaurFromPaddock(Dinosaur dinosaur){
+        getDinosaursInPaddock().remove(dinosaur);
+    }
+
 
     public List<Dinosaur> getDinosaursInPaddock() {
         return dinosaursInPaddock;
@@ -71,6 +83,7 @@ public class Paddock {
         this.dinosaursInPaddock = dinosaursInPaddock;
     }
 
+    @OneToMany(mappedBy = "paddock")
     public List<Food> getFoodStore() {
         return foodStore;
     }

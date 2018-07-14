@@ -31,7 +31,5 @@
         <mapping class="models.Park"/>
         <mapping class="models.RandomGenerator"/>
 
-
-
     </session-factory>
 </hibernate-configuration>

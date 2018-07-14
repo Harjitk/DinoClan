@@ -8,10 +8,17 @@ import models.humans.Human;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+
+@Entity
+@Table(name="parks")
 
 public class Park {
 
@@ -38,6 +45,33 @@ public class Park {
         this.paddocks = new ArrayList<Paddock>();
         this.till = 200000000;
         this.entryFee = 1000;
+    }
+
+    @Column(name="name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Column(name="till")
+    public int getTill() {
+        return till;
+    }
+
+    public void setTill(int till) {
+        this.till = till;
+    }
+
+    @Column(name="entryFree")
+    public int getEntryFee() {
+        return entryFee;
+    }
+
+    public void setEntryFee(int entryFee) {
+        this.entryFee = entryFee;
     }
 
     public void addVisitorToPaddock(Visitor visitor, Paddock paddock) {
@@ -90,13 +124,6 @@ public class Park {
         this.foodStock.add(food);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public List<Dinosaur> getDinosaursInPark() {
         return dinosaursInPark;
@@ -122,6 +149,8 @@ public class Park {
         this.visitors = visitors;
     }
 
+
+    @OneToMany(mappedBy = "park")
     public List<Food> getFoodStock() {
         return foodStock;
     }
@@ -129,6 +158,7 @@ public class Park {
     public void setFoodStock(List<Food> foodStock) {
         this.foodStock = foodStock;
     }
+
 
     public List<Paddock> getPaddocks() {
         return paddocks;
@@ -138,21 +168,6 @@ public class Park {
         this.paddocks = paddocks;
     }
 
-    public int getTill() {
-        return till;
-    }
-
-    public void setTill(int till) {
-        this.till = till;
-    }
-
-    public int getEntryFee() {
-        return entryFee;
-    }
-
-    public void setEntryFee(int entryFee) {
-        this.entryFee = entryFee;
-    }
 
     public ArrayList<Food> generateFoodStock(int num) {
         ArrayList<Food> generateFoodStock = new ArrayList<Food>();
