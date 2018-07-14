@@ -24,15 +24,21 @@ public class Visitor extends Human {
         this.paddock = null;
     }
 
-    public void tauntDinosaursInPaddock(){
+    public String tauntDinosaursInPaddock(){
         int taunt = 5;
         int currentHappiness;
         int newHappiness;
-        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
-            currentHappiness = dinosaur.getHappiness();
-            newHappiness = currentHappiness -= taunt;
-            dinosaur.setHappiness(newHappiness);
+        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()) {
+            if (dinosaur.getHappiness() >= 5) {
+                currentHappiness = dinosaur.getHappiness();
+                newHappiness = currentHappiness -= taunt;
+                dinosaur.setHappiness(newHappiness);
+            } else {
+                return "This dinosaur is angry as hell and looks ready to RAMPAGE";
+            }
         }
+
+        return null;
     }
 
     public List<Dinosaur> getDinosSeen() {

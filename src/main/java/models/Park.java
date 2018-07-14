@@ -46,6 +46,7 @@ public class Park {
     }
 
     public void buyDinosaur(Dinosaur dinosaur, Paddock paddock) {
+//      NEEDS TO RETURN STRING IF CONDITION NOT MET
         if (this.till - dinosaur.getPrice() >= 0) {
             if (paddock.getDinosaursInPaddock().size() == 0 ||
                     paddock.getDinosaursInPaddock().get(0).getDietType() == dinosaur.getDietType()) {

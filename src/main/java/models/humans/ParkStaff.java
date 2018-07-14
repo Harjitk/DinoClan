@@ -60,25 +60,36 @@ public class ParkStaff extends Human {
         }
     }
 
-    public void transferDinosaur(Dinosaur dinosaur, Paddock paddock) {
+    public String transferDinosaur(Dinosaur dinosaur, Paddock paddock) {
 
         if (paddock.getDinosaursInPaddock().size() == 0) {
             paddock.getDinosaursInPaddock().add(dinosaur);
-        } else if (paddock.getDinosaursInPaddock().get(0).getDietType() == dinosaur.getDietType()){
+        } else if (paddock.getDinosaursInPaddock().get(0).getDietType() == dinosaur.getDietType()) {
             paddock.getDinosaursInPaddock().add(dinosaur);
+        } else {
+            return "This dinosaur is a(n) " + dinosaur.getDietType() + ", but the paddock is full of " + paddock.getDinosaursInPaddock().get(0).getDietType() + "s";
         }
+
+        return null;
 
     }
 
-    public void calmDinosaursInPadddock(Paddock paddock){
+
+    public String calmDinosaursInPadddock(Paddock paddock){
         int calm = 5;
         int currentHappiness;
         int newHappiness;
+
         for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()) {
-            currentHappiness = dinosaur.getHappiness();
-            newHappiness = currentHappiness += calm;
-            dinosaur.setHappiness(newHappiness);
+            if (dinosaur.getHappiness() <= 95) {
+                currentHappiness = dinosaur.getHappiness();
+                newHappiness = currentHappiness += calm;
+                dinosaur.setHappiness(newHappiness);
+            }
+            else return "This dinosaur is already as happy as can be";
         }
+
+        return null;
     }
 
     public Park getPark() {

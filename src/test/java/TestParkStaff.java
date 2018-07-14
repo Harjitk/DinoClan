@@ -102,6 +102,7 @@ public class TestParkStaff {
         parkStaff.transferDinosaur(velociraptor, paddock);
         parkStaff.transferDinosaur(tyrannosaurus, paddock);
         assertEquals(1, paddock.getDinosaursInPaddock().size());
+        assertEquals("This dinosaur is a(n) Carnivore, but the paddock is full of Omnivores", parkStaff.transferDinosaur(tyrannosaurus, paddock));
     }
 
     @Test
@@ -125,5 +126,15 @@ public class TestParkStaff {
         parkStaff.calmDinosaursInPadddock(paddock);
         assertEquals(55, paddock.getDinosaursInPaddock().get(0).getHappiness());
         assertEquals(55, paddock.getDinosaursInPaddock().get(1).getHappiness());
+    }
+
+    @Test
+    public void cantMakeDinosaursHappyPast100() {
+        park.buyDinosaur(stegosaurus, paddock);
+        park.buyDinosaur(stegosaurus2, paddock);
+        parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock); parkStaff.calmDinosaursInPadddock(paddock);
+        assertEquals(100, paddock.getDinosaursInPaddock().get(0).getHappiness());
+        assertEquals(100, paddock.getDinosaursInPaddock().get(1).getHappiness());
+        assertEquals("This dinosaur is already as happy as can be", parkStaff.calmDinosaursInPadddock(paddock));
     }
 }
