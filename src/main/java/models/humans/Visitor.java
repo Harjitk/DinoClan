@@ -10,7 +10,6 @@ import java.util.List;
 public class Visitor extends Human {
 
     private List<Dinosaur> dinosSeen;
-    private List<Paddock> paddocksSeen;
     private Paddock paddock;
     private Park park;
 
@@ -22,17 +21,24 @@ public class Visitor extends Human {
         super(name, wallet);
         this.park = park;
         this.paddock = null;
+        this.dinosSeen = new ArrayList<Dinosaur>();
     }
 
-    public void tauntDinosaursInPaddock(){
+    public String tauntDinosaursInPaddock(){
         int taunt = 5;
         int currentHappiness;
         int newHappiness;
-        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
-            currentHappiness = dinosaur.getHappiness();
-            newHappiness = currentHappiness -= taunt;
-            dinosaur.setHappiness(newHappiness);
+        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()) {
+            if (dinosaur.getHappiness() >= 5) {
+                currentHappiness = dinosaur.getHappiness();
+                newHappiness = currentHappiness -= taunt;
+                dinosaur.setHappiness(newHappiness);
+            } else {
+                return "This dinosaur is angry as hell and looks ready to RAMPAGE";
+            }
         }
+
+        return null;
     }
 
     public List<Dinosaur> getDinosSeen() {
@@ -41,14 +47,6 @@ public class Visitor extends Human {
 
     public void setDinosSeen(List<Dinosaur> dinosSeen) {
         this.dinosSeen = dinosSeen;
-    }
-
-    public List<Paddock> getPaddocksSeen() {
-        return paddocksSeen;
-    }
-
-    public void setPaddocksSeen(List<Paddock> paddocksSeen) {
-        this.paddocksSeen = paddocksSeen;
     }
 
     public Paddock getPaddock() {

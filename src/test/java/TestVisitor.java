@@ -1,6 +1,7 @@
 import models.*;
 import models.dinosaurs.Velociraptor;
 import models.foods.Meat;
+import models.humans.ParkStaff;
 import models.humans.Visitor;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,12 +18,14 @@ public class TestVisitor {
     Meat meat;
     Velociraptor velociraptor;
     Velociraptor velociraptor2;
+    ParkStaff parkStaff;
 
     @Before
     public void setUp() throws Exception {
         park = new Park("DinoClan");
         visitor = new Visitor("Mr Dino Lover", 100, park);
-        paddock = new Paddock("T-Rex Duplex", 1, park);
+        parkStaff = new ParkStaff(visitor.randName(), visitor.randWallet(), park);
+        paddock = new Paddock("T-Rex Duplex", 2, park);
         park.addVisitorToPaddock(visitor, paddock);
 
         velociraptor = new Velociraptor("Trouble", 100, 500000, 5, park, paddock);
@@ -53,5 +56,13 @@ public class TestVisitor {
     public void randomWalletAbove2000(){
         assertTrue(visitor.randWallet() >= 2000);
 //        assertTrue(visitor.randWallet() >= 2000);
+    }
+
+    @Test
+    public void cantTauntBeyond5() {
+        park.addVisitorToPaddock(visitor, paddock);
+        visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock();
+        assertEquals(0, paddock.getDinosaursInPaddock().get(0).getHappiness());
+        assertEquals("This dinosaur is angry as hell and looks ready to RAMPAGE", visitor.tauntDinosaursInPaddock());
     }
 }
