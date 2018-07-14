@@ -2,12 +2,10 @@ package models.humans;
 
 import models.dinosaurs.Dinosaur;
 import models.Park;
-import models.interfaces.Iedible;
-import models.interfaces.Imeaty;
 
 import java.util.*;
 
-public abstract class Human implements Iedible, Imeaty {
+public abstract class Human  {
 
     private String name;
     private int wallet;

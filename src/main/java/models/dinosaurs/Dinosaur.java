@@ -132,4 +132,11 @@ public abstract class Dinosaur {
         this.bellyCapacity = bellyCapacity;
     }
 
+    public List<Human> getHumanBelly() {
+        return humanBelly;
+    }
+
+    public void setHumanBelly(List<Human> humanBelly) {
+        this.humanBelly = humanBelly;
+    }
 }

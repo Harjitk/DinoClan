@@ -4,7 +4,7 @@ package models.foods;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
-import models.interfaces.Iedible;
+
 
 import javax.persistence.*;
 
@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 //@Inheritance(strategy = InheritanceType.JOINED)
 
-public abstract class Food implements Iedible {
+public abstract class Food {
 
 //    private int id;
     private Park park;

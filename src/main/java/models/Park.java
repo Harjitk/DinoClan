@@ -154,14 +154,6 @@ public class Park {
         this.entryFee = entryFee;
     }
 
-    //    Write a method for the Park class which takes in an integer.
-//        It should create new Food objects and add them to the Park's food stock ArrayList.
-//        NEWING UP FOOD OBJECTS IN FOR LOOP
-//        SAME LOOP- ADDING TO PARKS FOOD STOCK ARRAYLIST
-//
-//        It will stop creating new Food objects and
-//        adding them to the food stock when the integer being passed in is reached.
-
     public ArrayList<Food> generateFoodStock(int num) {
         ArrayList<Food> generateFoodStock = new ArrayList<Food>();
 
