@@ -33,20 +33,26 @@ public class RandomGeneratorTest {
     }
 
     @Test
-    public void canGenerateTenVisitors() {
-        ArrayList<Visitor> generatedVisitors = randomGenerator.generatedVisitors(50);
+    public void canGenerateFiftyVisitors() {
+        ArrayList<Visitor> generatedVisitors = randomGenerator.generateMultipleVisitors(50);
         assertEquals(50, generatedVisitors.size());
     }
 
     @Test
     public void generatingVisitorsAddsTicketRevenue(){
-        randomGenerator.generatedVisitors(50);
+        randomGenerator.generateMultipleVisitors(50);
         assertEquals(200050000, park.getTill());
     }
 
     @Test
+    public void generatedVisitorsAreInThePark() {
+        randomGenerator.generateMultipleVisitors(50);
+        assertEquals(50, park.getVisitors().size());
+    }
+
+    @Test
     public void generatedVisitorsHaveReducedWallet() {
-        randomGenerator.generatedVisitors(50);
+        randomGenerator.generateMultipleVisitors(50);
         assertTrue(visitor.getWallet() <= 2000);
     }
 }

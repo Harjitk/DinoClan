@@ -84,7 +84,6 @@ public class TestParkStaff {
         park.addFoodToParkStock(plant);
         parkStaff.addFoodToStore(paddock);
         assertEquals(1, paddock.getFoodStore().size());
-
     }
 
     @Test
@@ -115,6 +114,8 @@ public class TestParkStaff {
     @Test
     public void canAddDifferentHerbivoresToHerbivoreEnclosure() {
         parkStaff.transferDinosaur(stegosaurus, paddock);
+        parkStaff.transferDinosaur(diplodocus, paddock);
+        assertEquals(2, paddock.getDinosaursInPaddock().size());
     }
 
     @Test

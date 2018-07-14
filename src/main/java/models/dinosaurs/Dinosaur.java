@@ -46,10 +46,22 @@ public abstract class Dinosaur {
 
 
     public void eat(){
-        Food food = paddock.getFoodStore().get(0);
-        getBelly().add(food);
-        setHappiness(this.happiness += 5);
+        if (this.belly.size() < this.bellyCapacity) {
+            Food food = paddock.getFoodStore().get(0);
+            getBelly().add(food);
+            paddock.getFoodStore().remove(food);
+            setHappiness(this.happiness += 5);
+        }
     }
+
+    public void eatHuman(Human human){
+        if (this.humanBelly.size() < this.bellyCapacity) {
+            getHumanBelly().add(human);
+            park.getVisitors().remove(human);
+            setHappiness(this.happiness += 5);
+        }
+    }
+
 
 //    ADD .RAMPAGE FUNCTION
 

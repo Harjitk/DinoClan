@@ -31,6 +31,7 @@ public class Paddock {
 
     }
 
+    //NOTE - THIS IS NOT CONDITIONAL. Use ParkStaff transferDinosaur function to move dinosaurs around, not this.
     public void addDinosaurToPaddock(Dinosaur dinosaur){
         getDinosaursInPaddock().add(dinosaur);
     }
