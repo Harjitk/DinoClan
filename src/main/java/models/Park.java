@@ -2,6 +2,7 @@ package models;
 
 import models.dinosaurs.Dinosaur;
 import models.foods.Food;
+import models.foods.Meat;
 import models.foods.Plant;
 import models.humans.Human;
 import models.humans.ParkStaff;
@@ -10,6 +11,7 @@ import models.humans.Visitor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 public class Park {
 
@@ -163,9 +165,20 @@ public class Park {
         ArrayList<Food> generateFoodStock = new ArrayList<Food>();
 
         for (int index = 0; index < num; index++) {
+            Random ran = new Random();
 
-            Plant plant = new Plant();
-            foodStock.add(plant);
+            int plantOrMeat = ran.nextInt(2);
+            if (plantOrMeat == 1){
+                Plant plant = new Plant();
+                foodStock.add(plant);
+                generateFoodStock.add(plant);
+            }
+            else if (plantOrMeat == 0){
+                Meat meat = new Meat();
+                foodStock.add(meat);
+                generateFoodStock.add(meat);
+
+            }
         }
 
         return generateFoodStock;

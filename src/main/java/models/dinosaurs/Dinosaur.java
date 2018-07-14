@@ -5,6 +5,7 @@ import models.enums.DietType;
 import models.foods.Food;
 import models.Paddock;
 import models.Park;
+import models.humans.Human;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public abstract class Dinosaur {
     private int price;
     private Park park;
     private List<Food> belly;
+    private List<Human> humanBelly;
     private Paddock paddock;
     private int bellyCapacity;
 
@@ -37,6 +39,7 @@ public abstract class Dinosaur {
         this.price = price;
         this.park = park;
         this.belly = new ArrayList<Food>();
+        this.humanBelly = new ArrayList<Human>();
         this.paddock = paddock;
         this.bellyCapacity = bellyCapacity;
     }
