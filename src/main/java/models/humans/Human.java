@@ -3,10 +3,16 @@ package models.humans;
 import models.dinosaurs.Dinosaur;
 import models.Park;
 
+import javax.persistence.*;
 import java.util.*;
+
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 
 public abstract class Human  {
 
+    private int id;
     private String name;
     private int wallet;
     private Dinosaur dinosaur;
@@ -31,6 +37,34 @@ public abstract class Human  {
 
 //    Ask John whether there's a better place to store these
 
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name="name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Column(name="wallet")
+    public int getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(int wallet) {
+        this.wallet = wallet;
+    }
 
     public String randName(){
         String finalName;
@@ -46,31 +80,8 @@ public abstract class Human  {
         return x;
     }
 
-
-    public void Iedible() {
-
-    }
-
-    public void Imeaty() {
-
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(int wallet) {
-        this.wallet = wallet;
-    }
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dinosaur_id", nullable = true)
     public Dinosaur getDinosaur() {
         return dinosaur;
     }

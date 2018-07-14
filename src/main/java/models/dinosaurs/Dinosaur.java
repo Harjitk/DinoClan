@@ -149,6 +149,8 @@ public abstract class Dinosaur {
         this.belly = belly;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="paddock_id", nullable = true)
     public Paddock getPaddock() {
         return paddock;
     }
@@ -158,7 +160,7 @@ public abstract class Dinosaur {
     }
 
 
-
+    @OneToMany(mappedBy= "dinosaur")
     public List<Human> getHumanBelly() {
         return humanBelly;
     }
@@ -166,4 +168,5 @@ public abstract class Dinosaur {
     public void setHumanBelly(List<Human> humanBelly) {
         this.humanBelly = humanBelly;
     }
+
 }

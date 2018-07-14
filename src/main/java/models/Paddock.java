@@ -65,7 +65,6 @@ public class Paddock {
         this.health = health;
     }
 
-
     public void addDinosaurToPaddock(Dinosaur dinosaur){
         getDinosaursInPaddock().add(dinosaur);
     }
@@ -75,6 +74,7 @@ public class Paddock {
     }
 
 
+    @OneToMany(mappedBy = "paddock")
     public List<Dinosaur> getDinosaursInPaddock() {
         return dinosaursInPaddock;
     }
@@ -82,6 +82,7 @@ public class Paddock {
     public void setDinosaursInPaddock(List<Dinosaur> dinosaursInPaddock) {
         this.dinosaursInPaddock = dinosaursInPaddock;
     }
+
 
     @OneToMany(mappedBy = "paddock")
     public List<Food> getFoodStore() {
