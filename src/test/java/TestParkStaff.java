@@ -75,7 +75,15 @@ public class TestParkStaff {
         assertEquals(0, paddock.getFoodStore().size());
     }
 
+    @Test
+    public void canGenerateFoodAndFindVeg() {
+        park.generateFoodStock(20);
+        park.buyDinosaur(tyrannosaurus, paddock);
+        park.addFoodToParkStock(plant);
+        parkStaff.addFoodToStore(paddock);
+        assertEquals(1, paddock.getFoodStore().size());
 
+    }
 
     @Test
     public void paddockStartsEmpty() {

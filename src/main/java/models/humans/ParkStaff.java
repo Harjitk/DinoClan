@@ -30,29 +30,37 @@ public class ParkStaff extends Human {
 
     public void addFoodToStore(Paddock paddock){
 //
-        Food food = park.getFoodStock().get(0);
+        int foodCount = 0;
+        if (foodCount == 0){
 
-        if (paddock.getDinosaursInPaddock().size() > 0){
+        for (Food food : park.getFoodStock()) {
 
-            if ((food instanceof Meat) && paddock.getDinosaursInPaddock().get(0).getDietType() == DietType.Carnivore) {
-                paddock.getFoodStore().add(food);
+                if (paddock.getDinosaursInPaddock().size() > 0 && foodCount == 0){
+
+                    if ((food instanceof Meat) && paddock.getDinosaursInPaddock().get(0).getDietType() == DietType.Carnivore) {
+                        paddock.getFoodStore().add(food);
+                        foodCount += 1;
+                    }
+
+                    else if ((food instanceof Plant) && paddock.getDinosaursInPaddock().get(0).getDietType() == DietType.Herbivore) {
+                        paddock.getFoodStore().add(food);
+                        foodCount += 1;
+                    }
+
+                    else if (paddock.getDinosaursInPaddock().get(0).getDietType() == DietType.Omnivore){
+                        paddock.getFoodStore().add(food);
+                        foodCount += 1;
+                    }
+
+                }
+
+                if (paddock.getDinosaursInPaddock().size() == 0 && foodCount == 0){
+                    paddock.getFoodStore().add(food);
+                    foodCount += 1;
+
+                }
             }
-
-            else if ((food instanceof Plant) && paddock.getDinosaursInPaddock().get(0).getDietType() == DietType.Herbivore) {
-               paddock.getFoodStore().add(food);
-            }
-
-            else if (paddock.getDinosaursInPaddock().get(0).getDietType() == DietType.Omnivore){
-                paddock.getFoodStore().add(food);
-            }
-
         }
-
-        if (paddock.getDinosaursInPaddock().size() == 0){
-            paddock.getFoodStore().add(food);
-        }
-
-
     }
 
     public void transferDinosaur(Dinosaur dinosaur, Paddock paddock){
