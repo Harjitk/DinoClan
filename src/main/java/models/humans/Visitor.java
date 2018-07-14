@@ -3,14 +3,19 @@ package models.humans;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+@Entity
+@Table(name="visitors")
 
 public class Visitor extends Human {
 
     private List<Dinosaur> dinosSeen;
-    private List<Paddock> paddocksSeen;
     private Paddock paddock;
     private Park park;
 
@@ -22,6 +27,7 @@ public class Visitor extends Human {
         super(name, wallet);
         this.park = park;
         this.paddock = null;
+        this.dinosSeen = new ArrayList<Dinosaur>();
     }
 
     public void tauntDinosaursInPaddock(){
@@ -35,6 +41,12 @@ public class Visitor extends Human {
         }
     }
 
+
+    @Cascade(CascadeType.SAVE_UPDATE)
+    @ManyToMany
+    @JoinTable(name = "Visitor_DinoSeen",
+    joinColumns = {@JoinColumn(name = "visitor_id", nullable = false, updatable = false)},
+  inverseJoinColumns = {@JoinColumn(name = "dinosaur_id", nullable = false, updatable = false)})
     public List<Dinosaur> getDinosSeen() {
         return dinosSeen;
     }
@@ -43,14 +55,9 @@ public class Visitor extends Human {
         this.dinosSeen = dinosSeen;
     }
 
-    public List<Paddock> getPaddocksSeen() {
-        return paddocksSeen;
-    }
 
-    public void setPaddocksSeen(List<Paddock> paddocksSeen) {
-        this.paddocksSeen = paddocksSeen;
-    }
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "paddock_id", nullable = true)
     public Paddock getPaddock() {
         return paddock;
     }
@@ -59,6 +66,9 @@ public class Visitor extends Human {
         this.paddock = paddock;
     }
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;
     }

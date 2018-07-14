@@ -4,10 +4,7 @@ import models.dinosaurs.Dinosaur;
 import models.foods.Food;
 import models.humans.Visitor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +13,7 @@ import java.util.List;
 
 public class Paddock {
 
+    private int id;
     private String name;
     private int capacity;
     private int health;
@@ -36,6 +34,17 @@ public class Paddock {
         this.visitorsInPaddock = new ArrayList<Visitor>();
         this.park = park;
 
+    }
+
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Column(name="name")
@@ -93,14 +102,18 @@ public class Paddock {
         this.foodStore = foodStore;
     }
 
+    @OneToMany(mappedBy = "visitor")
     public List<Visitor> getVisitorsInPaddock() {
         return visitorsInPaddock;
     }
+
 
     public void setVisitorsInPaddock(List<Visitor> visitorsInPaddock) {
         this.visitorsInPaddock = visitorsInPaddock;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;
     }

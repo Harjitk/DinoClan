@@ -26,6 +26,7 @@ public abstract class Dinosaur {
     private Park park;
     private List<Food> belly;
     private List<Human> humanBelly;
+    private List<Human> humanVisitors;
     private Paddock paddock;
     private int bellyCapacity;
 
@@ -40,6 +41,7 @@ public abstract class Dinosaur {
         this.park = park;
         this.belly = new ArrayList<Food>();
         this.humanBelly = new ArrayList<Human>();
+        this.humanVisitors = new ArrayList<Human>();
         this.paddock = paddock;
         this.bellyCapacity = bellyCapacity;
     }
@@ -150,7 +152,7 @@ public abstract class Dinosaur {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="paddock_id", nullable = true)
+    @JoinColumn(name ="paddock_id", nullable = false )
     public Paddock getPaddock() {
         return paddock;
     }
@@ -169,4 +171,11 @@ public abstract class Dinosaur {
         this.humanBelly = humanBelly;
     }
 
+    public List<Human> getHumanVisitors() {
+        return humanVisitors;
+    }
+
+    public void setHumanVisitors(List<Human> humanVisitors) {
+        this.humanVisitors = humanVisitors;
+    }
 }

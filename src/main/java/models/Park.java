@@ -8,10 +8,7 @@ import models.humans.Human;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,6 +19,7 @@ import java.util.Random;
 
 public class Park {
 
+    private int id;
     private String name;
     private List<Dinosaur> dinosaursInPark;
     private List<ParkStaff> parkStaff;
@@ -45,6 +43,17 @@ public class Park {
         this.paddocks = new ArrayList<Paddock>();
         this.till = 200000000;
         this.entryFee = 1000;
+    }
+
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Column(name="name")
@@ -125,6 +134,7 @@ public class Park {
     }
 
 
+    @OneToMany(mappedBy = "dinosaur")
     public List<Dinosaur> getDinosaursInPark() {
         return dinosaursInPark;
     }
@@ -133,14 +143,19 @@ public class Park {
         this.dinosaursInPark = dinosaursInPark;
     }
 
+
+    @OneToMany(mappedBy = "park")
     public List<ParkStaff> getParkStaff() {
         return parkStaff;
     }
+
 
     public void setParkStaff(List<ParkStaff> parkStaff) {
         this.parkStaff = parkStaff;
     }
 
+
+    @OneToMany(mappedBy = "visitor")
     public List<Visitor> getVisitors() {
         return visitors;
     }
@@ -159,7 +174,7 @@ public class Park {
         this.foodStock = foodStock;
     }
 
-
+@OneToMany(mappedBy = "paddock")
     public List<Paddock> getPaddocks() {
         return paddocks;
     }
