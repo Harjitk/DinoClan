@@ -58,7 +58,7 @@ public class Visitor extends Human {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "paddock_id", nullable = true)
+    @JoinColumn(name = "paddock_id", nullable = false)
     public Paddock getPaddock() {
         return paddock;
     }

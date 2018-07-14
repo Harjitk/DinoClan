@@ -48,7 +48,7 @@ public abstract class Food {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="dinosaur_id", nullable = true)
+    @JoinColumn(name ="dinosaur_id", nullable = false)
     public Dinosaur getDinosaur() {
         return dinosaur;
     }
@@ -58,7 +58,7 @@ public abstract class Food {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="paddock_id", nullable = true)
+    @JoinColumn(name ="paddock_id", nullable = false)
     public Paddock getPaddock() {
         return paddock;
     }

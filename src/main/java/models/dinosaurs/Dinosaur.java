@@ -172,6 +172,7 @@ public abstract class Dinosaur {
         this.humanBelly = humanBelly;
     }
 
+//    ONETOMANY??
     public List<Human> getHumanVisitors() {
         return humanVisitors;
     }
