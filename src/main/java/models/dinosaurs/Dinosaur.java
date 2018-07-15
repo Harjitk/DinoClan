@@ -6,9 +6,15 @@ import models.foods.Food;
 import models.Paddock;
 import models.Park;
 import models.humans.Human;
+import org.hibernate.annotations.Cascade;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "dinosaurs")
 
 public abstract class Dinosaur {
 
@@ -22,13 +28,9 @@ public abstract class Dinosaur {
     private Park park;
     private List<Food> belly;
     private List<Human> humanBelly;
-    private List <Human> humanVisitors;
+    private List<Human> humanVisitors;
     private Paddock paddock;
     private int bellyCapacity;
-
-
-    public Dinosaur() {
-    }
 
 
     public Dinosaur(String name, int weight, int price, int bellyCapacity, Park park, Paddock paddock) {
@@ -46,6 +48,19 @@ public abstract class Dinosaur {
         this.bellyCapacity = bellyCapacity;
     }
 
+    public Dinosaur() {
+    }
+
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void eat(){
         //      NEEDS TO RETURN STRING IF CONDITION NOT MET
@@ -73,6 +88,7 @@ public abstract class Dinosaur {
 
 //    ADD .RAMPAGE FUNCTION
 
+    @Column(name="name")
     public String getName() {
         return name;
     }
@@ -81,6 +97,8 @@ public abstract class Dinosaur {
         this.name = name;
     }
 
+
+    @Enumerated(value = EnumType.STRING)
     public DietType getDietType() {
         return dietType;
     }
@@ -88,6 +106,8 @@ public abstract class Dinosaur {
     public void setDietType(DietType dietType) {
         this.dietType = dietType;
     }
+
+    @Column(name="attackValue")
     public int getAttackValue() {
         return attackValue;
     }
@@ -96,6 +116,7 @@ public abstract class Dinosaur {
         this.attackValue = attackValue;
     }
 
+    @Column(name="happiness")
     public int getHappiness() {
         return happiness;
     }
@@ -104,6 +125,7 @@ public abstract class Dinosaur {
         this.happiness = happiness;
     }
 
+    @Column(name="weight")
     public int getWeight() {
         return weight;
     }
@@ -112,6 +134,7 @@ public abstract class Dinosaur {
         this.weight = weight;
     }
 
+    @Column(name="price")
     public int getPrice() {
         return price;
     }
@@ -120,30 +143,7 @@ public abstract class Dinosaur {
         this.price = price;
     }
 
-    public Park getPark() {
-        return park;
-    }
-
-    public void setPark(Park park) {
-        this.park = park;
-    }
-
-    public List<Food> getBelly() {
-        return belly;
-    }
-
-    public void setBelly(List<Food> belly) {
-        this.belly = belly;
-    }
-
-    public Paddock getPaddock() {
-        return paddock;
-    }
-
-    public void setPaddock(Paddock paddock) {
-        this.paddock = paddock;
-    }
-
+    @Column(name="bellyCapacity")
     public int getBellyCapacity() {
         return bellyCapacity;
     }
@@ -152,6 +152,37 @@ public abstract class Dinosaur {
         this.bellyCapacity = bellyCapacity;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "park_id", nullable = false)
+    public Park getPark() {
+        return park;
+    }
+
+    public void setPark(Park park) {
+        this.park = park;
+    }
+
+    @OneToMany(mappedBy = "dinosaur")
+    public List<Food> getBelly() {
+        return belly;
+    }
+
+    public void setBelly(List<Food> belly) {
+        this.belly = belly;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="paddock_id", nullable = false )
+    public Paddock getPaddock() {
+        return paddock;
+    }
+
+    public void setPaddock(Paddock paddock) {
+        this.paddock = paddock;
+    }
+
+
+    @OneToMany(mappedBy= "dinosaur")
     public List<Human> getHumanBelly() {
         return humanBelly;
     }
@@ -160,6 +191,11 @@ public abstract class Dinosaur {
         this.humanBelly = humanBelly;
     }
 
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToMany
+    @JoinTable(name = "dinoDex",
+            joinColumns = {@JoinColumn(name = "dinosaur_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "visitor_id", nullable = false, updatable = false)})
     public List<Human> getHumanVisitors() {
         return humanVisitors;
     }
@@ -167,4 +203,5 @@ public abstract class Dinosaur {
     public void setHumanVisitors(List<Human> humanVisitors) {
         this.humanVisitors = humanVisitors;
     }
+
 }

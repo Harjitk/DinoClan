@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class TestParkStaff {
 
@@ -136,5 +137,22 @@ public class TestParkStaff {
         assertEquals(100, paddock.getDinosaursInPaddock().get(0).getHappiness());
         assertEquals(100, paddock.getDinosaursInPaddock().get(1).getHappiness());
         assertEquals("This dinosaur is already as happy as can be", parkStaff.calmDinosaursInPadddock(paddock));
+    }
+
+    @Test
+    public void foodIsDeletedWhenAddedToPaddock() {
+        park.generateFoodStock(20);
+        park.buyDinosaur(tyrannosaurus, paddock);
+        parkStaff.addFoodToStore(paddock);
+        assertEquals(19, park.getFoodStock().size());
+    }
+
+    @Test
+    public void addingFoodToPaddockStoreReturnsTheFoodBeingAdded() {
+        park.generateFoodStock(20);
+        parkStaff.addFoodToStore(paddock);
+        assertTrue(park.getFoodStock().get(0) ==  parkStaff.addFoodToStore(paddock));
+
+
     }
 }
