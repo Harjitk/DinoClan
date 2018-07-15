@@ -1,14 +1,20 @@
-<p class="pageHeader">All Parks</p>
+<p class="pageHeader">All Dinos</p>
 
 <div class="container">
     <table>
         <tr>
             <th>Name</th>
+            <th>Weight</th>
+            <th>Price</th>
+            <th>BellyCapacity</th>
+            <th>DietType</th>
         </tr>
-        #foreach($park in $parks )
+        #foreach($dinosaur in $dinosaurs )
         <tr>
-            <td>$park.getName()</td>
+            <td>$dinosaur.getName()</td>
         <tr>
             #end
     </table>
 </div>
+
+

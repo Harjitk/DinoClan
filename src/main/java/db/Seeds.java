@@ -53,6 +53,6 @@ public class Seeds {
         DBHelper.saveOrUpdate(plant);
 
 //
-//        add DeleteAll method to DBHelper and to here?
+//        add DeleteAll method to DBHelper and in here?
     }
 }
