@@ -1,0 +1,14 @@
+<p class="pageHeader">All Parks</p>
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        #foreach($park in $parks )
+        <tr>
+            <td>$park.getName()</td>
+        <tr>
+            #end
+    </table>
+</div>
