@@ -30,17 +30,24 @@ public class Visitor extends Human {
         this.dinosSeen = new ArrayList<Dinosaur>();
     }
 
-    public void tauntDinosaursInPaddock(){
+    public String tauntDinosaursInPaddock(){
         int taunt = 5;
         int currentHappiness;
         int newHappiness;
-        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
-            currentHappiness = dinosaur.getHappiness();
-            newHappiness = currentHappiness -= taunt;
-            dinosaur.setHappiness(newHappiness);
+        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()) {
+            if (dinosaur.getHappiness() >= 5) {
+                currentHappiness = dinosaur.getHappiness();
+                newHappiness = currentHappiness -= taunt;
+                dinosaur.setHappiness(newHappiness);
+            } else {
+                return "This dinosaur is angry as hell and looks ready to RAMPAGE";
+            }
         }
+
+        return null;
     }
 
+  
 //MANY TO MANY??
 //    @Cascade(CascadeType.SAVE_UPDATE)
 //    @ManyToMany

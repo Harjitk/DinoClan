@@ -61,6 +61,32 @@ public abstract class Dinosaur {
         this.id = id;
     }
 
+    public void eat(){
+        //      NEEDS TO RETURN STRING IF CONDITION NOT MET
+        if (this.belly.size() < this.bellyCapacity) {
+            Food food = paddock.getFoodStore().get(0);
+            getBelly().add(food);
+            paddock.getFoodStore().remove(food);
+            if (this.happiness <= 95) {
+                setHappiness(this.happiness += 5);
+            }
+        }
+    }
+
+    public void eatHuman(Human human){
+        //      NEEDS TO RETURN STRING IF CONDITION NOT MET
+        if (this.humanBelly.size() < this.bellyCapacity) {
+            getHumanBelly().add(human);
+            park.getVisitors().remove(human);
+            if (this.happiness <= 95) {
+                setHappiness(this.happiness += 5);
+            }
+        }
+    }
+
+
+//    ADD .RAMPAGE FUNCTION
+
     @Column(name="name")
     public String getName() {
         return name;
@@ -127,12 +153,11 @@ public abstract class Dinosaur {
 
 
     public void eat(){
+      // MAKE SET HAPPINESS CONDITIONAL
         Food food = paddock.getFoodStore().get(0);
         getBelly().add(food);
         setHappiness(this.happiness += 5);
     }
-
-//    ADD .RAMPAGE FUNCTION
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "park_id", nullable = false)
@@ -181,4 +206,5 @@ public abstract class Dinosaur {
 //    public void setHumanVisitors(List<Human> humanVisitors) {
 //        this.humanVisitors = humanVisitors;
 //    }
+
 }

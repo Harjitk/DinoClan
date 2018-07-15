@@ -42,6 +42,11 @@ public class Paddock {
     public int getId() {
         return id;
     }
+  
+    //NOTE - THIS IS NOT CONDITIONAL. Use ParkStaff transferDinosaur function to move dinosaurs around, not this.
+    public void addDinosaurToPaddock(Dinosaur dinosaur){
+        getDinosaursInPaddock().add(dinosaur);
+    }
 
     public void setId(int id) {
         this.id = id;

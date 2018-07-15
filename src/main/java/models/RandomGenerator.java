@@ -24,7 +24,7 @@ public class RandomGenerator {
         return generatedVisitor;
     }
 
-    public ArrayList<Visitor> generatedVisitors(int number){
+    public ArrayList<Visitor> generateMultipleVisitors(int number){
         ArrayList<Visitor> generatedVisitors = new ArrayList<Visitor>();
             for(int i=0; i<number; i++){
                 Visitor visitor = generateVisitor();
