@@ -55,7 +55,6 @@ public class TestVisitor {
     @Test
     public void randomWalletAbove2000(){
         assertTrue(visitor.randWallet() >= 2000);
-//        assertTrue(visitor.randWallet() >= 2000);
     }
 
     @Test
