@@ -80,6 +80,8 @@ public class ParkStaff extends Human {
 
     public String transferDinosaur(Dinosaur dinosaur, Paddock paddock) {
 
+        dinosaur.getPaddock().getDinosaursInPaddock().remove(dinosaur);
+
         if (paddock.getCapacity() > paddock.getDinosaursInPaddock().size()) {
 
             if (paddock.getDinosaursInPaddock().size() == 0) {

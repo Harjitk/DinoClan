@@ -90,6 +90,16 @@ public class Park {
         }
     }
 
+    public void moveVisitorToPaddock(Visitor visitor, Paddock paddock) {
+        visitor.getPaddock().getVisitorsInPaddock().remove(visitor);
+        paddock.getVisitorsInPaddock().add(visitor);
+        visitor.setPaddock(paddock);
+        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
+            visitor.getDinosSeen().add(dinosaur);
+            dinosaur.getHumanVisitors().add(visitor);
+        }
+    }
+
     public void buyDinosaur(Dinosaur dinosaur, Paddock paddock) {
 //      NEEDS TO RETURN STRING IF CONDITION NOT MET
 
