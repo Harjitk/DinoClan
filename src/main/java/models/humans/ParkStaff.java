@@ -8,6 +8,11 @@ import models.foods.Food;
 import models.foods.Meat;
 import models.foods.Plant;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="parkstaff")
+
 public class ParkStaff extends Human {
 
     private Park park;
@@ -97,6 +102,8 @@ public class ParkStaff extends Human {
         return null;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="park_id", nullable = false)
     public Park getPark() {
         return park;
     }

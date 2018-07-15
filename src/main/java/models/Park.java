@@ -8,13 +8,18 @@ import models.humans.Human;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+@Entity
+@Table(name="parks")
+
 public class Park {
 
+    private int id;
     private String name;
     private List<Dinosaur> dinosaursInPark;
     private List<ParkStaff> parkStaff;
@@ -36,6 +41,44 @@ public class Park {
         this.paddocks = new ArrayList<Paddock>();
         this.till = 200000000;
         this.entryFee = 1000;
+    }
+
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name="name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Column(name="till")
+    public int getTill() {
+        return till;
+    }
+
+    public void setTill(int till) {
+        this.till = till;
+    }
+
+    @Column(name="entryFree")
+    public int getEntryFee() {
+        return entryFee;
+    }
+
+    public void setEntryFee(int entryFee) {
+        this.entryFee = entryFee;
     }
 
     public void addVisitorToPaddock(Visitor visitor, Paddock paddock) {
@@ -96,14 +139,7 @@ public class Park {
         this.foodStock.add(food);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    @OneToMany(mappedBy = "park")
     public List<Dinosaur> getDinosaursInPark() {
         return dinosaursInPark;
     }
@@ -112,14 +148,19 @@ public class Park {
         this.dinosaursInPark = dinosaursInPark;
     }
 
+
+    @OneToMany(mappedBy = "park")
     public List<ParkStaff> getParkStaff() {
         return parkStaff;
     }
+
 
     public void setParkStaff(List<ParkStaff> parkStaff) {
         this.parkStaff = parkStaff;
     }
 
+
+    @OneToMany(mappedBy = "park")
     public List<Visitor> getVisitors() {
         return visitors;
     }
@@ -128,6 +169,7 @@ public class Park {
         this.visitors = visitors;
     }
 
+    @OneToMany(mappedBy = "park")
     public List<Food> getFoodStock() {
         return foodStock;
     }
@@ -136,6 +178,7 @@ public class Park {
         this.foodStock = foodStock;
     }
 
+@OneToMany(mappedBy = "park")
     public List<Paddock> getPaddocks() {
         return paddocks;
     }
@@ -144,29 +187,6 @@ public class Park {
         this.paddocks = paddocks;
     }
 
-    public int getTill() {
-        return till;
-    }
-
-    public void setTill(int till) {
-        this.till = till;
-    }
-
-    public int getEntryFee() {
-        return entryFee;
-    }
-
-    public void setEntryFee(int entryFee) {
-        this.entryFee = entryFee;
-    }
-
-    //    Write a method for the Park class which takes in an integer.
-//        It should create new Food objects and add them to the Park's food stock ArrayList.
-//        NEWING UP FOOD OBJECTS IN FOR LOOP
-//        SAME LOOP- ADDING TO PARKS FOOD STOCK ARRAYLIST
-//
-//        It will stop creating new Food objects and
-//        adding them to the food stock when the integer being passed in is reached.
 
     public ArrayList<Food> generateFoodStock(int num) {
         ArrayList<Food> generateFoodStock = new ArrayList<Food>();

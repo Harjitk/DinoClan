@@ -1,14 +1,14 @@
 package models.foods;
 
-import models.interfaces.Iplanty;
 
-public class Plant extends Food implements Iplanty {
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "plants")
+public class Plant extends Food  {
 
     public Plant() {
     }
 
-
-    public void Iplanty() {
-
-    }
 }

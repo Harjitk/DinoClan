@@ -4,6 +4,11 @@ import models.enums.DietType;
 import models.Paddock;
 import models.Park;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "diplodocuses")
 public class Diplodocus extends Dinosaur {
 
     public Diplodocus() {

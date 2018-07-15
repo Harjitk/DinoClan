@@ -4,11 +4,16 @@ import models.dinosaurs.Dinosaur;
 import models.foods.Food;
 import models.humans.Visitor;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name="paddocks")
+
 public class Paddock {
 
+    private int id;
     private String name;
     private int capacity;
     private int health;
@@ -31,15 +36,23 @@ public class Paddock {
 
     }
 
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    public int getId() {
+        return id;
+    }
+  
     //NOTE - THIS IS NOT CONDITIONAL. Use ParkStaff transferDinosaur function to move dinosaurs around, not this.
     public void addDinosaurToPaddock(Dinosaur dinosaur){
         getDinosaursInPaddock().add(dinosaur);
     }
 
-    public void removeDinosaurFromPaddock(Dinosaur dinosaur){
-        getDinosaursInPaddock().remove(dinosaur);
+    public void setId(int id) {
+        this.id = id;
     }
 
+    @Column(name="name")
     public String getName() {
         return name;
     }
@@ -48,6 +61,7 @@ public class Paddock {
         this.name = name;
     }
 
+    @Column(name="capacity")
     public int getCapacity() {
         return capacity;
     }
@@ -56,6 +70,7 @@ public class Paddock {
         this.capacity = capacity;
     }
 
+    @Column(name="health")
     public int getHealth() {
         return health;
     }
@@ -64,6 +79,15 @@ public class Paddock {
         this.health = health;
     }
 
+    public void addDinosaurToPaddock(Dinosaur dinosaur){
+        getDinosaursInPaddock().add(dinosaur);
+    }
+
+    public void removeDinosaurFromPaddock(Dinosaur dinosaur){
+        getDinosaursInPaddock().remove(dinosaur);
+    }
+
+    @OneToMany(mappedBy = "paddock")
     public List<Dinosaur> getDinosaursInPaddock() {
         return dinosaursInPaddock;
     }
@@ -72,6 +96,8 @@ public class Paddock {
         this.dinosaursInPaddock = dinosaursInPaddock;
     }
 
+
+    @OneToMany(mappedBy = "paddock")
     public List<Food> getFoodStore() {
         return foodStore;
     }
@@ -80,14 +106,18 @@ public class Paddock {
         this.foodStore = foodStore;
     }
 
+    @OneToMany(mappedBy = "paddock")
     public List<Visitor> getVisitorsInPaddock() {
         return visitorsInPaddock;
     }
+
 
     public void setVisitorsInPaddock(List<Visitor> visitorsInPaddock) {
         this.visitorsInPaddock = visitorsInPaddock;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;
     }

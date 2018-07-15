@@ -1,14 +1,15 @@
 package models.foods;
 
-import models.interfaces.Imeaty;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-public class Meat extends Food implements Imeaty {
+@Entity
+@Table(name = "meats")
+public class Meat extends Food  {
+
 
     public Meat() {
     }
 
-
-    public void Imeaty() {
-
     }
-}
+
