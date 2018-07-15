@@ -47,6 +47,7 @@ public class Visitor extends Human {
         return null;
     }
 
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @ManyToMany
     @JoinTable(name = "dinoDex",
     joinColumns = {@JoinColumn(name = "visitor_id", nullable = false, updatable = false)},

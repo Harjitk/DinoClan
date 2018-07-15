@@ -33,7 +33,6 @@ public class Runner {
 
         Visitor visitor1 = new Visitor("Richard", 1000, park);
         DBHelper.saveOrUpdate(visitor1);
-
         Visitor visitor2 = new Visitor("Harjit", 1000, park);
         DBHelper.saveOrUpdate(visitor2);
 
@@ -42,7 +41,6 @@ public class Runner {
 
         Meat meat = new Meat();
         DBHelper.saveOrUpdate(meat);
-
         Plant plant = new Plant();
         DBHelper.saveOrUpdate(plant);
 
@@ -55,6 +53,8 @@ public class Runner {
         park.addVisitorToPaddock(visitor1, paddock1);
         DBHelper.saveOrUpdate(paddock);
         DBHelper.saveOrUpdate(visitor1);
+
+        DBDinosaur.eatHuman(stegosaurus, visitor1);
 
     }
 }
