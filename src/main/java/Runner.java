@@ -1,5 +1,6 @@
 import db.DBDinosaur;
 import db.DBHelper;
+import db.DBVisitor;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.*;
@@ -18,12 +19,17 @@ public class Runner {
 
         Paddock paddock = new Paddock("Holding pen", 10, park);
         DBHelper.saveOrUpdate(paddock);
-
         Paddock paddock1 = new Paddock("Todd's dwelling", 1, park);
         DBHelper.saveOrUpdate(paddock1);
+        Paddock paddock2 = new Paddock("Velociraptor den", 5, park);
+        DBHelper.saveOrUpdate(paddock2);
 
         Velociraptor velociraptor = new Velociraptor("Tyrant", 15, 500000, 5, park, paddock);
         DBHelper.saveOrUpdate(velociraptor);
+        Velociraptor velociraptor2 = new Velociraptor("Trouble", 15, 500000, 5, park, paddock);
+        DBHelper.saveOrUpdate(velociraptor2);
+        Velociraptor velociraptor3 = new Velociraptor("Terminator", 15, 500000, 5, park, paddock);
+        DBHelper.saveOrUpdate(velociraptor3);
         Diplodocus diplodocus = new Diplodocus("Todd", 35, 700000, 5, park, paddock);
         DBHelper.saveOrUpdate(diplodocus);
         Stegosaurus stegosaurus = new Stegosaurus("Stegz", 45, 850000, 6, park, paddock);
@@ -44,17 +50,25 @@ public class Runner {
         Plant plant = new Plant();
         DBHelper.saveOrUpdate(plant);
 
+     parkStaff1.transferDinosaur(stegosaurus, paddock1);
+     parkStaff1.transferDinosaur(velociraptor, paddock2);
+     parkStaff1.transferDinosaur(velociraptor2, paddock2);
+     parkStaff1.transferDinosaur(velociraptor3, paddock2);
+
         park.generateFoodStock(10);
         parkStaff1.addFoodToStore(paddock);
         DBDinosaur.eat(diplodocus);
-
-        parkStaff1.transferDinosaur(stegosaurus, paddock1);
 
         park.addVisitorToPaddock(visitor1, paddock1);
         DBHelper.saveOrUpdate(paddock);
         DBHelper.saveOrUpdate(visitor1);
 
         DBDinosaur.eatHuman(stegosaurus, visitor1);
+
+        park.addVisitorToPaddock(visitor2, paddock2);
+        DBVisitor.tauntDinosaursInPaddock(visitor2);
+
+
 
     }
 }

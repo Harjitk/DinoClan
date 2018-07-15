@@ -82,7 +82,7 @@ public abstract class Human  {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dinosaur_id", nullable = true)
+    @JoinColumn(name = "eaten_by_dinosaur_id", nullable = true)
     public Dinosaur getDinosaur() {
         return dinosaur;
     }
