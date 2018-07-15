@@ -107,11 +107,11 @@ public abstract class Dinosaur {
         this.weight = weight;
     }
 
+    @Column(name="price")
     public int getPrice() {
         return price;
     }
 
-    @Column(name="price")
     public void setPrice(int price) {
         this.price = price;
     }

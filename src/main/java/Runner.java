@@ -21,8 +21,11 @@ public class Runner {
         Velociraptor velociraptor = new Velociraptor("Tyrant", 15, 500000, 5, park, paddock);
         DBHelper.saveOrUpdate(velociraptor);
         Diplodocus diplodocus = new Diplodocus("Todd", 35, 700000, 5, park, paddock);
+        DBHelper.saveOrUpdate(diplodocus);
         Stegosaurus stegosaurus = new Stegosaurus("Stegz", 45, 850000, 6, park, paddock);
+        DBHelper.saveOrUpdate(stegosaurus);
         Tyrannosaurus tyrannosaurus = new Tyrannosaurus("Rex", 55, 950000, 7, park, paddock);
+        DBHelper.saveOrUpdate(tyrannosaurus);
 
         Visitor visitor1 = new Visitor("Richard", 1000, park);
         DBHelper.saveOrUpdate(visitor1);
