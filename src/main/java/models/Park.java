@@ -90,6 +90,16 @@ public class Park {
         }
     }
 
+    public void moveVisitorToPaddock(Visitor visitor, Paddock paddock) {
+        visitor.getPaddock().getVisitorsInPaddock().remove(visitor);
+        paddock.getVisitorsInPaddock().add(visitor);
+        visitor.setPaddock(paddock);
+        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
+            visitor.getDinosSeen().add(dinosaur);
+            dinosaur.getHumanVisitors().add(visitor);
+        }
+    }
+
     public void buyDinosaur(Dinosaur dinosaur, Paddock paddock) {
 //      NEEDS TO RETURN STRING IF CONDITION NOT MET
 
@@ -190,7 +200,7 @@ public class Park {
 
 
     public ArrayList<Food> generateFoodStock(int num) {
-        ArrayList<Food> generateFoodStock = new ArrayList<Food>();
+        ArrayList<Food> generatedFoodStock = new ArrayList<Food>();
 
         for (int index = 0; index < num; index++) {
             Random ran = new Random();
@@ -199,16 +209,16 @@ public class Park {
             if (plantOrMeat == 1){
                 Plant plant = new Plant();
                 foodStock.add(plant);
-                generateFoodStock.add(plant);
+                generatedFoodStock.add(plant);
             }
             else if (plantOrMeat == 0){
                 Meat meat = new Meat();
                 foodStock.add(meat);
-                generateFoodStock.add(meat);
+                generatedFoodStock.add(meat);
 
             }
         }
 
-        return generateFoodStock;
+        return generatedFoodStock;
     }
 }
