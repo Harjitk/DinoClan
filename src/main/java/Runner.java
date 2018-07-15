@@ -1,3 +1,4 @@
+import db.DBDinosaur;
 import db.DBHelper;
 import models.Paddock;
 import models.Park;
@@ -42,6 +43,9 @@ public class Runner {
         Plant plant = new Plant();
         DBHelper.saveOrUpdate(plant);
 
+        park.generateFoodStock(10);
+        parkStaff1.addFoodToStore(paddock);
+        DBDinosaur.eat(diplodocus);
 
     }
 }
