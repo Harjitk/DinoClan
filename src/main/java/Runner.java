@@ -16,8 +16,11 @@ public class Runner {
        Park park = new Park("Dino Clan");
         DBHelper.saveOrUpdate(park);
 
-        Paddock paddock = new Paddock("T-Rex's Pad", 1, park);
+        Paddock paddock = new Paddock("Holding pen", 10, park);
         DBHelper.saveOrUpdate(paddock);
+
+        Paddock paddock1 = new Paddock("Todd's dwelling", 1, park);
+        DBHelper.saveOrUpdate(paddock1);
 
         Velociraptor velociraptor = new Velociraptor("Tyrant", 15, 500000, 5, park, paddock);
         DBHelper.saveOrUpdate(velociraptor);
@@ -46,6 +49,12 @@ public class Runner {
         park.generateFoodStock(10);
         parkStaff1.addFoodToStore(paddock);
         DBDinosaur.eat(diplodocus);
+
+        parkStaff1.transferDinosaur(stegosaurus, paddock1);
+
+        park.addVisitorToPaddock(visitor1, paddock1);
+        DBHelper.saveOrUpdate(paddock);
+        DBHelper.saveOrUpdate(visitor1);
 
     }
 }

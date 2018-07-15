@@ -47,20 +47,17 @@ public class Visitor extends Human {
         return null;
     }
 
-  
-//MANY TO MANY??
-//    @Cascade(CascadeType.SAVE_UPDATE)
-//    @ManyToMany
-//    @JoinTable(name = "Visitor_DinoSeen",
-//    joinColumns = {@JoinColumn(name = "visitor_id", nullable = false, updatable = false)},
-//  inverseJoinColumns = {@JoinColumn(name = "dinosaur_id", nullable = false, updatable = false)})
-//    public List<Dinosaur> getDinosSeen() {
-//        return dinosSeen;
-//    }
-//
-//    public void setDinosSeen(List<Dinosaur> dinosSeen) {
-//        this.dinosSeen = dinosSeen;
-//    }
+    @ManyToMany
+    @JoinTable(name = "dinoDex",
+    joinColumns = {@JoinColumn(name = "visitor_id", nullable = false, updatable = false)},
+  inverseJoinColumns = {@JoinColumn(name = "dinosaur_id", nullable = false, updatable = false)})
+    public List<Dinosaur> getDinosSeen() {
+        return dinosSeen;
+    }
+
+    public void setDinosSeen(List<Dinosaur> dinosSeen) {
+        this.dinosSeen = dinosSeen;
+    }
 
 
     @ManyToOne(fetch = FetchType.LAZY)

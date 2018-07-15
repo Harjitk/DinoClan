@@ -79,14 +79,6 @@ public class Paddock {
         this.health = health;
     }
 
-    public void addDinosaurToPaddock(Dinosaur dinosaur){
-        getDinosaursInPaddock().add(dinosaur);
-    }
-
-    public void removeDinosaurFromPaddock(Dinosaur dinosaur){
-        getDinosaursInPaddock().remove(dinosaur);
-    }
-
     @OneToMany(mappedBy = "paddock")
     public List<Dinosaur> getDinosaursInPaddock() {
         return dinosaursInPaddock;

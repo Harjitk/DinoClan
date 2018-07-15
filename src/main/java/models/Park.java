@@ -86,6 +86,7 @@ public class Park {
         visitor.setPaddock(paddock);
         for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
             visitor.getDinosSeen().add(dinosaur);
+            dinosaur.getHumanVisitors().add(visitor);
         }
     }
 
