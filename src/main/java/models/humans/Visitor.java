@@ -47,18 +47,17 @@ public class Visitor extends Human {
 //    @JoinTable(name = "Visitor_DinoSeen",
 //    joinColumns = {@JoinColumn(name = "visitor_id", nullable = false, updatable = false)},
 //  inverseJoinColumns = {@JoinColumn(name = "dinosaur_id", nullable = false, updatable = false)})
-
-    public List<Dinosaur> getDinosSeen() {
-        return dinosSeen;
-    }
-
-    public void setDinosSeen(List<Dinosaur> dinosSeen) {
-        this.dinosSeen = dinosSeen;
-    }
+//    public List<Dinosaur> getDinosSeen() {
+//        return dinosSeen;
+//    }
+//
+//    public void setDinosSeen(List<Dinosaur> dinosSeen) {
+//        this.dinosSeen = dinosSeen;
+//    }
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "paddock_id", nullable = false)
+    @JoinColumn(name = "paddock_id", nullable = true)
     public Paddock getPaddock() {
         return paddock;
     }

@@ -9,6 +9,7 @@ import java.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "humans")
 
 public abstract class Human  {
 
@@ -81,7 +82,7 @@ public abstract class Human  {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dinosaur_id", nullable = false)
+    @JoinColumn(name = "dinosaur_id", nullable = true)
     public Dinosaur getDinosaur() {
         return dinosaur;
     }

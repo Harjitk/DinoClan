@@ -133,9 +133,7 @@ public class Park {
         this.foodStock.add(food);
     }
 
-//ONE TO MANY??
-//    @OneToMany(mappedBy = "dinosaur")
-
+    @OneToMany(mappedBy = "park")
     public List<Dinosaur> getDinosaursInPark() {
         return dinosaursInPark;
     }
@@ -156,7 +154,7 @@ public class Park {
     }
 
 
-    @OneToMany(mappedBy = "visitor")
+    @OneToMany(mappedBy = "park")
     public List<Visitor> getVisitors() {
         return visitors;
     }
@@ -165,9 +163,7 @@ public class Park {
         this.visitors = visitors;
     }
 
-//ONE TO MANY??
-//    @OneToMany(mappedBy = "park")
-
+    @OneToMany(mappedBy = "park")
     public List<Food> getFoodStock() {
         return foodStock;
     }
@@ -176,7 +172,7 @@ public class Park {
         this.foodStock = foodStock;
     }
 
-@OneToMany(mappedBy = "paddock")
+@OneToMany(mappedBy = "park")
     public List<Paddock> getPaddocks() {
         return paddocks;
     }

@@ -11,7 +11,7 @@ import models.foods.Plant;
 import javax.persistence.*;
 
 @Entity
-@Table(name="partStaffs")
+@Table(name="parkstaff")
 
 public class ParkStaff extends Human {
 

@@ -13,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "dinosaurs")
 
 public abstract class Dinosaur {
 
@@ -171,13 +172,13 @@ public abstract class Dinosaur {
     public void setHumanBelly(List<Human> humanBelly) {
         this.humanBelly = humanBelly;
     }
-
-//    ONETOMANY??
-    public List<Human> getHumanVisitors() {
-        return humanVisitors;
-    }
-
-    public void setHumanVisitors(List<Human> humanVisitors) {
-        this.humanVisitors = humanVisitors;
-    }
+//
+//    @ManyToMany(mappedBy= "dinosaur")
+//    public List<Human> getHumanVisitors() {
+//        return humanVisitors;
+//    }
+//
+//    public void setHumanVisitors(List<Human> humanVisitors) {
+//        this.humanVisitors = humanVisitors;
+//    }
 }
