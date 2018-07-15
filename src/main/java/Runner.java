@@ -1,5 +1,4 @@
-import db.DBDinosaur;
-import db.DBHelper;
+import db.*;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.*;
@@ -12,40 +11,73 @@ public class Runner {
 
     public static void main(String[] args) {
 
-
+     //Seeding DB & saving
        Park park = new Park("Dino Clan");
-        DBHelper.saveOrUpdate(park);
+       DBHelper.saveOrUpdate(park);
 
-        Paddock paddock = new Paddock("T-Rex's Pad", 1, park);
-        DBHelper.saveOrUpdate(paddock);
+       Paddock holdingPen = new Paddock("Holding pen", 10, park);
+       DBPark.addPaddock(park, holdingPen);
+       Paddock stegzDwelling = new Paddock("Stegz's dwelling", 1, park);
+       DBPark.addPaddock(park, stegzDwelling);
+       Paddock velociraptorDen = new Paddock("Velociraptor den", 5, park);
+       DBPark.addPaddock(park, velociraptorDen);
 
-        Velociraptor velociraptor = new Velociraptor("Tyrant", 15, 500000, 5, park, paddock);
-        DBHelper.saveOrUpdate(velociraptor);
-        Diplodocus diplodocus = new Diplodocus("Todd", 35, 700000, 5, park, paddock);
-        DBHelper.saveOrUpdate(diplodocus);
-        Stegosaurus stegosaurus = new Stegosaurus("Stegz", 45, 850000, 6, park, paddock);
-        DBHelper.saveOrUpdate(stegosaurus);
-        Tyrannosaurus tyrannosaurus = new Tyrannosaurus("Rex", 55, 950000, 7, park, paddock);
-        DBHelper.saveOrUpdate(tyrannosaurus);
+       Velociraptor velociraptor = new Velociraptor("Tyrant", 15, 500000, 5, park, holdingPen);
+       DBPark.buyDinosaur(park, velociraptor, holdingPen);
+       Velociraptor velociraptor2 = new Velociraptor("Trouble", 15, 500000, 5, park, holdingPen);
+     DBPark.buyDinosaur(park, velociraptor2, holdingPen);
+       Velociraptor velociraptor3 = new Velociraptor("Terminator", 15, 500000, 5, park, holdingPen);
+     DBPark.buyDinosaur(park, velociraptor3, holdingPen);
+       Diplodocus diplodocus = new Diplodocus("Todd", 35, 700000, 5, park, holdingPen);
+     DBPark.buyDinosaur(park, diplodocus, holdingPen);
+       Stegosaurus stegosaurus = new Stegosaurus("Stegz", 45, 850000, 6, park, holdingPen);
+     DBPark.buyDinosaur(park, stegosaurus, holdingPen);
+       Tyrannosaurus tyrannosaurus = new Tyrannosaurus("Rex", 55, 950000, 7, park, holdingPen);
+     DBPark.buyDinosaur(park, tyrannosaurus, holdingPen);
 
-        Visitor visitor1 = new Visitor("Richard", 1000, park);
-        DBHelper.saveOrUpdate(visitor1);
+       Visitor richard = new Visitor("Richard", 1000, park);
+       DBPark.addVisitor(park, richard);
+       Visitor harjit = new Visitor("Harjit", 1000, park);
+       DBPark.addVisitor(park, harjit);
 
-        Visitor visitor2 = new Visitor("Harjit", 1000, park);
-        DBHelper.saveOrUpdate(visitor2);
+       ParkStaff debzStaff = new ParkStaff("debz", 1000, park);
+       DBPark.addParkStaff(park, debzStaff);
 
-        ParkStaff parkStaff1 = new ParkStaff("debz", 1000, park);
-        DBHelper.saveOrUpdate(parkStaff1);
+       Meat meat = new Meat();
+       DBHelper.saveOrUpdate(meat);
+       Plant plant = new Plant();
+       DBHelper.saveOrUpdate(plant);
 
-        Meat meat = new Meat();
-        DBHelper.saveOrUpdate(meat);
+       //Moving dinosaurs to paddocks
+       debzStaff.transferDinosaur(stegosaurus, stegzDwelling);
+       debzStaff.transferDinosaur(velociraptor, velociraptorDen);
+       debzStaff.transferDinosaur(velociraptor2, velociraptorDen);
 
-        Plant plant = new Plant();
-        DBHelper.saveOrUpdate(plant);
-
+       //DBDinosaur tests
         park.generateFoodStock(10);
-        parkStaff1.addFoodToStore(paddock);
+        debzStaff.addFoodToStore(holdingPen);
         DBDinosaur.eat(diplodocus);
+        DBDinosaur.eatHuman(stegosaurus, richard);
+
+        //DBVisitor tests
+        DBPark.addVisitorToPaddock(park, harjit, stegzDwelling);
+        DBVisitor.tauntDinosaursInPaddock(harjit);
+
+        //DBParkStaff tests
+     holdingPen.setHealth(0);
+        DBHelper.saveOrUpdate(holdingPen);
+        DBParkStaff.repairPaddock(debzStaff, holdingPen);
+
+        DBParkStaff.addFoodToStore(debzStaff, holdingPen);
+
+        DBParkStaff.transferDinosaur(debzStaff, velociraptor3, velociraptorDen);
+
+        DBParkStaff.calmDinosaursInPaddock(debzStaff, velociraptorDen);
+
+        //DBPark tests
+        DBPark.addVisitorToPaddock(park, richard, holdingPen);
+        DBPark.moveVisitorToPaddock(park, richard, velociraptorDen);
+        DBPark.removeDinosaur(park, tyrannosaurus);
 
     }
 }

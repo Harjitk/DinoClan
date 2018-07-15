@@ -6,6 +6,7 @@ import models.foods.Food;
 import models.Paddock;
 import models.Park;
 import models.humans.Human;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -151,14 +152,6 @@ public abstract class Dinosaur {
         this.bellyCapacity = bellyCapacity;
     }
 
-
-    public void eat(){
-      // MAKE SET HAPPINESS CONDITIONAL
-        Food food = paddock.getFoodStore().get(0);
-        getBelly().add(food);
-        setHappiness(this.happiness += 5);
-    }
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
@@ -197,14 +190,18 @@ public abstract class Dinosaur {
     public void setHumanBelly(List<Human> humanBelly) {
         this.humanBelly = humanBelly;
     }
-//
-//    @ManyToMany(mappedBy= "dinosaur")
-//    public List<Human> getHumanVisitors() {
-//        return humanVisitors;
-//    }
-//
-//    public void setHumanVisitors(List<Human> humanVisitors) {
-//        this.humanVisitors = humanVisitors;
-//    }
+
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToMany
+    @JoinTable(name = "dinoDex",
+            joinColumns = {@JoinColumn(name = "dinosaur_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "visitor_id", nullable = false, updatable = false)})
+    public List<Human> getHumanVisitors() {
+        return humanVisitors;
+    }
+
+    public void setHumanVisitors(List<Human> humanVisitors) {
+        this.humanVisitors = humanVisitors;
+    }
 
 }

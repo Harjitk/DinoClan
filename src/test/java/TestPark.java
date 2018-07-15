@@ -49,6 +49,15 @@ public class TestPark {
     }
 
     @Test
+    public void canMoveVisitorToNewPaddock() {
+        park.addVisitorToPaddock(visitor, paddock);
+        park.moveVisitorToPaddock(visitor, paddock2);
+        assertEquals(0, paddock.getVisitorsInPaddock().size());
+        assertEquals(1, paddock2.getVisitorsInPaddock().size());
+
+    }
+
+    @Test
     public void canBuyDinosaurs() {
         park.buyDinosaur(velociraptor, paddock);
         assertEquals(1, paddock.getDinosaursInPaddock().size());
@@ -70,7 +79,7 @@ public class TestPark {
     }
 
     @Test
-    public void visitorHasPaddockInSeenPadocksWhenAddedToPaddock() {
+    public void visitorHasDinosaurInSeenPadocksWhenAddedToPaddock() {
         parkStaff.transferDinosaur(velociraptor, paddock2);
         park.addVisitorToPaddock(visitor, paddock2);
         assertEquals(velociraptor, visitor.getDinosSeen().get(0));
