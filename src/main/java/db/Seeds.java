@@ -30,20 +30,20 @@ public class Seeds {
         Paddock diploJungle = new Paddock("Diplojungle", 10, park);
         DBPark.addPaddock(park, diploJungle);
         Paddock trexDuplex = new Paddock("Trex Duplex", 1, park);
-        DBPark.addPaddock(park, diploJungle);
+        DBPark.addPaddock(park, trexDuplex);
 
         Velociraptor velociraptor = new Velociraptor("Tyrant", 15, 500000, 5, park, velociraptorDen);
-        DBPark.buyDinosaur(velociraptor, holdingPen);
+        DBPark.buyDinosaur(velociraptor, velociraptorDen);
         Velociraptor velociraptor2 = new Velociraptor("Trouble", 15, 500000, 5, park, velociraptorDen);
-        DBPark.buyDinosaur(velociraptor2, holdingPen);
+        DBPark.buyDinosaur(velociraptor2, velociraptorDen);
         Velociraptor velociraptor3 = new Velociraptor("Terminator", 15, 500000, 5, park, velociraptorDen);
-        DBPark.buyDinosaur(velociraptor3, holdingPen);
+        DBPark.buyDinosaur(velociraptor3, velociraptorDen);
         Diplodocus diplodocus = new Diplodocus("Todd", 35, 700000, 5, park, diploJungle);
-        DBPark.buyDinosaur(diplodocus, holdingPen);
+        DBPark.buyDinosaur(diplodocus, diploJungle);
         Stegosaurus stegosaurus = new Stegosaurus("Stegz", 45, 850000, 6, park, stegzDwelling);
-        DBPark.buyDinosaur(stegosaurus, holdingPen);
+        DBPark.buyDinosaur(stegosaurus, stegzDwelling);
         Tyrannosaurus tyrannosaurus = new Tyrannosaurus("Rex", 55, 950000, 7, park, trexDuplex);
-        DBPark.buyDinosaur(tyrannosaurus, holdingPen);
+        DBPark.buyDinosaur(tyrannosaurus, trexDuplex);
 
         Visitor richard = new Visitor("Richard", 1000, park);
         DBPark.addVisitor(park, richard);
