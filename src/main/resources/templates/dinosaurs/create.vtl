@@ -7,8 +7,13 @@
     <label for="name">Name:</label>
     <input type="text" class="inputBox" name="name" required="true" id="name">
 
-    <label for="species">Species:</label>
-    <input type="text" class="inputBox" name="species" required="true" id="species">
+    <!--Drop down to select from list of classes which inherit from Dinosaur superclass-->
+    <!--<label for="species">Species:</label>-->
+    <!--<select id="species" name="species">-->
+        <!--#foreach( $class in $classes )-->
+        <!--<option value="species.getId()">$class.getSimpleName()</option>-->
+        <!--#end-->
+    <!--</select>-->
 
     <label for="weight">Weight:</label>
     <input type="number" class="inputBox" name="weight" required="true" id="weight">
@@ -22,7 +27,7 @@
     <label for="paddock">Paddock:</label>
     <select id="paddock" name="paddock">
         #foreach( $paddock in $paddocks )
-        <option value="paddock.getId()">$paddock.getName()</option>
+        <option value="$paddock.getId()">$paddock.getName()</option>
         #end
     </select>
 

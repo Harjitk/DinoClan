@@ -184,7 +184,7 @@ public abstract class Dinosaur {
         this.bellyCapacity = bellyCapacity;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;

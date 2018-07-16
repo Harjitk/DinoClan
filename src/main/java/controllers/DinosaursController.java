@@ -1,12 +1,16 @@
 package controllers;
 
 import db.DBHelper;
+import db.DBPark;
 import models.Paddock;
+import models.Park;
 import models.dinosaurs.Dinosaur;
+import models.dinosaurs.Velociraptor;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 import java.util.HashMap;
@@ -29,9 +33,29 @@ public class DinosaursController {
                 return new ModelAndView(model, "templates/layout.vtl");
             }, new VelocityTemplateEngine());
 
+
+            post ("/dinosaurs", (req, res) -> {
+
+                int paddockId = Integer.parseInt(req.queryParams("paddock"));
+                Paddock paddock = DBHelper.find(Paddock.class, paddockId);
+                Park park = DBHelper.find(Park.class, 1);
+                String name = req.queryParams("name");
+                int weight = Integer.parseInt(req.queryParams("weight"));
+                int price = Integer.parseInt(req.queryParams("price"));
+                int bellyCapacity = Integer.parseInt(req.queryParams("bellyCapacity"));
+
+                Velociraptor velociraptor = new Velociraptor(name, weight, price, bellyCapacity, park, paddock);
+                DBPark.buyDinosaur(velociraptor, paddock);
+
+                res.redirect("/dinosaurs");
+                return null;
+            }, new VelocityTemplateEngine());
+
+
             get ("/dinosaurs/new", (req, res) -> {
                 Map<String, Object> model = new HashMap<>();
                 List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+
                 model.put("paddocks", paddocks);
                 model.put("template", "templates/dinosaurs/create.vtl");
                 return new ModelAndView(model, "templates/layout.vtl");
