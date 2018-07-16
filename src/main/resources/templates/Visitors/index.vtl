@@ -13,7 +13,7 @@
         </tr>
         #foreach($visitor in $visitors )
         <tr>
-            <td>$visitor.getName()</td>
+            <td><a href="/visitors/$visitor.getId()" class="button center">$visitor.getName()</a></td>
             <td>$visitor.getWallet()</td>
             <td>$!visitor.getPaddock()</td>
 

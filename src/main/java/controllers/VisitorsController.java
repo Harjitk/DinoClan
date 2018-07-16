@@ -17,9 +17,9 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 
 public class VisitorsController {
-        public VisitorsController() {
-            this.setupEndpoints();
-        }
+    public VisitorsController() {
+        this.setupEndpoints();
+    }
 
     private void setupEndpoints() {
 
@@ -33,7 +33,7 @@ public class VisitorsController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        get ("/visitors/new", (req, res) -> {
+        get("/visitors/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<models.humans.Visitor> visitors = DBHelper.getAll(Visitor.class);
 
@@ -45,26 +45,44 @@ public class VisitorsController {
         post("/visitors/new   ", (req, res) -> {
             String name = req.queryParams("name");
             int wallet = Integer.parseInt(req.queryParams("wallet"));
-            int paddockId = Integer.parseInt(req.queryParams("paddock"));
-            Paddock paddock = DBHelper.find(Paddock.class, paddockId);
             Park park = DBHelper.find(Park.class, 1);
             Visitor visitor = new Visitor(name, wallet, park);
-            visitor.setPaddock(paddock);
             DBHelper.saveOrUpdate(visitor);
             res.redirect("/visitors");
             return null;
         }, new VelocityTemplateEngine());
 
 
+        get("/visitors/:id", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Visitor visitor = DBHelper.find(Visitor.class, intId);
 
+            Map<String, Object> model = new HashMap<>();
+
+            model.put("visitor", visitor);
+            model.put("template", "templates/visitors/show.vtl");
+
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
+        get("/visitors/:id/edit", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Visitor visitor = DBHelper.find(Visitor.class, intId);
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/visitors/edit.vtl");
+            model.put("visitor", visitor);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
 
 
 
 
 
     }
-
-    }
+}
 
 
 
