@@ -8,19 +8,6 @@ import models.humans.Visitor;
 
 public class DBPark {
 
-//    Don't think it's ever preferrable to use this method ahead of moveVisitorToPaddock. Move visitor removes the visitor from their current paddock, if they are in one.
-
-//    public static void addVisitorToPaddock(Visitor visitor, Paddock paddock) {
-//        Park park = paddock.getPark();
-//        park.addVisitorToPaddock(visitor, paddock);
-//        DBHelper.saveOrUpdate(visitor);
-//        DBHelper.saveOrUpdate(paddock);
-//        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()) {
-//            DBHelper.saveOrUpdate(dinosaur);
-//        }
-//
-//    }
-
     public static void moveVisitorToPaddock(Visitor visitor, Paddock paddock) {
         Park park = paddock.getPark();
         park.moveVisitorToPaddock(visitor, paddock);

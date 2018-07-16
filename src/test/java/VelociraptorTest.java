@@ -86,7 +86,7 @@ public class VelociraptorTest {
 
     @Test
     public void canEatVisitor() {
-        velociraptor.eatHuman(visitor);
+        velociraptor.eatVisitor(visitor);
         assertEquals(1, velociraptor.getHumanBelly().size());
         assertEquals(55, velociraptor.getHappiness());
     }
@@ -99,16 +99,16 @@ public class VelociraptorTest {
     @Test
     public void canEatUntilFullOfHumans() {
         velociraptor.setBellyCapacity(5);
-        velociraptor.eatHuman(park.getVisitors().get(0));
-        velociraptor.eatHuman(park.getVisitors().get(0));
-        velociraptor.eatHuman(park.getVisitors().get(0));
-        velociraptor.eatHuman(park.getVisitors().get(0));
-        velociraptor.eatHuman(park.getVisitors().get(0));
-        velociraptor.eatHuman(park.getVisitors().get(0));
-        velociraptor.eatHuman(park.getVisitors().get(0));
-        velociraptor.eatHuman(park.getVisitors().get(0));
-        velociraptor.eatHuman(park.getVisitors().get(0));
-        velociraptor.eatHuman(park.getVisitors().get(0));
+        velociraptor.eatVisitor(park.getVisitors().get(0));
+        velociraptor.eatVisitor(park.getVisitors().get(0));
+        velociraptor.eatVisitor(park.getVisitors().get(0));
+        velociraptor.eatVisitor(park.getVisitors().get(0));
+        velociraptor.eatVisitor(park.getVisitors().get(0));
+        velociraptor.eatVisitor(park.getVisitors().get(0));
+        velociraptor.eatVisitor(park.getVisitors().get(0));
+        velociraptor.eatVisitor(park.getVisitors().get(0));
+        velociraptor.eatVisitor(park.getVisitors().get(0));
+        velociraptor.eatVisitor(park.getVisitors().get(0));
         assertEquals(5, velociraptor.getHumanBelly().size());
         assertEquals(45, park.getVisitors().size());
         assertTrue(velociraptor.getHumanBelly().get(0) instanceof Visitor);

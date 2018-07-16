@@ -57,6 +57,14 @@ public class Runner {
        Plant plant = new Plant();
        DBHelper.saveOrUpdate(plant);
 
+       DBParkStaff.transferDinosaur(debzStaff, velociraptor, velociraptorDen);
+        DBParkStaff.transferDinosaur(debzStaff, velociraptor2, velociraptorDen);
+        DBParkStaff.transferDinosaur(debzStaff, velociraptor3, velociraptorDen);
+
+//        Testing rampage
+        velociraptor.setHappiness(0);
+        DBDinosaur.rampage(velociraptor);
+
 //       //Moving dinosaurs to paddocks
 //       debzStaff.transferDinosaur(stegosaurus, stegzDwelling);
 //       debzStaff.transferDinosaur(velociraptor, velociraptorDen);

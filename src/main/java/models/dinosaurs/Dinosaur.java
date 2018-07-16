@@ -75,12 +75,16 @@ public abstract class Dinosaur {
         }
     }
 
-    public void eatHuman(Human human){
+    public void eatVisitor(Visitor visitor){
         //      NEEDS TO RETURN STRING IF CONDITION NOT MET
         if (this.humanBelly.size() < this.bellyCapacity) {
-            getHumanBelly().add(human);
-            human.setDinosaur(this);
-            park.getVisitors().remove(human);
+            getHumanBelly().add(visitor);
+            visitor.setDinosaur(this);
+            visitor.setPark(null);
+            if (visitor.getPaddock() != null) {
+                visitor.setPaddock(null);
+            }
+            park.getVisitors().remove(visitor);
             if (this.happiness <= 95) {
                 setHappiness(this.happiness += 5);
             }
@@ -105,8 +109,8 @@ public abstract class Dinosaur {
             List<Visitor> visitorsInPaddock = paddock.getVisitorsInPaddock();
             for(int i = 0; i < bellyFull; i ++){
                 if(visitorsInPaddock.size() > 0){
-                    Human food = visitorsInPaddock.remove(0);
-                this.eatHuman(food);
+                    Visitor food = visitorsInPaddock.remove(0);
+                this.eatVisitor(food);
             }
 //
             this.park.removeDinosaur(this);
