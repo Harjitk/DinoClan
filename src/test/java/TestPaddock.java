@@ -54,4 +54,19 @@ public class TestPaddock {
         stegosaurus.eat();
         assertEquals(0, paddock.getFoodStore().size());
     }
+
+    @Test
+    public void emptyPaddock() {
+        paddock.addDinosaurToPaddock(velociraptor);
+        paddock.setHealth(0);
+        paddock.emptyPaddock();
+        assertEquals(0, paddock.dinosaurCount());
+    }
 }
+
+
+//    public void emptyPaddock(){
+//        if(this.health == 0){
+//            this.dinosaursInPaddock.clear();
+//        }
+//}

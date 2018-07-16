@@ -117,4 +117,14 @@ public class Paddock {
     public void setPark(Park park) {
         this.park = park;
     }
+
+    public void emptyPaddock(){
+        if(this.health == 0){
+        this.dinosaursInPaddock.clear();
+        }
+    }
+
+    public int dinosaurCount(){
+        return this.dinosaursInPaddock.size();
+    }
 }
