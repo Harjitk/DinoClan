@@ -124,7 +124,7 @@ public class VelociraptorTest {
 //    public void dinosaurHappiness() {
 //        assertEquals(true, velociraptor.isDinosaurHappy());
 //        velociraptor.setHappiness(0);
-//        assertEquals(false, velociraptor.isDinosaurHappy());
+//        assertEquals(false, velociraptor.isDinosaurHappy());v
 //    }
 
     @Test

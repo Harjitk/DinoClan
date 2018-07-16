@@ -11,6 +11,8 @@ import models.humans.Human;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
 
+import java.util.List;
+
 public class Seeds {
 
     public static void seedData() {
@@ -52,7 +54,8 @@ public class Seeds {
         Plant plant = new Plant();
         DBHelper.saveOrUpdate(plant);
 
-//
+
+        List<Visitor> foundVisitors = DBHelper.getAll(Visitor.class);
 //        add DeleteAll method to DBHelper and in here?
     }
 }

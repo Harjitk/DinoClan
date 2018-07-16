@@ -99,7 +99,6 @@ public abstract class Dinosaur {
 
     public void attackPaddock(){
         this.paddock.setHealth(0);
-
     }
 
     public void rampage(){
