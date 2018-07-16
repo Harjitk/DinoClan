@@ -82,7 +82,7 @@ public class VisitorsController {
         }, new VelocityTemplateEngine());
 
 
-        post ("/visitors/:id/delete", (req, res) -> {
+        post("/visitors/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Visitor visitorrToDelete = DBHelper.find(Visitor.class, id);
             DBHelper.delete(visitorrToDelete);
@@ -90,7 +90,7 @@ public class VisitorsController {
             return null;
         }, new VelocityTemplateEngine());
 
-        post ("/visitors/:id", (req, res) -> {
+        post("/visitors/:id", (req, res) -> {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Visitor visitor = DBHelper.find(Visitor.class, intId);
@@ -106,16 +106,19 @@ public class VisitorsController {
             return null;
 
         }, new VelocityTemplateEngine());
-
-        enableDebugScreen();
-
-        get ("/visitors/generate", (req, res) -> {
-
-
-        }
-
-
+    }
 }
+
+//        enableDebugScreen();
+
+//        get ("/visitors/generate", (req, res) -> {
+//
+//            return null;
+//
+//        }, new VelocityTemplateEngine());
+//
+
+
 
 
 
