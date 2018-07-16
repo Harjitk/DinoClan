@@ -1,20 +1,24 @@
 <p class="pageHeader">All Visitors</p>
 
+<div>
+    <a href="/visitors/new" class="button center">New Visitor</a>
+</div>
+
 <div class="container">
     <table>
         <tr>
             <th>Name</th>
             <th>Wallet</th>
-            <th>Park</th>
-
+            <th>Paddock</th>
         </tr>
-        <!---->
-        <!--add edit/delete button-->
-        #foreach($dinosaur in $dinosaurs )
+        #foreach($visitor in $visitors )
         <tr>
-            <td>$dinosaur.getName()</td>
-            <td>$dinosaur.getWallet()</td>
-            <td>$dinosaur.getPark()</td>
+            <td>$visitor.getName()</td>
+            <td>$visitor.getWallet()</td>
+            <td>$!visitor.getPaddock()</td>
+
+            <td><a href="/visitors/$visitor.getId()" class="button center">Details</a></td>
+
         </tr>
         #end
     </table>
