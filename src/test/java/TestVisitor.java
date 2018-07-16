@@ -26,7 +26,7 @@ public class TestVisitor {
         visitor = new Visitor("Mr Dino Lover", 100, park);
         parkStaff = new ParkStaff(visitor.randName(), visitor.randWallet(), park);
         paddock = new Paddock("T-Rex Duplex", 2, park);
-        park.addVisitorToPaddock(visitor, paddock);
+        park.moveVisitorToPaddock(visitor, paddock);
 
         velociraptor = new Velociraptor("Trouble", 100, 500000, 5, park, paddock);
         velociraptor2 = new Velociraptor("More Trouble", 150, 700000, 8, park, paddock);
@@ -41,7 +41,7 @@ public class TestVisitor {
 
     @Test
     public void canTauntAllDinosaursInPaddock() {
-        park.addVisitorToPaddock(visitor, paddock);
+        park.moveVisitorToPaddock(visitor, paddock);
         visitor.tauntDinosaursInPaddock();
         assertEquals(45, velociraptor.getHappiness());
         assertEquals(45, velociraptor2.getHappiness());
@@ -59,7 +59,7 @@ public class TestVisitor {
 
     @Test
     public void cantTauntBeyond5() {
-        park.addVisitorToPaddock(visitor, paddock);
+        park.moveVisitorToPaddock(visitor, paddock);
         visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock(); visitor.tauntDinosaursInPaddock();
         assertEquals(0, paddock.getDinosaursInPaddock().get(0).getHappiness());
         assertEquals("This dinosaur is angry as hell and looks ready to RAMPAGE", visitor.tauntDinosaursInPaddock());

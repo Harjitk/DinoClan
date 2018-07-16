@@ -81,17 +81,20 @@ public class Park {
         this.entryFee = entryFee;
     }
 
-    public void addVisitorToPaddock(Visitor visitor, Paddock paddock) {
-        paddock.getVisitorsInPaddock().add(visitor);
-        visitor.setPaddock(paddock);
-        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
-            visitor.getDinosSeen().add(dinosaur);
-            dinosaur.getHumanVisitors().add(visitor);
-        }
-    }
+//    Don't think it's ever relevant to use this method rather than moveVisitorToPaddock.
+//    public void addVisitorToPaddock(Visitor visitor, Paddock paddock) {
+//        paddock.getVisitorsInPaddock().add(visitor);
+//        visitor.setPaddock(paddock);
+//        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
+//            visitor.getDinosSeen().add(dinosaur);
+//            dinosaur.getHumanVisitors().add(visitor);
+//        }
+//    }
 
     public void moveVisitorToPaddock(Visitor visitor, Paddock paddock) {
+        if (visitor.getPaddock() != null){
         visitor.getPaddock().getVisitorsInPaddock().remove(visitor);
+        }
         paddock.getVisitorsInPaddock().add(visitor);
         visitor.setPaddock(paddock);
         for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){

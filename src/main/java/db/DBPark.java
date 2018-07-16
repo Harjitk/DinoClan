@@ -8,17 +8,21 @@ import models.humans.Visitor;
 
 public class DBPark {
 
-    public static void addVisitorToPaddock(Park park, Visitor visitor, Paddock paddock) {
-        park.addVisitorToPaddock(visitor, paddock);
-        DBHelper.saveOrUpdate(visitor);
-        DBHelper.saveOrUpdate(paddock);
-        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()) {
-            DBHelper.saveOrUpdate(dinosaur);
-        }
+//    Don't think it's ever preferrable to use this method ahead of moveVisitorToPaddock. Move visitor removes the visitor from their current paddock, if they are in one.
 
-    }
+//    public static void addVisitorToPaddock(Visitor visitor, Paddock paddock) {
+//        Park park = paddock.getPark();
+//        park.addVisitorToPaddock(visitor, paddock);
+//        DBHelper.saveOrUpdate(visitor);
+//        DBHelper.saveOrUpdate(paddock);
+//        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()) {
+//            DBHelper.saveOrUpdate(dinosaur);
+//        }
+//
+//    }
 
-    public static void moveVisitorToPaddock(Park park, Visitor visitor, Paddock paddock) {
+    public static void moveVisitorToPaddock(Visitor visitor, Paddock paddock) {
+        Park park = paddock.getPark();
         park.moveVisitorToPaddock(visitor, paddock);
         DBHelper.saveOrUpdate(visitor);
         DBHelper.saveOrUpdate(paddock);
@@ -27,7 +31,8 @@ public class DBPark {
         }
     }
 
-    public static void buyDinosaur(Park park, Dinosaur dinosaur, Paddock paddock){
+    public static void buyDinosaur(Dinosaur dinosaur, Paddock paddock){
+        Park park = paddock.getPark();
         park.buyDinosaur(dinosaur, paddock);
         dinosaur.setPark(park);
         park.getDinosaursInPark().add(dinosaur);
@@ -42,13 +47,15 @@ public class DBPark {
         DBHelper.saveOrUpdate(park);
     }
 
-    public static void removePaddock(Park park, Paddock paddock){
+    public static void removePaddock(Paddock paddock){
+        Park park = paddock.getPark();
         park.removePaddock(paddock);
         DBHelper.delete(paddock);
         DBHelper.saveOrUpdate(park);
     }
 
-    public static void removeDinosaur(Park park, Dinosaur dinosaur){
+    public static void removeDinosaur(Dinosaur dinosaur){
+        Park park = dinosaur.getPark();
         park.removeDinosaur(dinosaur);
         DBHelper.delete(dinosaur);
         DBHelper.saveOrUpdate(park);
@@ -60,7 +67,8 @@ public class DBPark {
         DBHelper.saveOrUpdate(visitor);
     }
 
-    public static void removeVisitor(Park park, Visitor visitor){
+    public static void removeVisitor(Visitor visitor){
+        Park park = visitor.getPark();
         park.removeVisitor(visitor);
         DBHelper.delete(visitor);
         DBHelper.saveOrUpdate(park);
