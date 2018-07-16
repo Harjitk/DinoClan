@@ -1,7 +1,6 @@
 package controllers;
 
 import db.DBHelper;
-import db.Seeds;
 import models.dinosaurs.Dinosaur;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -13,16 +12,17 @@ import java.util.Map;
 import static spark.Spark.get;
 
 public class DinosaursController {
+        public DinosaursController() {
+            this.setupEndpoints();
+        }
 
-    public static void main(String[] args) {
-
-        Seeds.seedData();
+        private void setupEndpoints() {
 
         get("/dinosaurs", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
             model.put("dinosaur", dinosaurs);
-            model.put("template", "templates/Dinosaur/index.vtl");
+            model.put("template", "templates/Dinosaurs/index.vtl");
 
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
@@ -31,7 +31,7 @@ public class DinosaursController {
             Map<String, Object> model = new HashMap<>();
             List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
             model.put("dinosaurs", dinosaurs);
-            model.put("template", "templates/Dinosaur/create.vtl");
+            model.put("template", "templates/Dinosaurs/create.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 

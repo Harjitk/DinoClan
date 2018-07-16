@@ -1,0 +1,25 @@
+<p class="pageHeader">All Visitors</p>
+
+<div>
+    <a href="/visitors/new" class="button center">New Visitor</a>
+</div>
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Wallet</th>
+            <th>Paddock</th>
+        </tr>
+        #foreach($visitor in $visitors )
+        <tr>
+            <td>$visitor.getName()</td>
+            <td>$visitor.getWallet()</td>
+            <td>$!visitor.getPaddock()</td>
+
+            <td><a href="/visitors/$visitor.getId()" class="button center">Details</a></td>
+
+        </tr>
+        #end
+    </table>
+</div>

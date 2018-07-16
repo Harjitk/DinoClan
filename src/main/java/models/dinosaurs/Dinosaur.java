@@ -87,10 +87,6 @@ public abstract class Dinosaur {
     }
 
 
-//    ADD .RAMPAGE FUNCTION
-
-//    Check the Dinosaur's happiness is 0. If it is...
-
 //    public boolean isDinosaurHappy(){
 //        return this.happiness != 0;
 //    }
@@ -99,25 +95,6 @@ public abstract class Dinosaur {
         this.paddock.setHealth(0);
         this.paddock.emptyPaddock();
     }
-
-//    Set Paddock Health to 0.
-//
-//    Create an int bellyFull and set it to equal the dinosaur's humanBellyCapacity
-//    Create an int counter and set it to 0
-//
-//    Loop through the paddock's dinosaurs array {
-//    Remove all dinosaurs from paddock.
-//
-//if (int counter < bellyFull)
-//    nested Loop through the park's Visitors array {
-//    dinosaur .eat
-//    adding 1 to the counter each time it loops through.
-//}
-//
-//finally remove the dinosaur from the park
-//
-//        }
-//
 
 
     public void rampage(){
