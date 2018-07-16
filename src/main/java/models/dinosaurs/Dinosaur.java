@@ -80,7 +80,6 @@ public abstract class Dinosaur {
         if (this.humanBelly.size() < this.bellyCapacity) {
             getHumanBelly().add(visitor);
             visitor.setDinosaur(this);
-            visitor.setPark(null);
             if (visitor.getPaddock() != null) {
                 visitor.setPaddock(null);
             }
@@ -98,7 +97,7 @@ public abstract class Dinosaur {
 
     public void attackPaddock(){
         this.paddock.setHealth(0);
-        this.paddock.emptyPaddock();
+
     }
 
     public void rampage(){
@@ -114,6 +113,7 @@ public abstract class Dinosaur {
             }
 //
             this.park.removeDinosaur(this);
+//                Should this be moved to the park?
             }
         }
     }

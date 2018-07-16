@@ -7,6 +7,9 @@ import models.foods.Food;
 import models.humans.Human;
 import models.humans.Visitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DBDinosaur {
 
     public static void eat(Dinosaur dinosaur) {
@@ -24,18 +27,25 @@ public class DBDinosaur {
     }
 
     public static void rampage(Dinosaur dinosaur){
+//        May need to delete the dinosaur from the DB as this
         Park park = dinosaur.getPark();
         Paddock paddock = dinosaur.getPaddock();
 
-        dinosaur.rampage();
+        List<Dinosaur> oldDinosaursInPaddock = new ArrayList<>(paddock.getDinosaursInPaddock());
+        List<Visitor> oldVisitorsInPaddock = new ArrayList<>(paddock.getVisitorsInPaddock());
 
-        for (Human human : paddock.getVisitorsInPaddock()){
+        paddock.dinosaursInPaddockRampage();
+
+        for (Human human : oldVisitorsInPaddock){
             DBHelper.saveOrUpdate(human);
+        }
+
+        for (Dinosaur foundDino : oldDinosaursInPaddock){
+            DBHelper.saveOrUpdate(foundDino);
         }
 
         DBHelper.saveOrUpdate(park);
         DBHelper.saveOrUpdate(dinosaur);
-        DBHelper.saveOrUpdate(paddock);
     }
 
 

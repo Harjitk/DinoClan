@@ -127,7 +127,7 @@ public class Park {
     }
 
     public void removeDinosaur(Dinosaur dinosaur) {
-        this.dinosaursInPark.remove(dinosaursInPark);
+        this.dinosaursInPark.remove(dinosaur);
     }
 
     public void addVisitor(Visitor visitor) {

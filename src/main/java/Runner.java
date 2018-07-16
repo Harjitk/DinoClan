@@ -43,11 +43,17 @@ public class Runner {
         DBPark.addVisitor(park, greg);
         Visitor debbie = new Visitor("Debbie", 1000, park);
         DBPark.addVisitor(park, debbie);
+        Visitor matt = new Visitor("Matt", 1000, park);
+        DBPark.addVisitor(park, matt);
+        Visitor cleyra = new Visitor("Cleyra", 1000, park);
+        DBPark.addVisitor(park, cleyra);
 
        DBPark.moveVisitorToPaddock(richard, velociraptorDen);
         DBPark.moveVisitorToPaddock(harjit, velociraptorDen);
         DBPark.moveVisitorToPaddock(greg, velociraptorDen);
         DBPark.moveVisitorToPaddock(debbie, velociraptorDen);
+        DBPark.moveVisitorToPaddock(matt, velociraptorDen);
+        DBPark.moveVisitorToPaddock(cleyra, velociraptorDen);
 
        ParkStaff debzStaff = new ParkStaff("debz", 1000, park);
        DBPark.addParkStaff(park, debzStaff);
@@ -63,6 +69,8 @@ public class Runner {
 
 //        Testing rampage
         velociraptor.setHappiness(0);
+        velociraptor2.setHappiness(0);
+        velociraptor3.setHappiness(0);
         DBDinosaur.rampage(velociraptor);
 
 //       //Moving dinosaurs to paddocks
