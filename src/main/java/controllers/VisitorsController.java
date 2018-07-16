@@ -42,7 +42,7 @@ public class VisitorsController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        post("/visitors/new   ", (req, res) -> {
+        post("/visitors/new", (req, res) -> {
             String name = req.queryParams("name");
             int wallet = Integer.parseInt(req.queryParams("wallet"));
             Park park = DBHelper.find(Park.class, 1);
@@ -71,20 +71,41 @@ public class VisitorsController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Visitor visitor = DBHelper.find(Visitor.class, intId);
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/visitors/edit.vtl");
             model.put("visitor", visitor);
+            model.put("paddocks", paddocks);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
 
+        post ("/visitors/:id/delete", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            Visitor visitorrToDelete = DBHelper.find(Visitor.class, id);
+            DBHelper.delete(visitorrToDelete);
+            res.redirect("/visitors");
+            return null;
+        }, new VelocityTemplateEngine());
 
+        post ("/visitors/:id", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Visitor visitor = DBHelper.find(Visitor.class, intId);
+            int paddockId = Integer.parseInt(req.queryParams("paddock"));
+            Paddock paddock = DBHelper.find(Paddock.class, paddockId);
+            String name = req.queryParams("name");
+            int wallet = Integer.parseInt(req.queryParams("wallet"));
+            visitor.setPaddock(paddock);
+            visitor.setName(name);
+            visitor.setWallet(wallet);
+            DBHelper.saveOrUpdate(visitor);
+            res.redirect("/visitors");
+            return null;
 
-
+        }, new VelocityTemplateEngine());
     }
 }
-
-
 
 
 

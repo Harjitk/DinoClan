@@ -22,7 +22,7 @@ public class DinosaursController {
             Map<String, Object> model = new HashMap<>();
             List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
             model.put("dinosaur", dinosaurs);
-            model.put("template", "templates/Dinosaurs/index.vtl");
+            model.put("template", "templates/dinosaurs/index.vtl");
 
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
@@ -31,7 +31,7 @@ public class DinosaursController {
             Map<String, Object> model = new HashMap<>();
             List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
             model.put("dinosaurs", dinosaurs);
-            model.put("template", "templates/Dinosaurs/create.vtl");
+            model.put("template", "templates/dinosaurs/create.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
