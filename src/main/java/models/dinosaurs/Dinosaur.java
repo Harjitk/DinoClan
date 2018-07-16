@@ -69,17 +69,23 @@ public abstract class Dinosaur {
             Food food = paddock.getFoodStore().get(0);
             getBelly().add(food);
             paddock.getFoodStore().remove(food);
+            food.setPaddock(null);
+            food.setDinosaur(this);
             if (this.happiness <= 95) {
                 setHappiness(this.happiness += 5);
             }
         }
     }
 
-    public void eatHuman(Human human){
+    public void eatVisitor(Visitor visitor){
         //      NEEDS TO RETURN STRING IF CONDITION NOT MET
         if (this.humanBelly.size() < this.bellyCapacity) {
-            getHumanBelly().add(human);
-            park.getVisitors().remove(human);
+            getHumanBelly().add(visitor);
+            visitor.setDinosaur(this);
+            if (visitor.getPaddock() != null) {
+                visitor.setPaddock(null);
+            }
+            park.getVisitors().remove(visitor);
             if (this.happiness <= 95) {
                 setHappiness(this.happiness += 5);
             }
@@ -93,9 +99,7 @@ public abstract class Dinosaur {
 
     public void attackPaddock(){
         this.paddock.setHealth(0);
-        this.paddock.emptyPaddock();
     }
-
 
     public void rampage(){
 
@@ -105,11 +109,14 @@ public abstract class Dinosaur {
             List<Visitor> visitorsInPaddock = paddock.getVisitorsInPaddock();
             for(int i = 0; i < bellyFull; i ++){
                 if(visitorsInPaddock.size() > 0){
-                this.eatHuman(visitorsInPaddock.remove(0));
+                    Visitor food = visitorsInPaddock.remove(0);
+                this.eatVisitor(food);
             }
+//
             this.park.removeDinosaur(this);
+//                Should this be moved to the park?
+            }
         }
-    }
     }
 
 

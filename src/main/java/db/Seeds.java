@@ -29,17 +29,17 @@ public class Seeds {
         DBPark.addPaddock(park, velociraptorDen);
 
         Velociraptor velociraptor = new Velociraptor("Tyrant", 15, 500000, 5, park, holdingPen);
-        DBPark.buyDinosaur(park, velociraptor, holdingPen);
+        DBPark.buyDinosaur(velociraptor, holdingPen);
         Velociraptor velociraptor2 = new Velociraptor("Trouble", 15, 500000, 5, park, holdingPen);
-        DBPark.buyDinosaur(park, velociraptor2, holdingPen);
+        DBPark.buyDinosaur(velociraptor2, holdingPen);
         Velociraptor velociraptor3 = new Velociraptor("Terminator", 15, 500000, 5, park, holdingPen);
-        DBPark.buyDinosaur(park, velociraptor3, holdingPen);
+        DBPark.buyDinosaur(velociraptor3, holdingPen);
         Diplodocus diplodocus = new Diplodocus("Todd", 35, 700000, 5, park, holdingPen);
-        DBPark.buyDinosaur(park, diplodocus, holdingPen);
+        DBPark.buyDinosaur(diplodocus, holdingPen);
         Stegosaurus stegosaurus = new Stegosaurus("Stegz", 45, 850000, 6, park, holdingPen);
-        DBPark.buyDinosaur(park, stegosaurus, holdingPen);
+        DBPark.buyDinosaur(stegosaurus, holdingPen);
         Tyrannosaurus tyrannosaurus = new Tyrannosaurus("Rex", 55, 950000, 7, park, holdingPen);
-        DBPark.buyDinosaur(park, tyrannosaurus, holdingPen);
+        DBPark.buyDinosaur(tyrannosaurus, holdingPen);
 
         Visitor richard = new Visitor("Richard", 1000, park);
         DBPark.addVisitor(park, richard);

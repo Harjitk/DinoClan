@@ -48,6 +48,14 @@ public class Paddock {
         getDinosaursInPaddock().add(dinosaur);
     }
 
+    public void dinosaursInPaddockRampage(){
+        for (Dinosaur dinosaur : this.dinosaursInPaddock){
+            dinosaur.rampage();
+        }
+        this.emptyPaddock();
+
+    }
+
     public void setId(int id) {
         this.id = id;
     }
