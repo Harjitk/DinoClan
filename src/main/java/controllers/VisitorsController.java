@@ -1,12 +1,14 @@
 package controllers;
 
 import db.DBHelper;
+import db.DBPark;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
 import models.humans.Visitor;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
+import static spark.debug.DebugScreen.enableDebugScreen;
 
 
 import java.util.HashMap;
@@ -96,7 +98,7 @@ public class VisitorsController {
             Paddock paddock = DBHelper.find(Paddock.class, paddockId);
             String name = req.queryParams("name");
             int wallet = Integer.parseInt(req.queryParams("wallet"));
-            visitor.setPaddock(paddock);
+            DBPark.moveVisitorToPaddock(visitor, paddock);
             visitor.setName(name);
             visitor.setWallet(wallet);
             DBHelper.saveOrUpdate(visitor);
@@ -104,7 +106,15 @@ public class VisitorsController {
             return null;
 
         }, new VelocityTemplateEngine());
-    }
+
+        enableDebugScreen();
+
+        get ("/visitors/generate", (req, res) -> {
+
+
+        }
+
+
 }
 
 
