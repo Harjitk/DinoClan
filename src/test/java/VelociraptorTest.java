@@ -7,6 +7,9 @@ import models.humans.Visitor;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
@@ -32,10 +35,21 @@ public class VelociraptorTest {
         parkStaff = new ParkStaff(visitor.randName(), visitor.randWallet(), park);
         parkStaff.transferDinosaur(velociraptor, paddock);
         park.generateFoodStock(10);
-        parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock);
-        parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock); parkStaff.addFoodToStore(paddock);
+        parkStaff.addFoodToStore(paddock);
+        parkStaff.addFoodToStore(paddock);
+        parkStaff.addFoodToStore(paddock);
+        parkStaff.addFoodToStore(paddock);
+        parkStaff.addFoodToStore(paddock);
+        parkStaff.addFoodToStore(paddock);
+        parkStaff.addFoodToStore(paddock);
+        parkStaff.addFoodToStore(paddock);
+        parkStaff.addFoodToStore(paddock);
+        parkStaff.addFoodToStore(paddock);
         randomGenerator = new RandomGenerator(visitor, park);
         randomGenerator.generateMultipleVisitors(50);
+
+        paddock.getVisitorsInPaddock().add(visitor);
+        paddock.getVisitorsInPaddock().add(visitor2);
 
     }
 
@@ -106,7 +120,38 @@ public class VelociraptorTest {
         assertEquals(50, velociraptor.getAttackValue());
     }
 
+//    @Test
+//    public void dinosaurHappiness() {
+//        assertEquals(true, velociraptor.isDinosaurHappy());
+//        velociraptor.setHappiness(0);
+//        assertEquals(false, velociraptor.isDinosaurHappy());
+//    }
 
+    @Test
+    public void attachPaddock() {
+        velociraptor.attackPaddock();
+        assertEquals(0, paddock.getHealth());
+        assertEquals(0, paddock.dinosaurCount());
+    }
 
+    @Test
+    public void rampage() {
+        velociraptor.setHappiness(0);
+        velociraptor.rampage();
+        assertEquals(0, paddock.getHealth());
+        assertEquals(0, paddock.dinosaurCount());
+        assertEquals(0, park.getDinosaursInPark().size());
+    }
 }
+    // check paddocks health is 0
+    //check paddock is empty
+//        //check dino has left park
+//        assertEquals(2, velociraptor.getHumanBelly().size());
+
+
+
+
+
+
+
 

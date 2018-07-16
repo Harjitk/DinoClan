@@ -26,7 +26,8 @@ import org.hibernate.criterion.Restrictions;
             }
         }
 
-        public static void delete(Object object){
+
+        public static void delete (Object object){
             session = HibernateUtil.getSessionFactory().openSession();
             try {
                 transaction = session.beginTransaction();
