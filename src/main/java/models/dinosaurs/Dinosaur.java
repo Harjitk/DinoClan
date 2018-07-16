@@ -194,7 +194,7 @@ public abstract class Dinosaur {
         this.park = park;
     }
 
-    @OneToMany(mappedBy = "dinosaur")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "dinosaur")
     public List<Food> getBelly() {
         return belly;
     }
