@@ -69,6 +69,8 @@ public abstract class Dinosaur {
             Food food = paddock.getFoodStore().get(0);
             getBelly().add(food);
             paddock.getFoodStore().remove(food);
+            food.setPaddock(null);
+            food.setDinosaur(this);
             if (this.happiness <= 95) {
                 setHappiness(this.happiness += 5);
             }

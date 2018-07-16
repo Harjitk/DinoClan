@@ -213,11 +213,13 @@ public class Park {
                 Plant plant = new Plant();
                 foodStock.add(plant);
                 generatedFoodStock.add(plant);
+                plant.setPark(this);
             }
             else if (plantOrMeat == 0){
                 Meat meat = new Meat();
                 foodStock.add(meat);
                 generatedFoodStock.add(meat);
+                meat.setPark(this);
 
             }
         }

@@ -1,6 +1,7 @@
 import db.*;
 import models.Paddock;
 import models.Park;
+import models.RandomGenerator;
 import models.dinosaurs.*;
 import models.foods.Meat;
 import models.foods.Plant;
@@ -48,6 +49,8 @@ public class Runner {
         Visitor cleyra = new Visitor("Cleyra", 1000, park);
         DBPark.addVisitor(park, cleyra);
 
+        RandomGenerator randomGenerator = new RandomGenerator(harjit, park);
+
        DBPark.moveVisitorToPaddock(richard, velociraptorDen);
         DBPark.moveVisitorToPaddock(harjit, velociraptorDen);
         DBPark.moveVisitorToPaddock(greg, velociraptorDen);
@@ -67,11 +70,22 @@ public class Runner {
         DBParkStaff.transferDinosaur(debzStaff, velociraptor2, velociraptorDen);
         DBParkStaff.transferDinosaur(debzStaff, velociraptor3, velociraptorDen);
 
-//        Testing rampage
-        velociraptor.setHappiness(0);
-        velociraptor2.setHappiness(0);
-        velociraptor3.setHappiness(0);
-        DBDinosaur.rampage(velociraptor);
+////        Testing rampage
+//        velociraptor.setHappiness(0);
+//        velociraptor2.setHappiness(0);
+//        velociraptor3.setHappiness(0);
+//        DBDinosaur.rampage(velociraptor);
+
+//        Testing food generation
+//        DBPark.generateFood(park, 10);
+
+//        Testing moving food to paddock and then dinosaur eating it
+//        DBParkStaff.addFoodToStore(debzStaff, velociraptorDen);
+//        DBParkStaff.addFoodToStore(debzStaff, velociraptorDen);
+//        DBDinosaur.eat(velociraptor);
+
+//        Testing generating visitors
+        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 10);
 
 //       //Moving dinosaurs to paddocks
 //       debzStaff.transferDinosaur(stegosaurus, stegzDwelling);
