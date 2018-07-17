@@ -2,6 +2,7 @@ package controllers;
 
 import db.DBHelper;
 import db.DBPark;
+import models.ModelMaker;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
@@ -26,7 +27,8 @@ public class PaddocksController {
     private void setupEndpoints() {
 
         get("/paddocks", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
+
+            Map<String, Object> model = ModelMaker.makeModel();
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
             model.put("template", "templates/paddocks/index.vtl");
             model.put("paddocks", paddocks);
@@ -49,9 +51,8 @@ public class PaddocksController {
         }, new VelocityTemplateEngine());
 
         get ("/paddocks/new", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
+            Map<String, Object> model = ModelMaker.makeModel();
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
-
             model.put("paddocks", paddocks);
             model.put("template", "templates/paddocks/create.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -61,11 +62,9 @@ public class PaddocksController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Paddock paddock = DBHelper.find(Paddock.class, intId);
-
-            Map<String, Object> model = new HashMap<>();
+            Map<String, Object> model = ModelMaker.makeModel();
             model.put("paddock", paddock);
             model.put("template", "templates/paddocks/edit.vtl");
-
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -99,13 +98,10 @@ public class PaddocksController {
             Integer intId = Integer.parseInt(strId);
             Paddock paddock = DBHelper.find(Paddock.class, intId);
             List<Dinosaur> dinosaurs = paddock.getDinosaursInPaddock();
-
-            Map<String, Object> model = new HashMap<>();
-
+            Map<String, Object> model = ModelMaker.makeModel();
             model.put("dinosaurs", dinosaurs);
             model.put("paddock", paddock);
             model.put("template", "templates/paddocks/show.vtl");
-
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
