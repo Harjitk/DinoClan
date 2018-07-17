@@ -21,18 +21,14 @@ public class DBPark {
 
     public static void moveVisitorToPaddock(Park park, Visitor visitor, Paddock paddock) {
 
+        List<Dinosaur> dinosaursInPaddock = DBPaddock.getDinosaursForPaddock(paddock);
         park.moveVisitorToPaddock(visitor, paddock);
 
-        visitor.setDinosSeen(DBVisitor.getDinosaursSeenByVisitor(visitor));
-        List<Dinosaur> dinosaursInPaddock = DBPaddock.getDinosaursForPaddock(paddock);
-
-
-
-        for (Dinosaur dinosaur : dinosaursInPaddock) {
-            dinosaur.setHumanVisitors(DBDinosaur.getHumansSeenByDinosaur(dinosaur));
-        }
-
-
+//        visitor.setDinosSeen(DBVisitor.getDinosaursSeenByVisitor(visitor));
+//
+//        for (Dinosaur dinosaur : dinosaursInPaddock) {
+//            dinosaur.setHumanVisitors(DBDinosaur.getHumansSeenByDinosaur(dinosaur));
+//        }
 
         DBHelper.saveOrUpdate(visitor);
         DBHelper.saveOrUpdate(paddock);
