@@ -1,5 +1,6 @@
 package models;
 
+import db.DBPark;
 import models.humans.Visitor;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class RandomGenerator {
     public Visitor generateVisitor(){
         Visitor generatedVisitor;
         generatedVisitor = new Visitor(visitor.randName(), visitor.randWallet(), park);
-        park.addVisitor(generatedVisitor);
+        DBPark.addVisitor(park, generatedVisitor);
         return generatedVisitor;
     }
 

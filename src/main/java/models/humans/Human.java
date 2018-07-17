@@ -81,7 +81,7 @@ public abstract class Human  {
         return x;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "eaten_by_dinosaur_id", nullable = true)
     public Dinosaur getDinosaur() {
         return dinosaur;
@@ -90,6 +90,5 @@ public abstract class Human  {
     public void setDinosaur(Dinosaur dinosaur) {
         this.dinosaur = dinosaur;
     }
-
 
 }

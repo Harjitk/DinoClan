@@ -3,6 +3,8 @@ package models;
 import models.dinosaurs.Dinosaur;
 import models.foods.Food;
 import models.humans.Visitor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -48,6 +50,14 @@ public class Paddock {
         getDinosaursInPaddock().add(dinosaur);
     }
 
+    public void dinosaursInPaddockRampage(){
+        for (Dinosaur dinosaur : this.dinosaursInPaddock){
+            dinosaur.rampage();
+        }
+        this.emptyPaddock();
+
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -79,7 +89,8 @@ public class Paddock {
         this.health = health;
     }
 
-    @OneToMany(mappedBy = "paddock")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "paddock")
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<Dinosaur> getDinosaursInPaddock() {
         return dinosaursInPaddock;
     }
@@ -89,7 +100,8 @@ public class Paddock {
     }
 
 
-    @OneToMany(mappedBy = "paddock")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "paddock")
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<Food> getFoodStore() {
         return foodStore;
     }
@@ -98,7 +110,8 @@ public class Paddock {
         this.foodStore = foodStore;
     }
 
-    @OneToMany(mappedBy = "paddock")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "paddock")
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<Visitor> getVisitorsInPaddock() {
         return visitorsInPaddock;
     }
@@ -108,7 +121,7 @@ public class Paddock {
         this.visitorsInPaddock = visitorsInPaddock;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;
@@ -116,5 +129,15 @@ public class Paddock {
 
     public void setPark(Park park) {
         this.park = park;
+    }
+
+    public void emptyPaddock(){
+        if(this.health == 0){
+        this.dinosaursInPaddock.clear();
+        }
+    }
+
+    public int dinosaurCount(){
+        return this.dinosaursInPaddock.size();
     }
 }

@@ -1,0 +1,11 @@
+<div>
+    <p> Name: $visitor.getName()</p>
+    <p> Wallet:$visitor.getWallet()</p>
+</div>
+
+<a href="/visitors/$visitor.getId()/edit" class="button center">Edit</a>
+<form action="/visitors/$visitor.getId()/delete" method="post">
+    <input type="submit" value="delete" class="button">
+</form>
+
+

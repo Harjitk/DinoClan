@@ -1,0 +1,34 @@
+<p class="pageHeader">New Dinosaur</p>
+
+<!--dropdown for dinosaur class-->
+
+<form action="/dinosaurs" method="post">
+
+    <label for="species">Species:</label>
+    <select id="species" name="species">
+        #foreach( $dinosaurClass in $dinosaurClasses )
+        <option value="$dinosaurClass">$dinosaurClass</option>
+        #end
+    </select>
+
+    <label for="name">Name:</label>
+    <input type="text" class="inputBox" name="name" required="true" id="name">
+
+    <label for="weight">Weight:</label>
+    <input type="number" class="inputBox" name="weight" required="true" id="weight">
+
+    <label for="price">Price:</label>
+    <input type="number" class="inputBox" name="price" required="true" id="price">
+
+    <label for="bellyCapacity">How many bits of food can it fit in its stomach?</label>
+    <input type="number" class="inputBox" name="bellyCapacity" required="true" id="bellyCapacity">
+
+    <label for="paddock">Paddock:</label>
+    <select id="paddock" name="paddock">
+        #foreach( $paddock in $paddocks )
+        <option value="$paddock.getId()">$paddock.getName()</option>
+        #end
+    </select>
+
+    <input type="submit" value="Save" class="button">
+</form>

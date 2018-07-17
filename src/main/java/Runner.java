@@ -1,11 +1,16 @@
+import controllers.VisitorsController;
 import db.*;
 import models.Paddock;
 import models.Park;
+import models.RandomGenerator;
 import models.dinosaurs.*;
 import models.foods.Meat;
 import models.foods.Plant;
+import models.humans.Human;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
+
+import java.util.List;
 
 public class Runner {
 
@@ -39,45 +44,93 @@ public class Runner {
        DBPark.addVisitor(park, richard);
        Visitor harjit = new Visitor("Harjit", 1000, park);
        DBPark.addVisitor(park, harjit);
+        Visitor greg = new Visitor("Greg", 1000, park);
+        DBPark.addVisitor(park, greg);
+        Visitor debbie = new Visitor("Debbie", 1000, park);
+        DBPark.addVisitor(park, debbie);
+        Visitor matt = new Visitor("Matt", 1000, park);
+        DBPark.addVisitor(park, matt);
+        Visitor cleyra = new Visitor("Cleyra", 1000, park);
+        DBPark.addVisitor(park, cleyra);
 
-       ParkStaff debzStaff = new ParkStaff("debz", 1000, park);
-       DBPark.addParkStaff(park, debzStaff);
+        ParkStaff debzStaff = new ParkStaff("debz", 1000, park);
+        DBPark.addParkStaff(park, debzStaff);
+
+        RandomGenerator randomGenerator = new RandomGenerator(harjit, park);
+
+        DBParkStaff.transferDinosaur(debzStaff, velociraptor, velociraptorDen);
+        DBParkStaff.transferDinosaur(debzStaff, velociraptor2, velociraptorDen);
+        DBParkStaff.transferDinosaur(debzStaff, velociraptor3, velociraptorDen);
+
+        DBPark.moveVisitorToPaddock(park, richard, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, harjit, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, greg, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, debbie, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, matt, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, cleyra, velociraptorDen);
+
+        List<Dinosaur> cleyraSeen = DBVisitor.getDinosaursSeenByVisitor(cleyra);
+        List<Human> velociraptorSeen = DBDinosaur.getHumansSeenByDinosaur(velociraptor);
+        List<Dinosaur> dinosaursInPaddock = DBPaddock.getDinosaursForPaddock(velociraptorDen);
+
 
        Meat meat = new Meat();
        DBHelper.saveOrUpdate(meat);
        Plant plant = new Plant();
        DBHelper.saveOrUpdate(plant);
 
-       //Moving dinosaurs to paddocks
-       debzStaff.transferDinosaur(stegosaurus, stegzDwelling);
-       debzStaff.transferDinosaur(velociraptor, velociraptorDen);
-       debzStaff.transferDinosaur(velociraptor2, velociraptorDen);
 
-       //DBDinosaur tests
-        park.generateFoodStock(10);
-        debzStaff.addFoodToStore(holdingPen);
-        DBDinosaur.eat(diplodocus);
-        DBDinosaur.eatHuman(stegosaurus, richard);
+//
+//        List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
 
-        //DBVisitor tests
-        DBPark.addVisitorToPaddock(park, harjit, stegzDwelling);
-        DBVisitor.tauntDinosaursInPaddock(harjit);
+////        Testing rampage
+//        velociraptor.setHappiness(0);
+//        velociraptor2.setHappiness(0);
+//        velociraptor3.setHappiness(0);
+//        DBDinosaur.rampage(velociraptor);
 
-        //DBParkStaff tests
-     holdingPen.setHealth(0);
-        DBHelper.saveOrUpdate(holdingPen);
-        DBParkStaff.repairPaddock(debzStaff, holdingPen);
+//        Testing food generation
+//        DBPark.generateFood(park, 10);
 
-        DBParkStaff.addFoodToStore(debzStaff, holdingPen);
+//        Testing moving food to paddock and then dinosaur eating it
+//        DBParkStaff.addFoodToStore(debzStaff, velociraptorDen);
+//        DBParkStaff.addFoodToStore(debzStaff, velociraptorDen);
+//        DBDinosaur.eat(velociraptor);
 
-        DBParkStaff.transferDinosaur(debzStaff, velociraptor3, velociraptorDen);
+//        Testing generating visitors
+        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 10);
 
-        DBParkStaff.calmDinosaursInPaddock(debzStaff, velociraptorDen);
+//       //Moving dinosaurs to paddocks
+//       debzStaff.transferDinosaur(stegosaurus, stegzDwelling);
+//       debzStaff.transferDinosaur(velociraptor, velociraptorDen);
+//       debzStaff.transferDinosaur(velociraptor2, velociraptorDen);
+//
+//       //DBDinosaur tests
+//        park.generateFoodStock(10);
+//        debzStaff.addFoodToStore(holdingPen);
+//        DBDinosaur.eat(diplodocus);
+//        DBDinosaur.eatHuman(stegosaurus, richard);
+//
+//        //DBVisitor tests
+//        DBPark.addVisitorToPaddock(park, harjit, stegzDwelling);
+//        DBVisitor.tauntDinosaursInPaddock(harjit);
+//
+//        //DBParkStaff tests
+//     holdingPen.setHealth(0);
+//        DBHelper.saveOrUpdate(holdingPen);
+//        DBParkStaff.repairPaddock(debzStaff, holdingPen);
+//
+//        DBParkStaff.addFoodToStore(debzStaff, holdingPen);
+//
+//        DBParkStaff.transferDinosaur(debzStaff, velociraptor3, velociraptorDen);
+//
+//        DBParkStaff.calmDinosaursInPaddock(debzStaff, velociraptorDen);
+//
+//        //DBPark tests
+//        DBPark.addVisitorToPaddock(park, richard, holdingPen);
+//        DBPark.moveVisitorToPaddock(park, richard, velociraptorDen);
+//        DBPark.removeDinosaur(park, tyrannosaurus);
 
-        //DBPark tests
-        DBPark.addVisitorToPaddock(park, richard, holdingPen);
-        DBPark.moveVisitorToPaddock(park, richard, velociraptorDen);
-        DBPark.removeDinosaur(park, tyrannosaurus);
 
     }
 }

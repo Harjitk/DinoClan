@@ -1,0 +1,33 @@
+<p class="pageHeader">All Visitors</p>
+
+<div>
+    <a href="/visitors/new" class="button center">New Visitor</a>
+</div>
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Wallet</th>
+            <th>Paddock</th>
+        </tr>
+        #foreach($visitor in $visitors )
+        <tr>
+            <td><a href="/visitors/$visitor.getId()" class="button center">$visitor.getName()</a></td>
+            <td>$visitor.getWallet()</td>
+            <td>$!visitor.getPaddock().getName()</td>
+
+            <td><a href="/visitors/$visitor.getId()" class="button center">Details</a></td>
+
+        </tr>
+        #end
+    </table>
+
+    <form action="/visitors/generate" method="post">
+        <label for="numToGenerate">Generate Visitors:</label>
+        <input class="inputbox" type="number" name="numToGenerate" required="true" id="numToGenerate">
+        <input type="submit" value="Save" class="button">
+
+    </form>
+
+</div>

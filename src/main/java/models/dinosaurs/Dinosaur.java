@@ -6,9 +6,12 @@ import models.foods.Food;
 import models.Paddock;
 import models.Park;
 import models.humans.Human;
-import org.hibernate.annotations.Cascade;
+import models.humans.Visitor;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,17 +71,23 @@ public abstract class Dinosaur {
             Food food = paddock.getFoodStore().get(0);
             getBelly().add(food);
             paddock.getFoodStore().remove(food);
+            food.setPaddock(null);
+            food.setDinosaur(this);
             if (this.happiness <= 95) {
                 setHappiness(this.happiness += 5);
             }
         }
     }
 
-    public void eatHuman(Human human){
+    public void eatVisitor(Visitor visitor){
         //      NEEDS TO RETURN STRING IF CONDITION NOT MET
         if (this.humanBelly.size() < this.bellyCapacity) {
-            getHumanBelly().add(human);
-            park.getVisitors().remove(human);
+            getHumanBelly().add(visitor);
+            visitor.setDinosaur(this);
+            if (visitor.getPaddock() != null) {
+                visitor.setPaddock(null);
+            }
+            park.getVisitors().remove(visitor);
             if (this.happiness <= 95) {
                 setHappiness(this.happiness += 5);
             }
@@ -86,7 +95,32 @@ public abstract class Dinosaur {
     }
 
 
-//    ADD .RAMPAGE FUNCTION
+//    public boolean isDinosaurHappy(){
+//        return this.happiness != 0;
+//    }
+
+    public void attackPaddock(){
+        this.paddock.setHealth(0);
+    }
+
+    public void rampage(){
+
+        if (happiness == 0) {
+            this.attackPaddock();
+            int bellyFull = this.bellyCapacity;
+            List<Visitor> visitorsInPaddock = paddock.getVisitorsInPaddock();
+            for(int i = 0; i < bellyFull; i ++){
+                if(visitorsInPaddock.size() > 0){
+                    Visitor food = visitorsInPaddock.remove(0);
+                this.eatVisitor(food);
+            }
+//
+            this.park.removeDinosaur(this);
+//                Should this be moved to the park?
+            }
+        }
+    }
+
 
     @Column(name="name")
     public String getName() {
@@ -152,7 +186,7 @@ public abstract class Dinosaur {
         this.bellyCapacity = bellyCapacity;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;
@@ -162,7 +196,7 @@ public abstract class Dinosaur {
         this.park = park;
     }
 
-    @OneToMany(mappedBy = "dinosaur")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "dinosaur")
     public List<Food> getBelly() {
         return belly;
     }
@@ -171,7 +205,7 @@ public abstract class Dinosaur {
         this.belly = belly;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name ="paddock_id", nullable = false )
     public Paddock getPaddock() {
         return paddock;
@@ -187,15 +221,22 @@ public abstract class Dinosaur {
         return humanBelly;
     }
 
+    public int totalBellySize(){
+       int total = humanBelly.size() + belly.size();
+       return total;
+    }
+
     public void setHumanBelly(List<Human> humanBelly) {
         this.humanBelly = humanBelly;
     }
 
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "dinoDex",
             joinColumns = {@JoinColumn(name = "dinosaur_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "visitor_id", nullable = false, updatable = false)})
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<Human> getHumanVisitors() {
         return humanVisitors;
     }

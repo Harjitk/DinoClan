@@ -1,0 +1,43 @@
+
+
+.nav_stats {
+    display: block;
+    padding: 30px;
+    background-color: #dddddd;
+    float: center;
+
+}
+
+.nav_stats div{
+float: left;
+display: inline-block;
+}
+
+
+body {
+font-family: 'Rubik', sans-serif;
+}
+
+table {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+th {
+font-family: 'Permanent Marker', cursive;
+}
+
+a {
+  color: black;
+}
+
+.nav_element{
+padding-right: 20px;
+
+ border-right: 1px solid #bbb;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}

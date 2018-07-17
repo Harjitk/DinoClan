@@ -7,6 +7,8 @@ import models.foods.Plant;
 import models.humans.Human;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -81,17 +83,20 @@ public class Park {
         this.entryFee = entryFee;
     }
 
-    public void addVisitorToPaddock(Visitor visitor, Paddock paddock) {
-        paddock.getVisitorsInPaddock().add(visitor);
-        visitor.setPaddock(paddock);
-        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
-            visitor.getDinosSeen().add(dinosaur);
-            dinosaur.getHumanVisitors().add(visitor);
-        }
-    }
+//    Don't think it's ever relevant to use this method rather than moveVisitorToPaddock.
+//    public void addVisitorToPaddock(Visitor visitor, Paddock paddock) {
+//        paddock.getVisitorsInPaddock().add(visitor);
+//        visitor.setPaddock(paddock);
+//        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
+//            visitor.getDinosSeen().add(dinosaur);
+//            dinosaur.getHumanVisitors().add(visitor);
+//        }
+//    }
 
     public void moveVisitorToPaddock(Visitor visitor, Paddock paddock) {
+        if (visitor.getPaddock() != null){
         visitor.getPaddock().getVisitorsInPaddock().remove(visitor);
+        }
         paddock.getVisitorsInPaddock().add(visitor);
         visitor.setPaddock(paddock);
         for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()){
@@ -124,11 +129,12 @@ public class Park {
     }
 
     public void removeDinosaur(Dinosaur dinosaur) {
-        this.dinosaursInPark.remove(dinosaursInPark);
+        this.dinosaursInPark.remove(dinosaur);
     }
 
     public void addVisitor(Visitor visitor) {
         this.visitors.add(visitor);
+
         int visitorWallet = visitor.getWallet();
         setTill(till += entryFee);
         visitor.setWallet(visitorWallet -= entryFee);
@@ -190,6 +196,7 @@ public class Park {
     }
 
 @OneToMany(mappedBy = "park")
+@Fetch(value = FetchMode.SUBSELECT)
     public List<Paddock> getPaddocks() {
         return paddocks;
     }
@@ -210,11 +217,13 @@ public class Park {
                 Plant plant = new Plant();
                 foodStock.add(plant);
                 generatedFoodStock.add(plant);
+                plant.setPark(this);
             }
             else if (plantOrMeat == 0){
                 Meat meat = new Meat();
                 foodStock.add(meat);
                 generatedFoodStock.add(meat);
+                meat.setPark(this);
 
             }
         }
