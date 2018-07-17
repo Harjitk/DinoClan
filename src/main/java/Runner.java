@@ -51,26 +51,32 @@ public class Runner {
         Visitor cleyra = new Visitor("Cleyra", 1000, park);
         DBPark.addVisitor(park, cleyra);
 
+        ParkStaff debzStaff = new ParkStaff("debz", 1000, park);
+        DBPark.addParkStaff(park, debzStaff);
+
         RandomGenerator randomGenerator = new RandomGenerator(harjit, park);
 
-       DBPark.moveVisitorToPaddock(richard, velociraptorDen);
-        DBPark.moveVisitorToPaddock(harjit, velociraptorDen);
-        DBPark.moveVisitorToPaddock(greg, velociraptorDen);
-        DBPark.moveVisitorToPaddock(debbie, velociraptorDen);
-        DBPark.moveVisitorToPaddock(matt, velociraptorDen);
-        DBPark.moveVisitorToPaddock(cleyra, velociraptorDen);
+        DBParkStaff.transferDinosaur(debzStaff, velociraptor, velociraptorDen);
+        DBParkStaff.transferDinosaur(debzStaff, velociraptor2, velociraptorDen);
+        DBParkStaff.transferDinosaur(debzStaff, velociraptor3, velociraptorDen);
 
-       ParkStaff debzStaff = new ParkStaff("debz", 1000, park);
-       DBPark.addParkStaff(park, debzStaff);
+        DBPark.moveVisitorToPaddock(park, richard, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, harjit, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, greg, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, debbie, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, matt, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, cleyra, velociraptorDen);
+
+        List<Dinosaur> cleyraSeen = DBVisitor.getDinosaursSeenByVisitor(cleyra);
+
+
 
        Meat meat = new Meat();
        DBHelper.saveOrUpdate(meat);
        Plant plant = new Plant();
        DBHelper.saveOrUpdate(plant);
 
-       DBParkStaff.transferDinosaur(debzStaff, velociraptor, velociraptorDen);
-        DBParkStaff.transferDinosaur(debzStaff, velociraptor2, velociraptorDen);
-        DBParkStaff.transferDinosaur(debzStaff, velociraptor3, velociraptorDen);
+
 //
 //        List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
 

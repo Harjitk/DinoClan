@@ -114,9 +114,10 @@ public class VisitorsController {
             Visitor visitor = DBHelper.find(Visitor.class, intId);
             int paddockId = Integer.parseInt(req.queryParams("paddock"));
             Paddock paddock = DBHelper.find(Paddock.class, paddockId);
+            Park park = DBHelper.find(Park.class, 1);
             String name = req.queryParams("name");
             int wallet = Integer.parseInt(req.queryParams("wallet"));
-            DBPark.moveVisitorToPaddock(visitor, paddock);
+            DBPark.moveVisitorToPaddock(park, visitor, paddock);
             visitor.setName(name);
             visitor.setWallet(wallet);
             DBHelper.saveOrUpdate(visitor);
