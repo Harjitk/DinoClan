@@ -30,6 +30,9 @@ public class IndexController {
 
         get ("/index", (req, res) -> {
             Map<String, Object> model = ModelMaker.makeModel();
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+            model.put("paddocks", paddocks);
+            model.put("template", "templates/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
