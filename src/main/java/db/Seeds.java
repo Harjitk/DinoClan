@@ -48,8 +48,10 @@ public class Seeds {
 
         Visitor richard = new Visitor("Richard", 2000, park);
         DBPark.addVisitor(park, richard);
+        DBPark.moveVisitorToPaddock(park, richard, stegzDwelling);
         Visitor harjit = new Visitor("Harjit", 2000, park);
         DBPark.addVisitor(park, harjit);
+        DBPark.moveVisitorToPaddock(park, harjit, velociraptorDen);
 
         ParkStaff debzStaff = new ParkStaff("debz", 1000, park);
         DBPark.addParkStaff(park, debzStaff);

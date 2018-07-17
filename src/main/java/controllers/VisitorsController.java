@@ -31,10 +31,13 @@ public class VisitorsController {
 
 
         get("/visitors", (req, res) -> {
+            List<models.humans.Visitor> visitors = DBHelper.getAll(Visitor.class);
             Map<String, Object> model = ModelMaker.makeModel();
+            model.put("visitors", visitors);
             model.put("template", "templates/visitors/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
 
         get("/visitors/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
