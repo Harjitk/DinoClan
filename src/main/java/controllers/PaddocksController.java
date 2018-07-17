@@ -27,8 +27,9 @@ public class PaddocksController {
     private void setupEndpoints() {
 
         get("/paddocks", (req, res) -> {
+
             Map<String, Object> model = ModelMaker.makeModel();
-            List<Paddock> paddocks = DBHelper.                   getAll(Paddock.class);
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
             model.put("template", "templates/paddocks/index.vtl");
             model.put("paddocks", paddocks);
             return new ModelAndView(model, "templates/layout.vtl");

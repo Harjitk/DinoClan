@@ -20,10 +20,19 @@ public class DBPark {
     private static Session session;
 
     public static void moveVisitorToPaddock(Park park, Visitor visitor, Paddock paddock) {
+
+        List<Dinosaur> dinosaursInPaddock = DBPaddock.getDinosaursForPaddock(paddock);
         park.moveVisitorToPaddock(visitor, paddock);
+
+//        visitor.setDinosSeen(DBVisitor.getDinosaursSeenByVisitor(visitor));
+//
+//        for (Dinosaur dinosaur : dinosaursInPaddock) {
+//            dinosaur.setHumanVisitors(DBDinosaur.getHumansSeenByDinosaur(dinosaur));
+//        }
+
         DBHelper.saveOrUpdate(visitor);
         DBHelper.saveOrUpdate(paddock);
-        for (Dinosaur dinosaur : paddock.getDinosaursInPaddock()) {
+        for (Dinosaur dinosaur : dinosaursInPaddock) {
             DBHelper.saveOrUpdate(dinosaur);
         }
     }
