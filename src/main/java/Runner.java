@@ -8,6 +8,8 @@ import models.foods.Plant;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
 
+import java.util.List;
+
 public class Runner {
 
     public static void main(String[] args) {
@@ -69,6 +71,8 @@ public class Runner {
        DBParkStaff.transferDinosaur(debzStaff, velociraptor, velociraptorDen);
         DBParkStaff.transferDinosaur(debzStaff, velociraptor2, velociraptorDen);
         DBParkStaff.transferDinosaur(debzStaff, velociraptor3, velociraptorDen);
+//
+//        List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
 
 ////        Testing rampage
 //        velociraptor.setHappiness(0);

@@ -184,7 +184,7 @@ public abstract class Dinosaur {
         this.bellyCapacity = bellyCapacity;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;
@@ -194,7 +194,7 @@ public abstract class Dinosaur {
         this.park = park;
     }
 
-    @OneToMany(mappedBy = "dinosaur")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "dinosaur")
     public List<Food> getBelly() {
         return belly;
     }
@@ -203,7 +203,7 @@ public abstract class Dinosaur {
         this.belly = belly;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name ="paddock_id", nullable = false )
     public Paddock getPaddock() {
         return paddock;
@@ -217,6 +217,11 @@ public abstract class Dinosaur {
     @OneToMany(mappedBy= "dinosaur")
     public List<Human> getHumanBelly() {
         return humanBelly;
+    }
+
+    public int totalBellySize(){
+       int total = humanBelly.size() + belly.size();
+       return total;
     }
 
     public void setHumanBelly(List<Human> humanBelly) {

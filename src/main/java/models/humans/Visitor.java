@@ -61,7 +61,7 @@ public class Visitor extends Human {
     }
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "paddock_id", nullable = true)
     public Paddock getPaddock() {
         return paddock;
@@ -72,7 +72,7 @@ public class Visitor extends Human {
     }
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;

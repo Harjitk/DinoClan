@@ -116,7 +116,7 @@ public class Paddock {
         this.visitorsInPaddock = visitorsInPaddock;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "park_id", nullable = false)
     public Park getPark() {
         return park;
