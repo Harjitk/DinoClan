@@ -3,10 +3,12 @@ package models.humans;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
-import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.*;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +50,12 @@ public class Visitor extends Human {
     }
 
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "dinoDex",
     joinColumns = {@JoinColumn(name = "visitor_id", nullable = false, updatable = false)},
   inverseJoinColumns = {@JoinColumn(name = "dinosaur_id", nullable = false, updatable = false)})
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<Dinosaur> getDinosSeen() {
         return dinosSeen;
     }

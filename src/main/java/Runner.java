@@ -1,3 +1,4 @@
+import controllers.VisitorsController;
 import db.*;
 import models.Paddock;
 import models.Park;
@@ -5,6 +6,7 @@ import models.RandomGenerator;
 import models.dinosaurs.*;
 import models.foods.Meat;
 import models.foods.Plant;
+import models.humans.Human;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
 
@@ -68,7 +70,8 @@ public class Runner {
         DBPark.moveVisitorToPaddock(park, cleyra, velociraptorDen);
 
         List<Dinosaur> cleyraSeen = DBVisitor.getDinosaursSeenByVisitor(cleyra);
-
+        List<Human> velociraptorSeen = DBDinosaur.getHumansSeenByDinosaur(velociraptor);
+        List<Dinosaur> dinosaursInPaddock = DBPaddock.getDinosaursForPaddock(velociraptorDen);
 
 
        Meat meat = new Meat();
