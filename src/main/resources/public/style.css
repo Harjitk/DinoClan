@@ -2,13 +2,17 @@
 
 .nav_stats {
     display: block;
-    padding: 8px;
+    padding: 30px;
     background-color: #dddddd;
-    float: left;
+    float: center;
 }
 
 .nav_stats div{
 float: left;
 display: inline-block;
 
+}
+
+.nav_element{
+padding-right: 20px;
 }
