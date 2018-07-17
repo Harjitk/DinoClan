@@ -15,7 +15,22 @@
         <tr>
             <td><a href="/visitors/$visitor.getId()" class="button center">$visitor.getName()</a></td>
             <td>$visitor.getWallet()</td>
-            <td>$!visitor.getPaddock().getName()</td>
+            <td><a href="/paddocks/$visitor.getPaddock().getId()">$!visitor.getPaddock().getName()</a></td>
+            <td>
+
+                <form action="/visitors/$visitor.getId()/move" method="post">
+
+                    <label for="paddock">Move to paddock:</label>
+                    <select id="paddock" name="paddock">
+                        #foreach( $paddock in $paddocks )
+                        <option value="$paddock.getId()">$paddock.getName()</option>
+                        #end
+                    </select>
+
+                    <input type="submit" value="Save" class="button">
+                </form>
+
+            </td>
 
             <td><a href="/visitors/$visitor.getId()" class="button center">Details</a></td>
 
