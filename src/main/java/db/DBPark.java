@@ -6,10 +6,14 @@ import models.dinosaurs.Dinosaur;
 import models.foods.Food;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
+import org.hibernate.Session;
 
 public class DBPark {
 
+    private static Session session;
+
     public static void moveVisitorToPaddock(Visitor visitor, Paddock paddock) {
+
         Park park = paddock.getPark();
         park.moveVisitorToPaddock(visitor, paddock);
         DBHelper.saveOrUpdate(visitor);

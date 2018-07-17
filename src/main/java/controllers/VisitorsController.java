@@ -38,7 +38,6 @@ public class VisitorsController {
         get("/visitors/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<models.humans.Visitor> visitors = DBHelper.getAll(Visitor.class);
-
             model.put("visitors", visitors);
             model.put("template", "templates/visitors/create.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -109,14 +108,21 @@ public class VisitorsController {
     }
 }
 
-//        enableDebugScreen();
 
+//}
+//
+////
 //        get ("/visitors/generate", (req, res) -> {
+//            Map<String, Object> model = new HashMap<>();
+//        List<Visitor> visitors = DBHelper.getAll(Visitor.class);
+//        model.put("visitors", visitors);
+//        model.put("template", "templates/visitors/index.vtl");
 //
-//            return null;
-//
+//        return new ModelAndView(model, "templates/layout.vtl");
 //        }, new VelocityTemplateEngine());
-//
+
+
+
 
 
 
