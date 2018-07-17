@@ -33,9 +33,11 @@ public class DinosaursController {
 
             get("/dinosaurs", (req, res) -> {
                 Map<String, Object> model = ModelMaker.makeModel();
+                List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
                 List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
                 model.put("template", "templates/dinosaurs/index.vtl");
                 model.put("dinosaurs", dinosaurs);
+                model.put("paddocks", paddocks);
                 return new ModelAndView(model, "templates/layout.vtl");
             }, new VelocityTemplateEngine());
 
@@ -52,8 +54,6 @@ public class DinosaursController {
                 int bellyCapacity = Integer.parseInt(req.queryParams("bellyCapacity"));
 
                 Dinosaur dinosaur = DinoFactory.makeDinosaur(species, name, weight, price, bellyCapacity, park, paddock);
-
-//                save dinosaur
                 DBPark.buyDinosaur(park, dinosaur, paddock);
 
                 res.redirect("/dinosaurs");
@@ -75,6 +75,23 @@ public class DinosaursController {
                 model.put("paddocks", paddocks);
                 model.put("template", "templates/dinosaurs/create.vtl");
                 return new ModelAndView(model, "templates/layout.vtl");
+            }, new VelocityTemplateEngine());
+
+            post ("/dinosaurs/:id/move", (req, res) -> {
+                String strId = req.params(":id");
+                Integer intId = Integer.parseInt(strId);
+                Dinosaur dinosaur = DBHelper.find(Dinosaur.class, intId);
+
+                int paddockId = Integer.parseInt(req.queryParams("paddock"));
+                Paddock paddock = DBHelper.find(Paddock.class, paddockId);
+
+                ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 15);
+
+                DBParkStaff.transferDinosaur(parkStaff, dinosaur, paddock);
+//                DBHelper.saveOrUpdate(dinosaur);
+                res.redirect("/dinosaurs");
+                return null;
+
             }, new VelocityTemplateEngine());
 
             get("/dinosaurs/:id/edit", (req, res) -> {

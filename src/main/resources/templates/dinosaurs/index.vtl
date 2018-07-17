@@ -25,6 +25,18 @@
             <td><a href="/dinosaurs/$dinosaur.getId()">Details</a></td>
             <td>
 
+                <form action="/dinosaurs/$dinosaur.getId()/move" method="post">
+
+                    <label for="paddock">Move to paddock:</label>
+                    <select id="paddock" name="paddock">
+                        #foreach( $paddock in $paddocks )
+                        <option value="$paddock.getId()">$paddock.getName()</option>
+                        #end
+                    </select>
+
+                    <input type="submit" value="Save" class="button">
+                </form>
+
             </td>
         </tr>
             #end
