@@ -4,6 +4,13 @@
 
 <form action="/dinosaurs" method="post">
 
+    <label for="species">Species:</label>
+    <select id="species" name="species">
+        #foreach( $dinosaurClass in $dinosaurClasses )
+        <option value="$dinosaurClass">$dinosaurClass</option>
+        #end
+    </select>
+
     <label for="name">Name:</label>
     <input type="text" class="inputBox" name="name" required="true" id="name">
 
@@ -25,4 +32,3 @@
 
     <input type="submit" value="Save" class="button">
 </form>
-

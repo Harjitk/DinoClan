@@ -4,6 +4,7 @@ import db.DBDinosaur;
 import db.DBHelper;
 import db.DBPark;
 import db.DBParkStaff;
+import models.DinoFactory;
 import models.ModelMaker;
 import models.Paddock;
 import models.Park;
@@ -17,6 +18,7 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +42,7 @@ public class DinosaursController {
 
             post ("/dinosaurs", (req, res) -> {
 
+                String species = req.queryParams("species");
                 int paddockId = Integer.parseInt(req.queryParams("paddock"));
                 Paddock paddock = DBHelper.find(Paddock.class, paddockId);
                 Park park = DBHelper.find(Park.class, 1);
@@ -48,8 +51,10 @@ public class DinosaursController {
                 int price = Integer.parseInt(req.queryParams("price"));
                 int bellyCapacity = Integer.parseInt(req.queryParams("bellyCapacity"));
 
-                Velociraptor velociraptor = new Velociraptor(name, weight, price, bellyCapacity, park, paddock);
-                DBPark.buyDinosaur(park, velociraptor, paddock);
+                Dinosaur dinosaur = DinoFactory.makeDinosaur(species, name, weight, price, bellyCapacity, park, paddock);
+
+//                save dinosaur
+                DBPark.buyDinosaur(park, dinosaur, paddock);
 
                 res.redirect("/dinosaurs");
                 return null;
@@ -59,6 +64,14 @@ public class DinosaursController {
             get ("/dinosaurs/new", (req, res) -> {
                 Map<String, Object> model = ModelMaker.makeModel();
                 List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+
+                List<String> dinosaurClasses = new ArrayList<>();
+                dinosaurClasses.add("Velociraptor");
+                dinosaurClasses.add("Stegosaurus");
+                dinosaurClasses.add("Diplodocus");
+                dinosaurClasses.add("Tyrannosaurus");
+
+                model.put("dinosaurClasses", dinosaurClasses);
                 model.put("paddocks", paddocks);
                 model.put("template", "templates/dinosaurs/create.vtl");
                 return new ModelAndView(model, "templates/layout.vtl");
