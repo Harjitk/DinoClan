@@ -66,7 +66,9 @@ public class VisitorsController {
             int numToGenerate = Integer.parseInt(req.queryParams("numToGenerate"));
 
             Park park = DBHelper.find(Park.class, 1);
-            RandomGenerator randomGenerator = DBHelper.find(RandomGenerator.class, 1);
+            List<Visitor> visitors = DBHelper.getAll(Visitor.class);
+            Visitor visitor = visitors.get(0);
+            RandomGenerator randomGenerator = new RandomGenerator(visitor, park);
 
             DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, numToGenerate);
 
