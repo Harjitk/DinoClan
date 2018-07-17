@@ -2,6 +2,7 @@ package controllers;
 
 import db.DBHelper;
 import db.DBPark;
+import models.ModelMaker;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
@@ -27,11 +28,8 @@ public class VisitorsController {
 
 
         get("/visitors", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            List<Visitor> visitors = DBHelper.getAll(Visitor.class);
-            model.put("visitors", visitors);
+            Map<String, Object> model = ModelMaker.makeModel();
             model.put("template", "templates/visitors/index.vtl");
-
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
