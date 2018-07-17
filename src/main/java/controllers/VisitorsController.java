@@ -31,18 +31,23 @@ public class VisitorsController {
 
 
         get("/visitors", (req, res) -> {
+            List<models.humans.Visitor> visitors = DBHelper.getAll(Visitor.class);
             Map<String, Object> model = ModelMaker.makeModel();
+            model.put("visitors", visitors);
             model.put("template", "templates/visitors/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+
         get("/visitors/new", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
             List<models.humans.Visitor> visitors = DBHelper.getAll(Visitor.class);
+            Map<String, Object> model = ModelMaker.makeModel();
             model.put("visitors", visitors);
             model.put("template", "templates/visitors/create.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+
 
         post("/visitors/new", (req, res) -> {
             String name = req.queryParams("name");
@@ -75,7 +80,7 @@ public class VisitorsController {
             Integer intId = Integer.parseInt(strId);
             Visitor visitor = DBHelper.find(Visitor.class, intId);
 
-            Map<String, Object> model = new HashMap<>();
+            Map<String, Object> model = ModelMaker.makeModel();
 
             model.put("visitor", visitor);
             model.put("template", "templates/visitors/show.vtl");
@@ -89,7 +94,7 @@ public class VisitorsController {
             Integer intId = Integer.parseInt(strId);
             Visitor visitor = DBHelper.find(Visitor.class, intId);
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
-            Map<String, Object> model = new HashMap<>();
+            Map<String, Object> model = ModelMaker.makeModel();
             model.put("template", "templates/visitors/edit.vtl");
             model.put("visitor", visitor);
             model.put("paddocks", paddocks);

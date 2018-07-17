@@ -4,6 +4,7 @@ import db.DBDinosaur;
 import db.DBHelper;
 import db.DBPark;
 import db.DBParkStaff;
+import models.ModelMaker;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
@@ -29,7 +30,7 @@ public class DinosaursController {
         private void setupEndpoints() {
 
             get("/dinosaurs", (req, res) -> {
-                Map<String, Object> model = new HashMap<>();
+                Map<String, Object> model = ModelMaker.makeModel();
                 List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
                 model.put("template", "templates/dinosaurs/index.vtl");
                 model.put("dinosaurs", dinosaurs);
@@ -56,9 +57,8 @@ public class DinosaursController {
 
 
             get ("/dinosaurs/new", (req, res) -> {
-                Map<String, Object> model = new HashMap<>();
+                Map<String, Object> model = ModelMaker.makeModel();
                 List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
-
                 model.put("paddocks", paddocks);
                 model.put("template", "templates/dinosaurs/create.vtl");
                 return new ModelAndView(model, "templates/layout.vtl");
@@ -69,8 +69,7 @@ public class DinosaursController {
                 Integer intId = Integer.parseInt(strId);
                 Dinosaur dinosaur = DBHelper.find(Dinosaur.class, intId);
                 List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
-
-                Map<String, Object> model = new HashMap<>();
+                Map<String, Object> model = ModelMaker.makeModel();
                 model.put("paddocks", paddocks);
                 model.put("template", "templates/dinosaurs/edit.vtl");
                 model.put("dinosaur", dinosaur);
@@ -115,9 +114,7 @@ public class DinosaursController {
                 String strId = req.params(":id");
                 Integer intId = Integer.parseInt(strId);
                 Dinosaur dinosaur = DBHelper.find(Dinosaur.class, intId);
-
-                Map<String, Object> model = new HashMap<>();
-
+                Map<String, Object> model = ModelMaker.makeModel();
                 model.put("dinosaur", dinosaur);
                 model.put("template", "templates/dinosaurs/show.vtl");
 
