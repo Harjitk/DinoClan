@@ -1,0 +1,14 @@
+
+
+.nav_stats {
+    display: block;
+    padding: 8px;
+    background-color: #dddddd;
+    float: left;
+}
+
+.nav_stats div{
+float: left;
+display: inline-block;
+
+}

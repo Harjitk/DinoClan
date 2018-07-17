@@ -9,6 +9,7 @@ import models.Park;
 import models.dinosaurs.Dinosaur;
 import models.humans.Visitor;
 import spark.ModelAndView;
+import spark.Spark;
 import spark.template.velocity.VelocityTemplateEngine;
 
 import java.util.HashMap;
@@ -20,6 +21,10 @@ import static spark.Spark.get;
 public class IndexController {
 
     public static void main(String[] args) {
+
+
+        Spark.staticFileLocation("/public");
+
 
         DinosaursController dinosaursControllersController = new DinosaursController();
         VisitorsController visitorsController = new VisitorsController();
