@@ -3,22 +3,57 @@
 .nav_stats {
     display: block;
     padding: 30px;
-    background-color: #dddddd;
-    float: center;
+    background-color: #2F4F4F;
+    float: centre;
+    color: white;
 
 }
 
 .nav_stats div{
 float: left;
 display: inline-block;
+color: white;
 }
 
 .nav_element{
-padding-right: 20px;
- border-right: 1px solid #bbb;
+ padding-right: 40px;
+ border-right: 1px solid white;
+
+ }
+
+.nav_button{
+background-color: #2F4F4F;
+display: inline-block;
+
 }
 
-.dropdown {
-    float: left;
-    overflow: hidden;
+
+
+body {
+font-family: 'Rubik', sans-serif;
 }
+
+table {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+th {
+
+font-family: 'Rubik', sans-serif, bold;
+  background-color: DarkSeaGreen;
+  color: white;
+
+}
+
+tr
+{
+
+background-color:
+}
+
+a {
+  color: #2F4F4F;
+}
+
+
