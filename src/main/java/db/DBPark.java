@@ -30,12 +30,27 @@ public class DBPark {
         }
     }
 
-    public static void buyDinosaur(Dinosaur dinosaur, Paddock paddock) {
-        Park park = paddock.getPark();
+    public static List<Dinosaur> getDinosaursForPark(Park park) {
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Dinosaur> results = null;
+        try {
+            Criteria cr = session.createCriteria(Dinosaur.class);
+            cr.add(Restrictions.eq("park", park));
+            results = cr.list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return results;
+    }
+
+    public static void buyDinosaur(Park park, Dinosaur dinosaur, Paddock paddock) {
         park.buyDinosaur(dinosaur, paddock);
         dinosaur.setPark(park);
 
-        park.getDinosaursInPark().add(dinosaur);
+        getDinosaursForPark(park).add(dinosaur);
         DBHelper.saveOrUpdate(dinosaur);
         DBHelper.saveOrUpdate(park);
         DBHelper.saveOrUpdate(paddock);

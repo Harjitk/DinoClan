@@ -2,8 +2,10 @@ package controllers;
 
 import db.DBHelper;
 import db.DBPark;
+import db.DBRandomGenerator;
 import models.Paddock;
 import models.Park;
+import models.RandomGenerator;
 import models.dinosaurs.Dinosaur;
 import models.humans.Visitor;
 import spark.ModelAndView;
@@ -57,6 +59,18 @@ public class VisitorsController {
             return null;
         }, new VelocityTemplateEngine());
 
+        post("/visitors/generate", (req, res) -> {
+            int numToGenerate = Integer.parseInt(req.queryParams("numToGenerate"));
+
+            Park park = DBHelper.find(Park.class, 1);
+            RandomGenerator randomGenerator = DBHelper.find(RandomGenerator.class, 1);
+
+            DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, numToGenerate);
+
+            res.redirect("/visitors");
+            return null;
+        }, new VelocityTemplateEngine());
+
 
         get("/visitors/:id", (req, res) -> {
             String strId = req.params(":id");
@@ -92,6 +106,7 @@ public class VisitorsController {
             res.redirect("/visitors");
             return null;
         }, new VelocityTemplateEngine());
+
 
         post("/visitors/:id", (req, res) -> {
             String strId = req.params(":id");
