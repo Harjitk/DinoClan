@@ -1,22 +1,32 @@
-<p class="pageHeader">All Dinos</p>
+<p class="pageHeader">All Dinosaurs</p>
 
 <div class="container">
+
+    <a href="/dinosaurs/new" class="button center">Buy new dinosaur</a>
+
     <table>
         <tr>
             <th>Name</th>
-            <th>Weight</th>
+            <th>Kind</th>
+            <th>Happiness</th>
+            <th>Diet Type</th>
+            <th>Paddock</th>
             <th>Price</th>
-            <th>BellyCapacity</th>
-            <th>DietType</th>
         </tr>
-        <!---->
-        <!--add edit/delete button-->
-        #foreach($dinosaur in $dinosaurs )
+        #foreach($dinosaur in $dinosaurs)
         <tr>
-            <td>$dinosaur.getName()</td>
+            <td><a href="/dinosaurs/$dinosaur.getId()">$dinosaur.getName()</a></td>
+            <td>$dinosaur.getClass().getSimpleName()</td>
+            <td>$dinosaur.getHappiness()</td>
+            <td>$dinosaur.getDietType()</td>
+            <td>$dinosaur.getPaddock().getName()</td>
+            <td>$dinosaur.getPrice()</td>
+            <td><a href="/dinosaurs/$dinosaur.getId()/edit">Edit/Delete</a></td>
+            <td><a href="/dinosaurs/$dinosaur.getId()">Details</a></td>
         </tr>
             #end
     </table>
+
+
+
 </div>
-
-

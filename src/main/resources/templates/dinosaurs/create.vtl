@@ -13,11 +13,15 @@
     <label for="price">Price:</label>
     <input type="number" class="inputBox" name="price" required="true" id="price">
 
-    <label for="bellyCapacity">"bellyCapacity"</label>
+    <label for="bellyCapacity">How many bits of food can it fit in its stomach?</label>
     <input type="number" class="inputBox" name="bellyCapacity" required="true" id="bellyCapacity">
 
-    <label for="dietType">dietType:</label>
-    <input type="text" class="inputBox" name="dietType" required="true" id="dietType">
+    <label for="paddock">Paddock:</label>
+    <select id="paddock" name="paddock">
+        #foreach( $paddock in $paddocks )
+        <option value="$paddock.getId()">$paddock.getName()</option>
+        #end
+    </select>
 
     <input type="submit" value="Save" class="button">
 </form>

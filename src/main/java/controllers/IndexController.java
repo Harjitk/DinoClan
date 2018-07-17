@@ -8,6 +8,7 @@ public class IndexController {
 
         DinosaursController dinosaursControllersController = new DinosaursController();
         VisitorsController visitorsController = new VisitorsController();
+        PaddocksController paddocksController = new PaddocksController();
 
         Seeds.seedData();
 

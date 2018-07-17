@@ -37,7 +37,7 @@ public abstract class Food {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name ="park_id", nullable = true)
     public Park getPark() {
         return park;
@@ -47,7 +47,7 @@ public abstract class Food {
         this.park = park;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name ="dinosaur_id", nullable = true)
     public Dinosaur getDinosaur() {
         return dinosaur;
@@ -57,7 +57,7 @@ public abstract class Food {
         this.dinosaur = dinosaur;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name ="paddock_id", nullable = true)
     public Paddock getPaddock() {
         return paddock;

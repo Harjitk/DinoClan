@@ -27,6 +27,7 @@ public class DBPark {
         Park park = paddock.getPark();
         park.buyDinosaur(dinosaur, paddock);
         dinosaur.setPark(park);
+
         park.getDinosaursInPark().add(dinosaur);
         DBHelper.saveOrUpdate(dinosaur);
         DBHelper.saveOrUpdate(park);

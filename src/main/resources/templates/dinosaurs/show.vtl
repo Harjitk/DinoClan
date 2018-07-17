@@ -1,0 +1,35 @@
+<p class="pageHeader">$dinosaur.getName()</p>
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Kind</th>
+            <th>Happiness</th>
+            <th>Diet Type</th>
+            <th>Paddock</th>
+            <th>Price</th>
+            <th>Weight</th>
+            <th>Current Belly</th>
+            <th>Belly Capacity</th>
+        </tr>
+        <tr>
+            <td>$dinosaur.getClass().getSimpleName()</td>
+            <td>$dinosaur.getHappiness()</td>
+            <td>$dinosaur.getDietType()</td>
+            <td>$dinosaur.getPaddock().getName()</td>
+            <td>$dinosaur.getPrice()</td>
+            <td>$dinosaur.getWeight()</td>
+            <td>$dinosaur.getBelly().size()</td>
+            <td>$dinosaur.getBellyCapacity()</td>
+        </tr>
+    </table>
+
+    <a href="/dinosaurs/$dinosaur.getId()/edit" class="button center">Edit</a>
+
+    <form action="/dinosaurs/$dinosaur.getId()/delete" method="post">
+        <input type="submit" value="delete" class="button">
+    </form>
+
+
+</div>
+
