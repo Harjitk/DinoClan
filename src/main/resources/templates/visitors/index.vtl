@@ -13,6 +13,7 @@
         </tr>
         #foreach($visitor in $visitors )
         <tr>
+            <td><a href="/visitors/$visitor.getId()" class="button center">$visitor.getName()</a></td>
             <td>$visitor.getName()</td>
             <td>$visitor.getWallet()</td>
             <td>$!visitor.getPaddock()</td>
@@ -22,4 +23,11 @@
         </tr>
         #end
     </table>
+
+    <form action="/visitors/$visitor.getId()" method="post">
+        <label for="generate visitors">Generate Visitors:</label>
+        <input class="inputbox" type="number" name="generate visitors" required="true" value="$visitor.getNumber()" id="generate visitors">
+        <input type="submit" value="Save" class="button">
+    </form>
+
 </div>

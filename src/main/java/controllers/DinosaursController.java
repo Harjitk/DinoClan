@@ -130,9 +130,6 @@ public class DinosaursController {
 
             enableDebugScreen();
 
-
-
-
     }
 
 }
