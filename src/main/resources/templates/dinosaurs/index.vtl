@@ -21,7 +21,12 @@
             <td>$dinosaur.getDietType()</td>
             <td><a href="/paddocks/$dinosaur.getPaddock().getId()">$dinosaur.getPaddock().getName()</a></td>
             <td>$dinosaur.getPrice()</td>
-            <td><a href="/dinosaurs/$dinosaur.getId()/edit">Edit/Delete</a></td>
+            <td>
+                <form action="/dinosaurs/$dinosaur.getId()/eat" method="post">
+                    <input type="submit" value="Eat food" class="button">
+                </form>
+
+            </td>
             <td>
                 <form action="/dinosaurs/$dinosaur.getId()/move" method="post">
 
@@ -36,6 +41,7 @@
                 </form>
 
             </td>
+            <td><a href="/dinosaurs/$dinosaur.getId()/edit">Edit/Delete</a></td>
             <td><a href="/dinosaurs/$dinosaur.getId()">Details</a></td>
 
         </tr>

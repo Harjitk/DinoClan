@@ -88,11 +88,23 @@ public class DinosaursController {
                 ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 15);
 
                 DBParkStaff.transferDinosaur(parkStaff, dinosaur, paddock);
-//                DBHelper.saveOrUpdate(dinosaur);
                 res.redirect("/dinosaurs");
                 return null;
 
             }, new VelocityTemplateEngine());
+
+
+            post ("/dinosaurs/:id/eat", (req, res) -> {
+                String strId = req.params(":id");
+                Integer intId = Integer.parseInt(strId);
+                Dinosaur dinosaur = DBHelper.find(Dinosaur.class, intId);
+
+                DBDinosaur.eat(dinosaur);
+                res.redirect("/dinosaurs");
+                return null;
+
+            }, new VelocityTemplateEngine());
+
 
             get("/dinosaurs/:id/edit", (req, res) -> {
                 String strId = req.params(":id");
