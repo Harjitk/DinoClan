@@ -3,6 +3,7 @@ package db;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
+import models.foods.Food;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -29,5 +30,24 @@ public class DBPaddock {
         }
         return results;
     }
+
+    public static List<Food> getFoodInPaddock(Paddock paddock) {
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Food> results = null;
+        try {
+            Criteria cr = session.createCriteria(Food.class);
+            cr.add(Restrictions.eq("paddock", paddock));
+            results = cr.list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return results;
+    }
+
+
+
 
 }

@@ -65,6 +65,19 @@ public class Seeds {
         DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
         DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
 
+        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
+        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
+        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
+
+        DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
+        DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
+        DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
+
+        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+
+
 
         List<Visitor> foundVisitors = DBHelper.getAll(Visitor.class);
 //        add DeleteAll method to DBHelper and in here?
