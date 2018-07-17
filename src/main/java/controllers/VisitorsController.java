@@ -48,7 +48,7 @@ public class VisitorsController {
             int wallet = Integer.parseInt(req.queryParams("wallet"));
             Park park = DBHelper.find(Park.class, 1);
             Visitor visitor = new Visitor(name, wallet, park);
-            DBHelper.saveOrUpdate(visitor);
+            DBPark.addVisitor(park, visitor);
             res.redirect("/visitors");
             return null;
         }, new VelocityTemplateEngine());
