@@ -76,6 +76,8 @@ public class Runner {
 
         DBPark.generateFood(park, 20);
 
+        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 20);
+
         DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
         DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
         DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
