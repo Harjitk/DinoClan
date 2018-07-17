@@ -4,6 +4,7 @@ import models.Paddock;
 import models.Park;
 import models.RandomGenerator;
 import models.dinosaurs.*;
+import models.foods.Food;
 import models.foods.Meat;
 import models.foods.Plant;
 import models.humans.Human;
@@ -80,6 +81,7 @@ public class Runner {
         DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
         DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
 
+       Object firstFood = DBFood.getFirstBitOfFoodInPaddock(velociraptorDen);
 
 //
 //        List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);

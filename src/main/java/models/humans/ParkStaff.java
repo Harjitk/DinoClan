@@ -46,6 +46,7 @@ public class ParkStaff extends Human {
                         paddock.getFoodStore().add(food);
                         food.setPaddock(paddock);
                         park.getFoodStock().remove(food);
+                        food.setPark(null);
                         return food;
                     }
 
@@ -53,6 +54,7 @@ public class ParkStaff extends Human {
                         paddock.getFoodStore().add(food);
                         food.setPaddock(paddock);
                         park.getFoodStock().remove(food);
+                        food.setPark(null);
                         return food;
                     }
 
@@ -60,6 +62,7 @@ public class ParkStaff extends Human {
                         paddock.getFoodStore().add(food);
                         food.setPaddock(paddock);
                         park.getFoodStock().remove(food);
+                        food.setPark(null);
                         return food;
                     }
                 }
@@ -68,6 +71,7 @@ public class ParkStaff extends Human {
                     paddock.getFoodStore().add(food);
                     food.setPaddock(paddock);
                     park.getFoodStock().remove(food);
+                    food.setPark(null);
                     return food;
                 }
 
