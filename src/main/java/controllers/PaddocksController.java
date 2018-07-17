@@ -8,6 +8,7 @@ import models.Park;
 import models.dinosaurs.Dinosaur;
 import models.dinosaurs.Velociraptor;
 import models.humans.ParkStaff;
+import models.humans.Visitor;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -98,9 +99,11 @@ public class PaddocksController {
             Integer intId = Integer.parseInt(strId);
             Paddock paddock = DBHelper.find(Paddock.class, intId);
             List<Dinosaur> dinosaurs = paddock.getDinosaursInPaddock();
+            List<Visitor> visitors = paddock.getVisitorsInPaddock();
             Map<String, Object> model = ModelMaker.makeModel();
             model.put("dinosaurs", dinosaurs);
             model.put("paddock", paddock);
+            model.put("visitors", visitors);
             model.put("template", "templates/paddocks/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());

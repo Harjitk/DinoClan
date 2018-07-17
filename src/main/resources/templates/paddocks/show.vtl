@@ -49,6 +49,11 @@
     #end
     </table>
 
+    <p class="pageHeader">Visitors in $paddock.getName():</p>
+        #foreach($visitor in $visitors)
+        <a href="/visitors/$visitor.getId()">$visitor.getName()</a> .
+        #end
+
 
 </div>
 
