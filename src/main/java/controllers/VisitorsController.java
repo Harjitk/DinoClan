@@ -134,19 +134,6 @@ public class VisitorsController {
 }
 
 
-//}
-//
-////
-//        get ("/visitors/generate", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//        List<Visitor> visitors = DBHelper.getAll(Visitor.class);
-//        model.put("visitors", visitors);
-//        model.put("template", "templates/visitors/index.vtl");
-//
-//        return new ModelAndView(model, "templates/layout.vtl");
-//        }, new VelocityTemplateEngine());
-
-
 
 
 
