@@ -2,9 +2,11 @@ package controllers;
 
 import db.DBHelper;
 import db.DBPark;
+import db.DBRandomGenerator;
 import models.ModelMaker;
 import models.Paddock;
 import models.Park;
+import models.RandomGenerator;
 import models.dinosaurs.Dinosaur;
 import models.humans.Visitor;
 import spark.ModelAndView;
@@ -12,6 +14,7 @@ import spark.template.velocity.VelocityTemplateEngine;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,9 +47,24 @@ public class VisitorsController {
         post("/visitors/new", (req, res) -> {
             String name = req.queryParams("name");
             int wallet = Integer.parseInt(req.queryParams("wallet"));
+
             Park park = DBHelper.find(Park.class, 1);
+
             Visitor visitor = new Visitor(name, wallet, park);
             DBPark.addVisitor(park, visitor);
+
+            res.redirect("/visitors");
+            return null;
+        }, new VelocityTemplateEngine());
+
+        post("/visitors/generate", (req, res) -> {
+            int numToGenerate = Integer.parseInt(req.queryParams("numToGenerate"));
+
+            Park park = DBHelper.find(Park.class, 1);
+            RandomGenerator randomGenerator = DBHelper.find(RandomGenerator.class, 1);
+
+            DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, numToGenerate);
+
             res.redirect("/visitors");
             return null;
         }, new VelocityTemplateEngine());
@@ -87,15 +105,17 @@ public class VisitorsController {
             return null;
         }, new VelocityTemplateEngine());
 
+
         post("/visitors/:id", (req, res) -> {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Visitor visitor = DBHelper.find(Visitor.class, intId);
             int paddockId = Integer.parseInt(req.queryParams("paddock"));
             Paddock paddock = DBHelper.find(Paddock.class, paddockId);
+            Park park = DBHelper.find(Park.class, 1);
             String name = req.queryParams("name");
             int wallet = Integer.parseInt(req.queryParams("wallet"));
-            DBPark.moveVisitorToPaddock(visitor, paddock);
+            DBPark.moveVisitorToPaddock(park, visitor, paddock);
             visitor.setName(name);
             visitor.setWallet(wallet);
             DBHelper.saveOrUpdate(visitor);

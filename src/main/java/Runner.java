@@ -26,17 +26,17 @@ public class Runner {
        DBPark.addPaddock(park, velociraptorDen);
 
        Velociraptor velociraptor = new Velociraptor("Tyrant", 15, 500000, 5, park, holdingPen);
-       DBPark.buyDinosaur(velociraptor, holdingPen);
+       DBPark.buyDinosaur(park, velociraptor, holdingPen);
        Velociraptor velociraptor2 = new Velociraptor("Trouble", 15, 500000, 5, park, holdingPen);
-     DBPark.buyDinosaur(velociraptor2, holdingPen);
+     DBPark.buyDinosaur(park, velociraptor2, holdingPen);
        Velociraptor velociraptor3 = new Velociraptor("Terminator", 15, 500000, 5, park, holdingPen);
-     DBPark.buyDinosaur(velociraptor3, holdingPen);
+     DBPark.buyDinosaur(park, velociraptor3, holdingPen);
        Diplodocus diplodocus = new Diplodocus("Todd", 35, 700000, 5, park, holdingPen);
-     DBPark.buyDinosaur(diplodocus, holdingPen);
+     DBPark.buyDinosaur(park, diplodocus, holdingPen);
        Stegosaurus stegosaurus = new Stegosaurus("Stegz", 45, 850000, 6, park, holdingPen);
-     DBPark.buyDinosaur(stegosaurus, holdingPen);
+     DBPark.buyDinosaur(park, stegosaurus, holdingPen);
        Tyrannosaurus tyrannosaurus = new Tyrannosaurus("Rex", 55, 950000, 7, park, holdingPen);
-     DBPark.buyDinosaur(tyrannosaurus, holdingPen);
+     DBPark.buyDinosaur(park, tyrannosaurus, holdingPen);
 
        Visitor richard = new Visitor("Richard", 1000, park);
        DBPark.addVisitor(park, richard);
@@ -51,26 +51,32 @@ public class Runner {
         Visitor cleyra = new Visitor("Cleyra", 1000, park);
         DBPark.addVisitor(park, cleyra);
 
+        ParkStaff debzStaff = new ParkStaff("debz", 1000, park);
+        DBPark.addParkStaff(park, debzStaff);
+
         RandomGenerator randomGenerator = new RandomGenerator(harjit, park);
 
-       DBPark.moveVisitorToPaddock(richard, velociraptorDen);
-        DBPark.moveVisitorToPaddock(harjit, velociraptorDen);
-        DBPark.moveVisitorToPaddock(greg, velociraptorDen);
-        DBPark.moveVisitorToPaddock(debbie, velociraptorDen);
-        DBPark.moveVisitorToPaddock(matt, velociraptorDen);
-        DBPark.moveVisitorToPaddock(cleyra, velociraptorDen);
+        DBParkStaff.transferDinosaur(debzStaff, velociraptor, velociraptorDen);
+        DBParkStaff.transferDinosaur(debzStaff, velociraptor2, velociraptorDen);
+        DBParkStaff.transferDinosaur(debzStaff, velociraptor3, velociraptorDen);
 
-       ParkStaff debzStaff = new ParkStaff("debz", 1000, park);
-       DBPark.addParkStaff(park, debzStaff);
+        DBPark.moveVisitorToPaddock(park, richard, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, harjit, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, greg, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, debbie, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, matt, velociraptorDen);
+        DBPark.moveVisitorToPaddock(park, cleyra, velociraptorDen);
+
+        List<Dinosaur> cleyraSeen = DBVisitor.getDinosaursSeenByVisitor(cleyra);
+
+
 
        Meat meat = new Meat();
        DBHelper.saveOrUpdate(meat);
        Plant plant = new Plant();
        DBHelper.saveOrUpdate(plant);
 
-       DBParkStaff.transferDinosaur(debzStaff, velociraptor, velociraptorDen);
-        DBParkStaff.transferDinosaur(debzStaff, velociraptor2, velociraptorDen);
-        DBParkStaff.transferDinosaur(debzStaff, velociraptor3, velociraptorDen);
+
 //
 //        List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
 

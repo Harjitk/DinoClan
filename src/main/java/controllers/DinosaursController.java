@@ -48,7 +48,7 @@ public class DinosaursController {
                 int bellyCapacity = Integer.parseInt(req.queryParams("bellyCapacity"));
 
                 Velociraptor velociraptor = new Velociraptor(name, weight, price, bellyCapacity, park, paddock);
-                DBPark.buyDinosaur(velociraptor, paddock);
+                DBPark.buyDinosaur(park, velociraptor, paddock);
 
                 res.redirect("/dinosaurs");
                 return null;

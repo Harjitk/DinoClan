@@ -23,10 +23,11 @@
         #end
     </table>
 
-    <form action="/visitors/$visitor.getId()" method="post">
-        <label for="generate visitors">Generate Visitors:</label>
-        <input class="inputbox" type="number" name="generate visitors" required="true" value="$visitor.getNumber()" id="generate visitors">
+    <form action="/visitors/generate" method="post">
+        <label for="numToGenerate">Generate Visitors:</label>
+        <input class="inputbox" type="number" name="numToGenerate" required="true" id="numToGenerate">
         <input type="submit" value="Save" class="button">
+
     </form>
 
 </div>
