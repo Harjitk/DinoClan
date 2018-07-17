@@ -1,0 +1,34 @@
+<p class="pageHeader">All paddocks</p>
+
+<div class="container">
+
+    <a href="/paddocks/new" class="button center">Add new paddock</a>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Health</th>
+            <th>Capacity</th>
+            <th>Dinosaur count</th>
+            <th>Visitor count</th>
+            <th>Food store count</th>
+        </tr>
+        #foreach($paddock in $paddocks)
+        <tr>
+            <td><a href="/paddocks/$paddock.getId()">$paddock.getName()</a></td>
+            <td>$paddock.getHealth()</td>
+            <td>$paddock.getCapacity()</td>
+            <td>$paddock.getDinosaursInPaddock().size()</td>
+            <td>$paddock.getVisitorsInPaddock().size()</td>
+            <td>$paddock.getFoodStore().size()</td>
+
+            <td><a href="/paddocks/$paddock.getId()/edit">Edit/Delete</a></td>
+            <td><a href="/paddocks/$paddock.getId()">Details</a></td>
+        </tr>
+        #end
+    </table>
+
+
+
+</div>
+

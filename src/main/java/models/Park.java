@@ -7,6 +7,8 @@ import models.foods.Plant;
 import models.humans.Human;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -193,6 +195,7 @@ public class Park {
     }
 
 @OneToMany(mappedBy = "park")
+@Fetch(value = FetchMode.SUBSELECT)
     public List<Paddock> getPaddocks() {
         return paddocks;
     }

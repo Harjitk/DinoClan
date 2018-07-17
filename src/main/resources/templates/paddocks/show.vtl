@@ -1,0 +1,54 @@
+<p class="pageHeader">$paddock.getName()</p>
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Health</th>
+            <th>Capacity</th>
+            <th>Dinosaur count</th>
+            <th>Visitor count</th>
+            <th>Food store count</th>
+        </tr>
+        <tr>
+            <td>$paddock.getHealth()</td>
+            <td>$paddock.getCapacity()</td>
+            <td>$paddock.getDinosaursInPaddock().size()</td>
+            <td>$paddock.getVisitorsInPaddock().size()</td>
+            <td>$paddock.getFoodStore().size()</td>
+        </tr>
+    </table>
+
+    <a href="/paddocks/$paddock.getId()/edit" class="button center">Edit</a>
+
+    <form action="/paddocks/$paddock.getId()/delete" method="post">
+        <input type="submit" value="delete" class="button">
+    </form>
+
+
+    <p class="pageHeader">Dinosaurs in $paddock.getName()</p>
+
+    <table>
+    <tr>
+        <th>Name</th>
+        <th>Kind</th>
+        <th>Happiness</th>
+        <th>Diet Type</th>
+        <th>Paddock</th>
+        <th>Price</th>
+    </tr>
+
+    #foreach($dinosaur in $dinosaurs)
+    <tr>
+        <td><a href="/dinosaurs/$dinosaur.getId()">$dinosaur.getName()</a></td>
+        <td>$dinosaur.getClass().getSimpleName()</td>
+        <td>$dinosaur.getHappiness()</td>
+        <td>$dinosaur.getDietType()</td>
+        <td>$dinosaur.getPaddock().getName()</td>
+        <td>$dinosaur.getPrice()</td>
+    </tr>
+    #end
+    </table>
+
+
+</div>
+
