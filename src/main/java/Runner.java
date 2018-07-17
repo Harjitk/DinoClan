@@ -73,11 +73,12 @@ public class Runner {
         List<Human> velociraptorSeen = DBDinosaur.getHumansSeenByDinosaur(velociraptor);
         List<Dinosaur> dinosaursInPaddock = DBPaddock.getDinosaursForPaddock(velociraptorDen);
 
+        DBPark.generateFood(park, 20);
 
-       Meat meat = new Meat();
-       DBHelper.saveOrUpdate(meat);
-       Plant plant = new Plant();
-       DBHelper.saveOrUpdate(plant);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
 
 
 //

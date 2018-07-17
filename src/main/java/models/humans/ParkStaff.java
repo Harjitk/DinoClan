@@ -1,5 +1,6 @@
 package models.humans;
 
+import db.DBFood;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
@@ -36,7 +37,7 @@ public class ParkStaff extends Human {
 
     public Food addFoodToStore(Paddock paddock){
 
-        ArrayList<Food> checkingArray = new ArrayList<Food>(park.getFoodStock());
+        ArrayList<Food> checkingArray = new ArrayList<>(DBFood.getFoodInPark(park));
 
         for (Food food : checkingArray) {
 

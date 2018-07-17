@@ -1,17 +1,21 @@
 package controllers;
 
+import db.DBFood;
 import db.DBHelper;
 import db.DBPark;
+import db.DBParkStaff;
 import models.ModelMaker;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
 import models.dinosaurs.Velociraptor;
+import models.foods.Food;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +62,25 @@ public class PaddocksController {
             model.put("template", "templates/paddocks/create.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+
+
+        post ("/paddocks/:id/addfood", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+
+            Paddock paddock = DBHelper.find(Paddock.class, intId);
+            Park park = DBHelper.find(Park.class, 1);
+            List<Food> foodStock = DBFood.getFoodInPark(park);
+            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 15);
+
+            DBParkStaff.addFoodToStore(park, parkStaff, paddock);
+            res.redirect("/paddocks");
+            return null;
+
+        }, new VelocityTemplateEngine());
+
+
 
         get("/paddocks/:id/edit", (req, res) -> {
             String strId = req.params(":id");

@@ -59,7 +59,11 @@ public class Seeds {
         RandomGenerator randomGenerator = new RandomGenerator(richard, park);
         DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 5);
 
-        DBPark.generateFood(park, 200);
+        DBPark.generateFood(park, 50);
+
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
 
 
         List<Visitor> foundVisitors = DBHelper.getAll(Visitor.class);
