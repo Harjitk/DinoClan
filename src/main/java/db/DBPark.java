@@ -20,7 +20,6 @@ public class DBPark {
     private static Session session;
 
     public static void moveVisitorToPaddock(Park park, Visitor visitor, Paddock paddock) {
-
         park.moveVisitorToPaddock(visitor, paddock);
         DBHelper.saveOrUpdate(visitor);
         DBHelper.saveOrUpdate(paddock);
