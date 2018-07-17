@@ -134,6 +134,7 @@ public class Park {
 
     public void addVisitor(Visitor visitor) {
         this.visitors.add(visitor);
+
         int visitorWallet = visitor.getWallet();
         setTill(till += entryFee);
         visitor.setWallet(visitorWallet -= entryFee);

@@ -11,6 +11,7 @@ import spark.template.velocity.VelocityTemplateEngine;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,9 +47,12 @@ public class VisitorsController {
         post("/visitors/new", (req, res) -> {
             String name = req.queryParams("name");
             int wallet = Integer.parseInt(req.queryParams("wallet"));
+
             Park park = DBHelper.find(Park.class, 1);
+
             Visitor visitor = new Visitor(name, wallet, park);
             DBPark.addVisitor(park, visitor);
+
             res.redirect("/visitors");
             return null;
         }, new VelocityTemplateEngine());

@@ -6,7 +6,14 @@ import models.dinosaurs.Dinosaur;
 import models.foods.Food;
 import models.humans.ParkStaff;
 import models.humans.Visitor;
+import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBPark {
 
@@ -55,9 +62,26 @@ public class DBPark {
     }
 
     public static void addVisitor(Park park, Visitor visitor) {
+        park.setVisitors(getVisitorsForPark(park));
         park.addVisitor(visitor);
-        DBHelper.saveOrUpdate(park);
         DBHelper.saveOrUpdate(visitor);
+        DBHelper.saveOrUpdate(park);
+    }
+
+    public static List<Visitor> getVisitorsForPark(Park park) {
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Visitor> results = null;
+        try {
+            Criteria cr = session.createCriteria(Visitor.class);
+            cr.add(Restrictions.eq("park", park));
+            results = cr.list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return results;
     }
 
     public static void removeVisitor(Visitor visitor) {
