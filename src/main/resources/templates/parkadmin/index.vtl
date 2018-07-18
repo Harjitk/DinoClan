@@ -9,14 +9,14 @@
     <p>Food in park store = $totalFood</p>
 
     <!--Generate Visitors button-->
-    <form action="/visitors/generate" method="post">
+    <form action="/visitors/generate" method="get">
         <label for="numToGenerate">Generate Visitors:</label>
         <input class="inputbox" type="number" name="numToGenerate" required="true" id="numToGenerate">
         <input type="submit" value="Save" class="button">
     </form>
 
-    <form action="/parkadmin/generate/food" method="post">
-        <label for="numFoodToGenerate">Generate Food (placeholder:)</label>
+    <form action="/parkadmin/generate" method="get">
+        <label for="numFoodToGenerate">Generate Food:</label>
         <input class="inputbox" type="number" name="numFoodToGenerate" required="true" id="numFoodToGenerate">
         <input type="submit" value="Save" class="button">
     </form>

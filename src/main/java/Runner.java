@@ -74,9 +74,9 @@ public class Runner {
         List<Human> velociraptorSeen = DBDinosaur.getHumansSeenByDinosaur(velociraptor);
         List<Dinosaur> dinosaursInPaddock = DBPaddock.getDinosaursForPaddock(velociraptorDen);
 
-        DBPark.generateFood(park, 20);
+        DBPark.generateFood(park, 4);
 
-        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 20);
+        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 2);
 
         DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
         DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
@@ -85,6 +85,7 @@ public class Runner {
 
        Object firstFood = DBFood.getFirstBitOfFoodInPaddock(velociraptorDen);
 
+       Paddock veloPaddock = DBDinosaur.getTheDinosaursPaddock(velociraptor);
 
        Object firstObjectInRaptorDen = DBPaddock.getFirstVisitorsInPaddock(velociraptorDen);
        Visitor firstVisitorInRaptorDen = (Visitor)firstObjectInRaptorDen;
@@ -107,7 +108,7 @@ public class Runner {
 //        DBDinosaur.eat(velociraptor);
 
 //        Testing generating visitors
-        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 10);
+        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 2);
 
 //       //Moving dinosaurs to paddocks
 //       debzStaff.transferDinosaur(stegosaurus, stegzDwelling);

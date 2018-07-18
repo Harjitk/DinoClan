@@ -106,6 +106,22 @@ public class DinosaursController {
             }, new VelocityTemplateEngine());
 
 
+            post ("/dinosaurs/:id/eat/paddock", (req, res) -> {
+                String strId = req.params(":id");
+                Integer intId = Integer.parseInt(strId);
+                Dinosaur dinosaur = DBHelper.find(Dinosaur.class, intId);
+
+                Object paddockObject = DBDinosaur.getTheDinosaursPaddock(dinosaur);
+                Paddock paddock = (Paddock)paddockObject;
+                int padId = paddock.getId();
+
+                DBDinosaur.eat(dinosaur);
+                res.redirect("/paddocks/"+padId);
+                return null;
+
+            }, new VelocityTemplateEngine());
+
+
             get("/dinosaurs/:id/edit", (req, res) -> {
                 String strId = req.params(":id");
                 Integer intId = Integer.parseInt(strId);
