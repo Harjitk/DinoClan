@@ -106,6 +106,19 @@ public class DinosaursController {
             }, new VelocityTemplateEngine());
 
 
+            post ("/dinosaurs/:id/rampage", (req, res) -> {
+                String strId = req.params(":id");
+                Integer intId = Integer.parseInt(strId);
+                Dinosaur dinosaur = DBHelper.find(Dinosaur.class, intId);
+
+                DBDinosaur.rampage(dinosaur);
+                res.redirect("/parkadmin");
+                return null;
+
+            }, new VelocityTemplateEngine());
+
+
+
             get("/dinosaurs/:id/edit", (req, res) -> {
                 String strId = req.params(":id");
                 Integer intId = Integer.parseInt(strId);
