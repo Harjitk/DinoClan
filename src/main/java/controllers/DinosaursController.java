@@ -85,7 +85,7 @@ public class DinosaursController {
                 int paddockId = Integer.parseInt(req.queryParams("paddock"));
                 Paddock paddock = DBHelper.find(Paddock.class, paddockId);
 
-                ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 15);
+                ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 16);
 
                 DBParkStaff.transferDinosaur(parkStaff, dinosaur, paddock);
                 res.redirect("/dinosaurs");
@@ -140,7 +140,7 @@ public class DinosaursController {
                 String strId = req.params(":id");
                 Integer intId = Integer.parseInt(strId);
                 Dinosaur dinosaur = DBHelper.find(Dinosaur.class, intId);
-                ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 15);
+                ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 16);
 
                 int paddockId = Integer.parseInt(req.queryParams("paddock"));
                 Paddock paddock = DBHelper.find(Paddock.class, paddockId);

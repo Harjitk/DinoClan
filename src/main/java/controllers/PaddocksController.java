@@ -99,7 +99,7 @@ public class PaddocksController {
             Integer intId = Integer.parseInt(strId);
             Paddock paddock = DBHelper.find(Paddock.class, intId);
 
-            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 15);
+            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 16);
 
             DBParkStaff.calmDinosaursInPaddock(parkStaff, paddock);
             res.redirect("/paddocks/"+strId);
