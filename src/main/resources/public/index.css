@@ -79,7 +79,7 @@
 
 .cube-empty div {
   position: absolute;
-  background-color: rgb(214, 214, 214);
+  background-color: rgb(214, 214, 214, 0.9);
   width: 200px;
   height: 100px;
 }
