@@ -47,6 +47,7 @@ import org.hibernate.criterion.Restrictions;
             List<T> results = null;
             try {
                 Criteria cr = session.createCriteria(classType);
+                cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                 results = cr.list();
             } catch (HibernateException e) {
                 e.printStackTrace();
@@ -55,6 +56,7 @@ import org.hibernate.criterion.Restrictions;
             }
             return results;
         }
+
 
         public static <T> T find(Class classType, int id) {
             session = HibernateUtil.getSessionFactory().openSession();

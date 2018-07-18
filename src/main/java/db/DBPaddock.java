@@ -65,5 +65,23 @@ public class DBPaddock {
     }
 
 
+    public static Dinosaur getFirstDinosaurInPaddock(Paddock paddock) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Dinosaur result = null;
+        try {
+            Criteria cr = session.createCriteria(Dinosaur.class);
+            cr.add(Restrictions.eq("paddock", paddock));
+            cr.setMaxResults(1);
+            result = (Dinosaur)cr.uniqueResult();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+
+
 
 }
