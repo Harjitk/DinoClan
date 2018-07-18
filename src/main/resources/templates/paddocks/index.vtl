@@ -2,7 +2,9 @@
 
 <div class="container">
 
-    <a href="/paddocks/new" class="button center">Add new paddock</a>
+
+    <div class="add_new_button"></div><a href="/paddocks/new"><button>Add New Paddock</button></a>
+
 
     <table>
         <tr>
@@ -30,9 +32,8 @@
 
             </td>
 
-
-            <td><a href="/paddocks/$paddock.getId()/edit">Edit/Delete</a></td>
-            <td><a href="/paddocks/$paddock.getId()">Details</a></td>
+            <td><div class="edit_button"></div><a href="/paddocks/$paddock.getId()/edit"><button>Edit</button></a></td>
+            <td><div class="details_button"></div><a href="/paddocks/$paddock.getId()"><button>Details</button></a></td>
         </tr>
         #end
     </table>

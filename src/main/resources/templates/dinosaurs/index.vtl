@@ -2,7 +2,7 @@
 
 <div class="container">
 
-    <a href="/dinosaurs/new" class="button center">Buy new dinosaur</a>
+    <div class="add_new_button"></div><a href="/dinosaurs/new"><button>Buy New Dinosaur</button></a>
 
     <table>
         <tr>
@@ -21,6 +21,12 @@
             <td>$dinosaur.getDietType()</td>
             <td><a href="/paddocks/$dinosaur.getPaddock().getId()">$dinosaur.getPaddock().getName()</a></td>
             <td>$dinosaur.getPrice()</td>
+
+
+            <td><div class="edit_button"></div><a href="/dinosaurs/$dinosaur.getId()/edit"><button>Edit</button></a></td>
+            <td><div class="details_button"></div><a href="/dinosaurs/$dinosaur.getId()"><button>Details</button></a></td>
+
+
             <td>
                 <form action="/dinosaurs/$dinosaur.getId()/eat" method="post">
                     <input type="submit" value="Eat food" class="button">
@@ -41,8 +47,6 @@
                 </form>
 
             </td>
-            <td><a href="/dinosaurs/$dinosaur.getId()/edit">Edit/Delete</a></td>
-            <td><a href="/dinosaurs/$dinosaur.getId()">Details</a></td>
 
         </tr>
             #end

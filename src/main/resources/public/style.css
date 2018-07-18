@@ -3,14 +3,16 @@
 .nav_stats {
     display: block;
     padding: 30px;
-    background-color: #dddddd;
-    float: center;
+    background-color: silver;
+    float: centre;
+    color: white;
 
 }
 
 .nav_stats div{
 float: left;
 display: inline-block;
+color: white;
 }
 
 
@@ -32,12 +34,64 @@ a {
 }
 
 .nav_element{
-padding-right: 20px;
+ padding-right: 80px;
+ border-right: 1px solid white;
 
- border-right: 1px solid #bbb;
+ }
+
+.edit button{
+background-color: red;
 }
 
-.dropdown {
-    float: left;
-    overflow: hidden;
+.add_new_button{
+background-color: orange;
+}
+
+
+.delete_button{
+background-color: red;
+}
+
+
+.details_button{
+
+}
+
+
+
+
+.a{
+
+
+}
+
+
+body {
+font-family: 'Rubik', sans-serif;
+}
+
+table {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+th {
+
+font-family: 'Rubik', sans-serif, bold;
+  background-color: DarkSeaGreen;
+  color: white;
+}
+
+
+.pageHeader{
+
+font-family: 'Permanent Marker', cursive, bold;
+font-size: 18px;
+color: #2F4F4F;
+}
+
+
+
+a {
+  color: #2F4F4F;
 }
