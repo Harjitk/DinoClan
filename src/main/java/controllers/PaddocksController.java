@@ -121,10 +121,12 @@ public class PaddocksController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Paddock paddock = DBHelper.find(Paddock.class, intId);
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
             List<Dinosaur> dinosaurs = paddock.getDinosaursInPaddock();
             List<Visitor> visitors = paddock.getVisitorsInPaddock();
             Map<String, Object> model = ModelMaker.makeModel();
             model.put("dinosaurs", dinosaurs);
+            model.put("paddocks", paddocks);
             model.put("paddock", paddock);
             model.put("visitors", visitors);
             model.put("template", "templates/paddocks/show.vtl");
