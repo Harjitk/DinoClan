@@ -1,8 +1,12 @@
 #foreach($paddock in $paddocks)
 
-    <p><a href="/paddocks/$paddock.getId()">$paddock.getName()</a></p>
-    <p><td>$paddock.getDinosaursInPaddock().size()</td></p>
-    <p><td>$paddock.getVisitorsInPaddock().size()</td></p>
-    <p><td>$paddock.getFoodStore().size()</td></p>
 
+
+
+<div class="parkadmin_container">
+    <div><p><a href="/paddocks/$paddock.getId()">$paddock.getName()</a></p></div>
+<div><p><td>$paddock.getDinosaursInPaddock().size()</td></p></div>
+<div><p><td>$paddock.getVisitorsInPaddock().size()</td></p></div>
+<div> <p><td>$paddock.getFoodStore().size()</td></p></div>
     #end
+</div>
