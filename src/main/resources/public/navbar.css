@@ -1,0 +1,28 @@
+.input{
+    -webkit-appearance:none;
+    }
+
+.nav_stats {
+    display: block;
+    padding: 30px;
+    background-color: silver;
+    float: centre;
+    color: white;
+    font-family: 'Permanent Marker', cursive, bold;
+    font-size: 26;
+
+}
+
+.nav_stats div{
+float: left;
+display: inline-block;
+color: white;
+}
+
+.nav_element{
+ padding-right: 80px;
+ border-right: 1px solid white;
+
+ }
+
+

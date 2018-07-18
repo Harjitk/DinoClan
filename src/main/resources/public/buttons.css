@@ -1,0 +1,21 @@
+.edit_button{
+background-color: orange;
+color: white;
+}
+
+.add_new_button{
+background-color: green;
+color: white;
+}
+
+
+.delete_button{
+background-color: red;
+color: white;
+}
+
+
+.details_button{
+background-color: purple;
+color: white;
+}

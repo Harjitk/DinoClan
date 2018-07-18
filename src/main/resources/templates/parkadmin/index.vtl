@@ -25,7 +25,7 @@
 
     <p>Paddocks:</p>
 
-    <div class="add_new_button"></div><a href="/paddocks/new"><button>Add New Paddock</button></a>
+    <div><a href="/paddocks/new"><button class="add_new_button">Add New Paddock</button></a></div>
 
     <table>
         <tr>
@@ -45,15 +45,19 @@
             <td>$paddock.getVisitorsInPaddock().size()</td>
             <td>$paddock.getFoodStore().size()</td>
 
-            <td><div class="edit_button"></div><a href="/paddocks/$paddock.getId()/edit"><button>Edit</button></a></td>
-            <td><div class="details_button"></div><a href="/paddocks/$paddock.getId()"><button>Details</button></a></td>
+            <td><div></div><a href="/paddocks/$paddock.getId()/edit"><button class="edit_button">Edit</button></a></td>
+            <td><div></div><a href="/paddocks/$paddock.getId()"><button class="details_button">Details</button></a></td>
+
         </tr>
         #end
     </table>
 
     <p>Dinosaurs:</p>
 
-    <div class="add_new_button"></div><a href="/dinosaurs/new"><button>Buy New Dinosaur</button></a>
+
+    <div><a href="/dinosaurs/new"><button class="add_new_button">Buy New Dinosaur</button></a></div>
+
+
 
     <table>
         <tr>
@@ -73,8 +77,9 @@
             <td><a href="/paddocks/$dinosaur.getPaddock().getId()">$dinosaur.getPaddock().getName()</a></td>
             <td>$dinosaur.getPrice()</td>
 
-            <td><div class="edit_button"></div><a href="/dinosaurs/$dinosaur.getId()/edit"><button>Edit</button></a></td>
-            <td><div class="edit_button"></div><a href="/dinosaurs/$dinosaur.getId()/edit"><button>Details</button></a></td>
+            <td><div></div><a href="/dinosaurs/$dinosaur.getId()/edit"><button class="edit_button">Edit</button></a></td>
+            <td><div></div><a href="/dinosaurs/$dinosaur.getId()"><button class="details_button">Details</button></a></td>
+
 
         </tr>
         #end

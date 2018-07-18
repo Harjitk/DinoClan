@@ -1,0 +1,17 @@
+
+table {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+th {
+
+font-family: 'Rubik', sans-serif, bold;
+  background-color: DarkSeaGreen;
+  color: white;
+  text-align: center;
+}
+
+td{
+text-align: center;
+}
