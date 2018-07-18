@@ -1,7 +1,10 @@
 <div>
     <p> Name: $visitor.getName()</p>
     <p> Wallet:$visitor.getWallet()</p>
+    <p> This visitor is in: <a href="/paddocks/$visitor.getPaddock().getId()">$visitor.getPaddock().getName()</a></p>
 </div>
+
+
 
 <a href="/visitors/$visitor.getId()/edit" class="button center">Edit</a>
 <form action="/visitors/$visitor.getId()/delete" method="post">
