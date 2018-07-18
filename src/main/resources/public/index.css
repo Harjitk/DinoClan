@@ -71,6 +71,19 @@
   height: 100px;
 }
 
+.cube-empty {
+  width: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.cube-empty div {
+  position: absolute;
+  background-color: rgb(214, 214, 214);
+  width: 200px;
+  height: 100px;
+}
+
 .cube-face {
   background-color: rgba(68,	215,	168, 0.8);
   text-align: center;
@@ -139,5 +152,9 @@
   to { transform: rotateY(360deg); }
 }
 .cube {
+  animation: spin 25s infinite linear;
+}
+
+.cube-empty {
   animation: spin 25s infinite linear;
 }
