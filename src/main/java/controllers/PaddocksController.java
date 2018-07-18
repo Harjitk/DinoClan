@@ -69,7 +69,7 @@ public class PaddocksController {
             Paddock paddock = DBHelper.find(Paddock.class, intId);
             Park park = DBHelper.find(Park.class, 1);
             List<Food> foodStock = DBFood.getFoodInPark(park);
-            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 15);
+            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 16);
 
             DBParkStaff.addFoodToStore(park, parkStaff, paddock);
             res.redirect("/paddocks");
