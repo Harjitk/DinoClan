@@ -32,7 +32,7 @@
     <p> Visitors in dinosaur's belly:</p>
     <ul>
         #foreach( $visitor in $dinosaur.getHumanBelly() )
-        <li><a href="/visitors/$visitor.getId()">$!Visitor.getName()</a></li>
+        <li><a href="/visitors/$visitor.getId()">$!visitor.getName()</a></li>
         #end
     </ul>
 
