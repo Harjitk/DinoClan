@@ -1,11 +1,13 @@
 .edit_button{
 background-color: orange;
 color: white;
+
 }
 
 .add_new_button{
-background-color: green;
+background-color: teal;
 color: white;
+padding: 50px;
 }
 
 

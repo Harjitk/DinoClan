@@ -5,10 +5,13 @@ table {
 }
 
 th {
-font-family: 'Crimson Text', serif;
+font-family: 'Rubik', sans-serif;
   background-color: DarkSeaGreen;
   color: white;
   text-align: center;
+  line-height: 1.8;
+  column-gap: 80px;
+
 }
 
 td{
