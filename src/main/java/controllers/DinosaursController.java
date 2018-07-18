@@ -42,8 +42,8 @@ public class DinosaursController {
             }, new VelocityTemplateEngine());
 
 
-            post ("/dinosaurs", (req, res) -> {
 
+            post ("/dinosaurs", (req, res) -> {
                 String species = req.queryParams("species");
                 int paddockId = Integer.parseInt(req.queryParams("paddock"));
                 Paddock paddock = DBHelper.find(Paddock.class, paddockId);
@@ -59,6 +59,7 @@ public class DinosaursController {
                 res.redirect("/dinosaurs");
                 return null;
             }, new VelocityTemplateEngine());
+
 
 
             get ("/dinosaurs/new", (req, res) -> {
@@ -77,6 +78,8 @@ public class DinosaursController {
                 return new ModelAndView(model, "templates/layout.vtl");
             }, new VelocityTemplateEngine());
 
+
+
             post ("/dinosaurs/:id/move", (req, res) -> {
                 String strId = req.params(":id");
                 Integer intId = Integer.parseInt(strId);
@@ -94,6 +97,7 @@ public class DinosaursController {
             }, new VelocityTemplateEngine());
 
 
+
             post ("/dinosaurs/:id/eat", (req, res) -> {
                 String strId = req.params(":id");
                 Integer intId = Integer.parseInt(strId);
@@ -104,6 +108,7 @@ public class DinosaursController {
                 return null;
 
             }, new VelocityTemplateEngine());
+
 
 
             post ("/dinosaurs/:id/eat/paddock", (req, res) -> {
@@ -122,6 +127,20 @@ public class DinosaursController {
             }, new VelocityTemplateEngine());
 
 
+
+            post ("/dinosaurs/:id/rampage", (req, res) -> {
+                String strId = req.params(":id");
+                Integer intId = Integer.parseInt(strId);
+                Dinosaur dinosaur = DBHelper.find(Dinosaur.class, intId);
+
+                DBDinosaur.rampage(dinosaur);
+
+                res.redirect("/dinosaurs");
+                return null;
+
+            }, new VelocityTemplateEngine());
+
+
             get("/dinosaurs/:id/edit", (req, res) -> {
                 String strId = req.params(":id");
                 Integer intId = Integer.parseInt(strId);
@@ -134,6 +153,7 @@ public class DinosaursController {
 
                 return new ModelAndView(model, "templates/layout.vtl");
             }, new VelocityTemplateEngine());
+
 
 
             post ("/dinosaurs/:id", (req, res) -> {
@@ -161,6 +181,8 @@ public class DinosaursController {
 
             }, new VelocityTemplateEngine());
 
+
+
             post ("/dinosaurs/:id/delete", (req, res) -> {
                 int id = Integer.parseInt(req.params(":id"));
                 Dinosaur dinosaurToDelete = DBHelper.find(Dinosaur.class, id);
@@ -168,6 +190,8 @@ public class DinosaursController {
                 res.redirect("/dinosaurs");
                 return null;
             }, new VelocityTemplateEngine());
+
+
 
             get("/dinosaurs/:id", (req, res) -> {
                 String strId = req.params(":id");
@@ -179,9 +203,6 @@ public class DinosaursController {
 
                 return new ModelAndView(model, "templates/layout.vtl");
             }, new VelocityTemplateEngine());
-
-
-
 
 
             enableDebugScreen();
