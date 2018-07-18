@@ -2,12 +2,14 @@ package controllers;
 
 import db.DBHelper;
 import db.DBPark;
+import db.DBParkStaff;
 import db.DBRandomGenerator;
 import models.ModelMaker;
 import models.Paddock;
 import models.Park;
 import models.RandomGenerator;
 import models.dinosaurs.Dinosaur;
+import models.humans.ParkStaff;
 import models.humans.Visitor;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -32,7 +34,9 @@ public class VisitorsController {
 
         get("/visitors", (req, res) -> {
             List<models.humans.Visitor> visitors = DBHelper.getAll(Visitor.class);
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
             Map<String, Object> model = ModelMaker.makeModel();
+            model.put("paddocks", paddocks);
             model.put("visitors", visitors);
             model.put("template", "templates/visitors/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -46,7 +50,6 @@ public class VisitorsController {
             model.put("template", "templates/visitors/create.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
-
 
 
         post("/visitors/new", (req, res) -> {
@@ -66,7 +69,9 @@ public class VisitorsController {
             int numToGenerate = Integer.parseInt(req.queryParams("numToGenerate"));
 
             Park park = DBHelper.find(Park.class, 1);
-            RandomGenerator randomGenerator = DBHelper.find(RandomGenerator.class, 1);
+            List<Visitor> visitors = DBHelper.getAll(Visitor.class);
+            Visitor visitor = visitors.get(0);
+            RandomGenerator randomGenerator = new RandomGenerator(visitor, park);
 
             DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, numToGenerate);
 
@@ -88,6 +93,21 @@ public class VisitorsController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        post ("/visitors/:id/move", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Visitor visitor = DBHelper.find(Visitor.class, intId);
+
+            int paddockId = Integer.parseInt(req.queryParams("paddock"));
+            Paddock paddock = DBHelper.find(Paddock.class, paddockId);
+
+            Park park = DBHelper.find(Park.class, 1);
+
+            DBPark.moveVisitorToPaddock(park, visitor, paddock);
+            res.redirect("/visitors");
+            return null;
+
+        }, new VelocityTemplateEngine());
 
         get("/visitors/:id/edit", (req, res) -> {
             String strId = req.params(":id");

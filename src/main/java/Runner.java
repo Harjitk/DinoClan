@@ -4,6 +4,7 @@ import models.Paddock;
 import models.Park;
 import models.RandomGenerator;
 import models.dinosaurs.*;
+import models.foods.Food;
 import models.foods.Meat;
 import models.foods.Plant;
 import models.humans.Human;
@@ -73,12 +74,20 @@ public class Runner {
         List<Human> velociraptorSeen = DBDinosaur.getHumansSeenByDinosaur(velociraptor);
         List<Dinosaur> dinosaursInPaddock = DBPaddock.getDinosaursForPaddock(velociraptorDen);
 
+        DBPark.generateFood(park, 20);
 
-       Meat meat = new Meat();
-       DBHelper.saveOrUpdate(meat);
-       Plant plant = new Plant();
-       DBHelper.saveOrUpdate(plant);
+        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 20);
 
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+
+       Object firstFood = DBFood.getFirstBitOfFoodInPaddock(velociraptorDen);
+
+
+       Object firstObjectInRaptorDen = DBPaddock.getFirstVisitorsInPaddock(velociraptorDen);
+       Visitor firstVisitorInRaptorDen = (Visitor)firstObjectInRaptorDen;
 
 //
 //        List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);

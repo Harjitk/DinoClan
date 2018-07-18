@@ -57,9 +57,26 @@ public class Seeds {
         DBPark.addParkStaff(park, debzStaff);
 
         RandomGenerator randomGenerator = new RandomGenerator(richard, park);
-        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 5);
+        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 10);
 
-        DBPark.generateFood(park, 200);
+        DBPark.generateFood(park, 30);
+
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+
+        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
+        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
+        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
+
+        DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
+        DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
+        DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
+
+        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+
 
 
         List<Visitor> foundVisitors = DBHelper.getAll(Visitor.class);

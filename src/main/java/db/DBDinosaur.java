@@ -19,11 +19,10 @@ public class DBDinosaur {
     private static Session session;
 
     public static void eat(Dinosaur dinosaur) {
-        Food food = dinosaur.getPaddock().getFoodStore().get(0);
-        dinosaur.eat();
-        food.setDinosaur(dinosaur);
-        DBHelper.saveOrUpdate(dinosaur);
-        DBHelper.saveOrUpdate(food);
+        if (dinosaur.getPaddock().getFoodStore().size() > 0) {
+            dinosaur.eat();
+            DBHelper.saveOrUpdate(dinosaur);
+        }
     }
 
     public static void eatVisitor(Dinosaur dinosaur, Visitor visitor){

@@ -23,6 +23,14 @@
             <td>$paddock.getDinosaursInPaddock().size()</td>
             <td>$paddock.getVisitorsInPaddock().size()</td>
             <td>$paddock.getFoodStore().size()</td>
+            <td>
+
+                <form action="/paddocks/$paddock.getId()/addfood" method="post">
+                    <input type="submit" value="Add food to paddock" class="button">
+                </form>
+
+
+            </td>
 
             <td><div></div><a href="/paddocks/$paddock.getId()/edit"><button class="edit_button">Edit</button></a></td>
             <td><div></div><a href="/paddocks/$paddock.getId()"><button class="details_button">Details</button></a></td>
