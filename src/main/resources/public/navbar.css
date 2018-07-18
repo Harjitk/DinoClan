@@ -5,10 +5,10 @@
 .nav_stats {
     display: block;
     padding: 30px;
-    background-color: silver;
+    background: linear-gradient(slategray, lightgray);
     float: centre;
-    color: white;
-    font-family: 'Permanent Marker', cursive, bold;
+    color: black;
+    font-family: 'Neuton', serif
     font-size: 26;
 
 }
@@ -16,12 +16,12 @@
 .nav_stats div{
 float: left;
 display: inline-block;
-color: white;
+color: black;
 }
 
 .nav_element{
- padding-right: 80px;
- border-right: 1px solid white;
+ padding-right: 60px;
+
 
  }
 
