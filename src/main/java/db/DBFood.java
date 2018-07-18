@@ -1,5 +1,6 @@
 package db;
 
+import models.Paddock;
 import models.Park;
 import models.foods.Food;
 import models.humans.Visitor;
@@ -29,5 +30,22 @@ public class DBFood {
         }
         return results;
     }
+
+    public static Object getFirstBitOfFoodInPaddock(Paddock paddock) {
+
+        session = HibernateUtil.getSessionFactory().openSession();
+       Object result = null;
+        try {
+            Criteria cr = session.createCriteria(Food.class);
+            cr.add(Restrictions.eq("paddock", paddock));
+            result = cr.list().get(0);
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
 
 }

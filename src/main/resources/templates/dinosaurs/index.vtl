@@ -2,7 +2,9 @@
 
 <div class="container">
 
-    <a href="/dinosaurs/new" class="button center">Buy new dinosaur</a>
+
+    <div><a href="/dinosaurs/new"><button class="add_new_button">Buy New Dinosaur</button></a></div>
+
 
     <table>
         <tr>
@@ -11,7 +13,7 @@
             <th>Happiness</th>
             <th>Diet Type</th>
             <th>Paddock</th>
-            <th>Price</th>
+
         </tr>
         #foreach($dinosaur in $dinosaurs)
         <tr>
@@ -20,12 +22,40 @@
             <td>$dinosaur.getHappiness()</td>
             <td>$dinosaur.getDietType()</td>
             <td><a href="/paddocks/$dinosaur.getPaddock().getId()">$dinosaur.getPaddock().getName()</a></td>
-            <td>$dinosaur.getPrice()</td>
-            <td><a href="/dinosaurs/$dinosaur.getId()/edit">Edit/Delete</a></td>
-            <td><a href="/dinosaurs/$dinosaur.getId()">Details</a></td>
+
+
+
+            <td><div></div><a href="/dinosaurs/$dinosaur.getId()/edit"><button class="edit_button">Edit</button></a></td>
+            <td><div></div><a href="/dinosaurs/$dinosaur.getId()"><button class="details_button">Details</button></a></td>
+
+
             <td>
+                <form action="/dinosaurs/$dinosaur.getId()/rampage" method="post">
+                    <input type="submit" value="RAMPAGE" class="button">
+                </form>
+            </td>
+
+            <td>
+                <form action="/dinosaurs/$dinosaur.getId()/eat" method="post">
+                    <input type="submit" value="Eat food" class="button">
+                </form>
 
             </td>
+            <td>
+                <form action="/dinosaurs/$dinosaur.getId()/move" method="post">
+
+                    <label for="paddock">Move to paddock:</label>
+                    <select id="paddock" name="paddock">
+                        #foreach( $paddock in $paddocks )
+                        <option value="$paddock.getId()">$paddock.getName()</option>
+                        #end
+                    </select>
+
+                    <input type="submit" value="Move dinosaur" class="button">
+                </form>
+
+            </td>
+
         </tr>
             #end
     </table>

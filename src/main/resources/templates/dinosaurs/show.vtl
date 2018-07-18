@@ -16,7 +16,7 @@
             <td>$dinosaur.getClass().getSimpleName()</td>
             <td>$dinosaur.getHappiness()</td>
             <td>$dinosaur.getDietType()</td>
-            <td>$dinosaur.getPaddock().getName()</td>
+            <td><a href="/paddocks/$dinosaur.getPaddock().getId()">$dinosaur.getPaddock().getName()</a></td>
             <td>$dinosaur.getPrice()</td>
             <td>$dinosaur.getWeight()</td>
             <td>$dinosaur.getBelly().size()</td>
@@ -24,12 +24,17 @@
         </tr>
     </table>
 
-    <a href="/dinosaurs/$dinosaur.getId()/edit" class="button center">Edit</a>
-
+    <a href="/dinosaurs/$dinosaur.getId()/edit" class="edit_button">Edit</a>
     <form action="/dinosaurs/$dinosaur.getId()/delete" method="post">
-        <input type="submit" value="delete" class="button">
+        <input type="submit" value="delete" class="delete_button">
     </form>
 
+    <p> Visitors in dinosaur's belly:</p>
+    <ul>
+        #foreach( $visitor in $dinosaur.getHumanBelly() )
+        <li><a href="/visitors/$visitor.getId()">$!visitor.getName()</a></li>
+        #end
+    </ul>
 
 </div>
 

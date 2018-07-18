@@ -1,6 +1,7 @@
 package models.dinosaurs;
 
 
+import db.DBHelper;
 import models.enums.DietType;
 import models.foods.Food;
 import models.Paddock;
@@ -66,13 +67,13 @@ public abstract class Dinosaur {
     }
 
     public void eat(){
-        //      NEEDS TO RETURN STRING IF CONDITION NOT MET
         if (this.belly.size() < this.bellyCapacity) {
             Food food = paddock.getFoodStore().get(0);
             getBelly().add(food);
             paddock.getFoodStore().remove(food);
             food.setPaddock(null);
             food.setDinosaur(this);
+            DBHelper.saveOrUpdate(food);
             if (this.happiness <= 95) {
                 setHappiness(this.happiness += 5);
             }
@@ -80,7 +81,6 @@ public abstract class Dinosaur {
     }
 
     public void eatVisitor(Visitor visitor){
-        //      NEEDS TO RETURN STRING IF CONDITION NOT MET
         if (this.humanBelly.size() < this.bellyCapacity) {
             getHumanBelly().add(visitor);
             visitor.setDinosaur(this);
@@ -115,6 +115,7 @@ public abstract class Dinosaur {
                 this.eatVisitor(food);
             }
 //
+
             this.park.removeDinosaur(this);
 //                Should this be moved to the park?
             }
@@ -216,7 +217,8 @@ public abstract class Dinosaur {
     }
 
 
-    @OneToMany(mappedBy= "dinosaur")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy= "dinosaur")
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<Human> getHumanBelly() {
         return humanBelly;
     }

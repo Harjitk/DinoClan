@@ -2,12 +2,14 @@ package controllers;
 
 import db.DBHelper;
 import db.DBPark;
+import db.DBParkStaff;
 import db.DBRandomGenerator;
 import models.ModelMaker;
 import models.Paddock;
 import models.Park;
 import models.RandomGenerator;
 import models.dinosaurs.Dinosaur;
+import models.humans.ParkStaff;
 import models.humans.Visitor;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -32,11 +34,14 @@ public class VisitorsController {
 
         get("/visitors", (req, res) -> {
             List<models.humans.Visitor> visitors = DBHelper.getAll(Visitor.class);
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
             Map<String, Object> model = ModelMaker.makeModel();
+            model.put("paddocks", paddocks);
             model.put("visitors", visitors);
             model.put("template", "templates/visitors/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
 
 
         get("/visitors/new", (req, res) -> {
@@ -62,6 +67,8 @@ public class VisitorsController {
             return null;
         }, new VelocityTemplateEngine());
 
+
+
         post("/visitors/generate", (req, res) -> {
             int numToGenerate = Integer.parseInt(req.queryParams("numToGenerate"));
 
@@ -75,6 +82,17 @@ public class VisitorsController {
             res.redirect("/visitors");
             return null;
         }, new VelocityTemplateEngine());
+
+
+
+        get("/visitors/generate", (req, res) -> {
+            List<models.humans.Visitor> visitors = DBHelper.getAll(Visitor.class);
+            Map<String, Object> model = ModelMaker.makeModel();
+            model.put("visitors", visitors);
+            model.put("template", "templates/workinprogress.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
 
 
         get("/visitors/:id", (req, res) -> {
@@ -91,6 +109,25 @@ public class VisitorsController {
         }, new VelocityTemplateEngine());
 
 
+
+        post ("/visitors/:id/move", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Visitor visitor = DBHelper.find(Visitor.class, intId);
+
+            int paddockId = Integer.parseInt(req.queryParams("paddock"));
+            Paddock paddock = DBHelper.find(Paddock.class, paddockId);
+
+            Park park = DBHelper.find(Park.class, 1);
+
+            DBPark.moveVisitorToPaddock(park, visitor, paddock);
+            res.redirect("/visitors");
+            return null;
+
+        }, new VelocityTemplateEngine());
+
+
+
         get("/visitors/:id/edit", (req, res) -> {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
@@ -104,6 +141,7 @@ public class VisitorsController {
         }, new VelocityTemplateEngine());
 
 
+
         post("/visitors/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Visitor visitorrToDelete = DBHelper.find(Visitor.class, id);
@@ -111,6 +149,7 @@ public class VisitorsController {
             res.redirect("/visitors");
             return null;
         }, new VelocityTemplateEngine());
+
 
 
         post("/visitors/:id", (req, res) -> {

@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="/style.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/navbar.css"/>
+    <link rel="stylesheet" type="text/css" href="/table.css"/>
+    <link rel="stylesheet" type="text/css" href="/buttons.css"/>
+    <link rel="stylesheet" type="text/css" href="/page_layout.css"/>
+
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Rubik" rel="stylesheet">
+
 
     <title>Dino Info</title>
     <nav>
 
         <div class="nav_stats">
-           <div class="nav_element"><img src="/images/Money.png" height="25" width="25">$park.getTill()</a></div>
-            <div class="nav_element"><img src="/images/Visitor.png" height="25" width="25"><a href="/visitors">$totalVisitors</a></div>
-            <div class="nav_element"><img src="/images/Dinosaur.png" height="25" width="25"><a href="/dinosaurs">$totalDinosaurs</a></div>
 
-        <div class="dropdown">
-        <a href="/dinosaurs">Dinosaurs</a>
-        <a href="/visitors">Visitors</a>
-        <a href="/paddocks">Paddocks</a>
+            <div class="nav_element"><img src="/images/Money.png" height="25" width="25">$park.getTill()</a></div>
+            <div class="nav_element"><img src="/images/Visitor.png" height="25" width="25"><a href="/visitors">   $totalVisitors  </a></div>
+            <div class="nav_element"><img src="/images/Dino.png" height="25" width="25"><a href="/dinosaurs">   $totalDinosaurs  </a></div>
+
+            <a href="/dinosaurs">Dinosaurs</a>
+            <a href="/visitors">Visitors</a>
+            <a href="/paddocks">Paddocks</a>
+            <a href="/parkadmin">Park Admin</a>
         </div>
+
     </nav>
-
-
-    <div class="dropdown">
-        <button class="dropbtn">Dropdown
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-        </div>
 
 </head>
 <body>
@@ -37,7 +34,6 @@
 <div class="container">
     #parse( $template )
 </div>
-
 </body>
 </html>
 

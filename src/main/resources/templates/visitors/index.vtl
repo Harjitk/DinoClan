@@ -1,7 +1,8 @@
 <p class="pageHeader">All Visitors</p>
 
 <div>
-    <a href="/visitors/new" class="button center">New Visitor</a>
+
+    <div><a href="/visitors/new"><button class="add_new_button">Add New Visitor</button></a></div>
 </div>
 
 <div class="container">
@@ -15,15 +16,33 @@
         <tr>
             <td><a href="/visitors/$visitor.getId()" class="button center">$visitor.getName()</a></td>
             <td>$visitor.getWallet()</td>
-            <td>$!visitor.getPaddock().getName()</td>
+            <td><a href="/paddocks/$visitor.getPaddock().getId()">$!visitor.getPaddock().getName()</a></td>
+            <td>
 
-            <td><a href="/visitors/$visitor.getId()" class="button center">Details</a></td>
+                <form action="/visitors/$visitor.getId()/move" method="post">
+
+                    <label for="paddock">Move to paddock:</label>
+                    <select id="paddock" name="paddock">
+                        #foreach( $paddock in $paddocks )
+                        <option value="$paddock.getId()">$paddock.getName()</option>
+                        #end
+                    </select>
+
+                    <input type="submit" value="Move visitor" class="button">
+                </form>
+
+            </td>
+
+            <td><div></div><a href="/visitors/$visitor.getId()"><button class="details_button">Details</button></a></td>
+
+
+
 
         </tr>
         #end
     </table>
 
-    <form action="/visitors/generate" method="post">
+    <form action="/visitors/generate" method="get">
         <label for="numToGenerate">Generate Visitors:</label>
         <input class="inputbox" type="number" name="numToGenerate" required="true" id="numToGenerate">
         <input type="submit" value="Save" class="button">

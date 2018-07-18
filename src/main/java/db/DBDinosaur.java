@@ -1,5 +1,6 @@
 package db;
 
+import models.DinoFactory;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
@@ -19,20 +20,19 @@ public class DBDinosaur {
     private static Session session;
 
     public static void eat(Dinosaur dinosaur) {
-        Food food = dinosaur.getPaddock().getFoodStore().get(0);
-        dinosaur.eat();
-        food.setDinosaur(dinosaur);
-        DBHelper.saveOrUpdate(dinosaur);
-        DBHelper.saveOrUpdate(food);
+        if (dinosaur.getPaddock().getFoodStore().size() > 0) {
+            dinosaur.eat();
+            DBHelper.saveOrUpdate(dinosaur);
+        }
     }
 
-    public static void eatVisitor(Dinosaur dinosaur, Visitor visitor){
+    public static void eatVisitor(Dinosaur dinosaur, Visitor visitor) {
         dinosaur.eatVisitor(visitor);
         DBHelper.saveOrUpdate(dinosaur);
         DBHelper.saveOrUpdate(visitor);
     }
 
-    public static void rampage(Dinosaur dinosaur){
+    public static void rampage(Dinosaur dinosaur) {
 //        May need to delete the dinosaur from the DB as this
         Park park = dinosaur.getPark();
         Paddock paddock = dinosaur.getPaddock();
@@ -42,11 +42,11 @@ public class DBDinosaur {
 
         paddock.dinosaursInPaddockRampage();
 
-        for (Human human : oldVisitorsInPaddock){
+        for (Human human : oldVisitorsInPaddock) {
             DBHelper.saveOrUpdate(human);
         }
 
-        for (Dinosaur foundDino : oldDinosaursInPaddock){
+        for (Dinosaur foundDino : oldDinosaursInPaddock) {
             DBHelper.saveOrUpdate(foundDino);
         }
 
@@ -72,7 +72,11 @@ public class DBDinosaur {
     }
 
 
-
-
-
+    public static Paddock getTheDinosaursPaddock(Dinosaur dinosaur) {
+       return dinosaur.getPaddock();
+    }
 }
+
+
+
+

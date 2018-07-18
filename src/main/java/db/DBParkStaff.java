@@ -13,8 +13,7 @@ public class DBParkStaff {
         DBHelper.saveOrUpdate(paddock);
     }
 
-    public static void addFoodToStore(ParkStaff parkStaff, Paddock paddock){
-        Park park = paddock.getPark();
+    public static void addFoodToStore(Park park, ParkStaff parkStaff, Paddock paddock){
         Food food = parkStaff.addFoodToStore(paddock);
 
         DBHelper.saveOrUpdate(paddock);

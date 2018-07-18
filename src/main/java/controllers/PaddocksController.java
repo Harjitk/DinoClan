@@ -1,16 +1,18 @@
 package controllers;
 
-import db.DBHelper;
-import db.DBPark;
+import db.*;
 import models.ModelMaker;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
 import models.dinosaurs.Velociraptor;
+import models.foods.Food;
 import models.humans.ParkStaff;
+import models.humans.Visitor;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +60,54 @@ public class PaddocksController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+
+
+        post ("/paddocks/:id/addfood", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+
+            Paddock paddock = DBHelper.find(Paddock.class, intId);
+            Park park = DBHelper.find(Park.class, 1);
+            List<Food> foodStock = DBFood.getFoodInPark(park);
+            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 15);
+
+            DBParkStaff.addFoodToStore(park, parkStaff, paddock);
+            res.redirect("/paddocks");
+            return null;
+
+        }, new VelocityTemplateEngine());
+
+
+
+        post ("/paddocks/:id/taunt", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Paddock paddock = DBHelper.find(Paddock.class, intId);
+
+            Object visitorObj = DBPaddock.getFirstVisitorsInPaddock(paddock);
+            Visitor visitor = (Visitor)visitorObj;
+
+            DBVisitor.tauntDinosaursInPaddock(visitor);
+            res.redirect("/paddocks/"+strId);
+            return null;
+
+        }, new VelocityTemplateEngine());
+
+
+        post ("/paddocks/:id/calm", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Paddock paddock = DBHelper.find(Paddock.class, intId);
+
+            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 16);
+
+            DBParkStaff.calmDinosaursInPaddock(parkStaff, paddock);
+            res.redirect("/paddocks/"+strId);
+            return null;
+
+        }, new VelocityTemplateEngine());
+
+
         get("/paddocks/:id/edit", (req, res) -> {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
@@ -97,10 +147,14 @@ public class PaddocksController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Paddock paddock = DBHelper.find(Paddock.class, intId);
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
             List<Dinosaur> dinosaurs = paddock.getDinosaursInPaddock();
+            List<Visitor> visitors = paddock.getVisitorsInPaddock();
             Map<String, Object> model = ModelMaker.makeModel();
             model.put("dinosaurs", dinosaurs);
+            model.put("paddocks", paddocks);
             model.put("paddock", paddock);
+            model.put("visitors", visitors);
             model.put("template", "templates/paddocks/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());

@@ -9,14 +9,14 @@
     <p>Food in park store = $totalFood</p>
 
     <!--Generate Visitors button-->
-    <form action="/visitors/generate" method="post">
+    <form action="/visitors/generate" method="get">
         <label for="numToGenerate">Generate Visitors:</label>
         <input class="inputbox" type="number" name="numToGenerate" required="true" id="numToGenerate">
         <input type="submit" value="Save" class="button">
     </form>
 
-    <form action="/parkadmin/generate/food" method="post">
-        <label for="numFoodToGenerate">Generate Food (placeholder:)</label>
+    <form action="/parkadmin/generate" method="get">
+        <label for="numFoodToGenerate">Generate Food:</label>
         <input class="inputbox" type="number" name="numFoodToGenerate" required="true" id="numFoodToGenerate">
         <input type="submit" value="Save" class="button">
     </form>
@@ -25,7 +25,7 @@
 
     <p>Paddocks:</p>
 
-    <a href="/paddocks/new" class="button center">Add new paddock</a>
+    <div><a href="/paddocks/new"><button class="add_new_button">Add New Paddock</button></a></div>
 
     <table>
         <tr>
@@ -45,15 +45,19 @@
             <td>$paddock.getVisitorsInPaddock().size()</td>
             <td>$paddock.getFoodStore().size()</td>
 
-            <td><a href="/paddocks/$paddock.getId()/edit">Edit/Delete</a></td>
-            <td><a href="/paddocks/$paddock.getId()">Details</a></td>
+            <td><div></div><a href="/paddocks/$paddock.getId()/edit"><button class="edit_button">Edit</button></a></td>
+            <td><div></div><a href="/paddocks/$paddock.getId()"><button class="details_button">Details</button></a></td>
+
         </tr>
         #end
     </table>
 
     <p>Dinosaurs:</p>
 
-    <a href="/dinosaurs/new" class="button center">Buy new dinosaur</a>
+
+    <div><a href="/dinosaurs/new"><button class="add_new_button">Buy New Dinosaur</button></a></div>
+
+
 
     <table>
         <tr>
@@ -72,8 +76,11 @@
             <td>$dinosaur.getDietType()</td>
             <td><a href="/paddocks/$dinosaur.getPaddock().getId()">$dinosaur.getPaddock().getName()</a></td>
             <td>$dinosaur.getPrice()</td>
-            <td><a href="/dinosaurs/$dinosaur.getId()/edit">Edit/Delete</a></td>
-            <td><a href="/dinosaurs/$dinosaur.getId()">Details</a></td>
+
+            <td><div></div><a href="/dinosaurs/$dinosaur.getId()/edit"><button class="edit_button">Edit</button></a></td>
+            <td><div></div><a href="/dinosaurs/$dinosaur.getId()"><button class="details_button">Details</button></a></td>
+
+
         </tr>
         #end
     </table>

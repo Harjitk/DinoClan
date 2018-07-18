@@ -4,6 +4,7 @@ import models.Paddock;
 import models.Park;
 import models.RandomGenerator;
 import models.dinosaurs.*;
+import models.foods.Food;
 import models.foods.Meat;
 import models.foods.Plant;
 import models.humans.Human;
@@ -73,12 +74,21 @@ public class Runner {
         List<Human> velociraptorSeen = DBDinosaur.getHumansSeenByDinosaur(velociraptor);
         List<Dinosaur> dinosaursInPaddock = DBPaddock.getDinosaursForPaddock(velociraptorDen);
 
+        DBPark.generateFood(park, 4);
 
-       Meat meat = new Meat();
-       DBHelper.saveOrUpdate(meat);
-       Plant plant = new Plant();
-       DBHelper.saveOrUpdate(plant);
+        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 2);
 
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+
+       Object firstFood = DBFood.getFirstBitOfFoodInPaddock(velociraptorDen);
+
+       Paddock veloPaddock = DBDinosaur.getTheDinosaursPaddock(velociraptor);
+
+       Object firstObjectInRaptorDen = DBPaddock.getFirstVisitorsInPaddock(velociraptorDen);
+       Visitor firstVisitorInRaptorDen = (Visitor)firstObjectInRaptorDen;
 
 //
 //        List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
@@ -98,7 +108,7 @@ public class Runner {
 //        DBDinosaur.eat(velociraptor);
 
 //        Testing generating visitors
-        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 10);
+        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 2);
 
 //       //Moving dinosaurs to paddocks
 //       debzStaff.transferDinosaur(stegosaurus, stegzDwelling);

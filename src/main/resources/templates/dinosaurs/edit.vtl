@@ -16,14 +16,15 @@
     <label for="bellyCapacity">How many bits of food can it fit in its stomach?</label>
     <input type="number" class="inputBox" name="bellyCapacity" required="true" id="bellyCapacity" value="$dinosaur.getBellyCapacity()">
 
-    <label for="paddock">Paddock:</label>
+    <input type="submit" value="Save" class="button">
+</form>
+
+<form action="/dinosaurs/$dinosaur.getId()/move" method="post">
+
+    <label for="paddock">Move to paddock:</label>
     <select id="paddock" name="paddock">
         #foreach( $paddock in $paddocks )
-        <option value="$paddock.getId()"
-        #if ($paddock.getId() == $dinosaur.getPaddock().getId())
-                selected="selected"
-                #end>
-        $paddock.getName()</option>
+        <option value="$paddock.getId()">$paddock.getName()</option>
         #end
     </select>
 
@@ -32,6 +33,6 @@
 
 
 <form action="/dinosaurs/$dinosaur.getId()/delete" method="post">
-    <input type="submit" value="delete" class="button">
+    <input type="submit" value="delete" class="delete_button">
 </form>
 
