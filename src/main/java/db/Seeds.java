@@ -24,10 +24,12 @@ public class Seeds {
 
         Paddock holdingPen = new Paddock("Holding pen", 10, park);
         DBPark.addPaddock(park, holdingPen);
-        Paddock stegzDwelling = new Paddock("Stegz's dwelling", 1, park);
+        Paddock stegzDwelling = new Paddock("The Plains", 3, park);
         DBPark.addPaddock(park, stegzDwelling);
-        Paddock velociraptorDen = new Paddock("Velociraptor den", 5, park);
+        Paddock velociraptorDen = new Paddock("Raptor Den", 5, park);
         DBPark.addPaddock(park, velociraptorDen);
+        Paddock velociraptorCanyon = new Paddock("Raptor Canyon", 5, park);
+        DBPark.addPaddock(park, velociraptorCanyon);
         Paddock diploJungle = new Paddock("Diplojungle", 10, park);
         DBPark.addPaddock(park, diploJungle);
         Paddock trexDuplex = new Paddock("Trex Duplex", 1, park);
@@ -41,9 +43,18 @@ public class Seeds {
         DBPark.buyDinosaur(park, velociraptor3, velociraptorDen);
         Velociraptor velociraptor4 = new Velociraptor("Mr T", 150, 500000, 6, park, velociraptorDen);
         DBPark.buyDinosaur(park, velociraptor4, velociraptorDen);
+        Velociraptor velociraptor5 = new Velociraptor("Notorious", 180, 500000, 10, park, velociraptorCanyon);
+        DBPark.buyDinosaur(park, velociraptor5, velociraptorDen);
+        Velociraptor velociraptor6 = new Velociraptor("Biggie", 175, 500000, 9, park, velociraptorCanyon);
+        DBPark.buyDinosaur(park, velociraptor6, velociraptorDen);
+        Velociraptor velociraptor7 = new Velociraptor("Smalls", 220, 600000, 14, park, velociraptorCanyon);
+        DBPark.buyDinosaur(park, velociraptor7, velociraptorDen);
+
         Diplodocus diplodocus = new Diplodocus("Todd", 25000, 700000, 25, park, diploJungle);
         DBPark.buyDinosaur(park, diplodocus, diploJungle);
         Stegosaurus stegosaurus = new Stegosaurus("Stegz", 1500, 850000, 15, park, stegzDwelling);
+        Stegosaurus stegosaurus2 = new Stegosaurus("Sore", 1600, 890000, 15, park, stegzDwelling);
+
         DBPark.buyDinosaur(park, stegosaurus, stegzDwelling);
         Tyrannosaurus tyrannosaurus = new Tyrannosaurus("Rex", 15000, 950000, 60, park, trexDuplex);
         DBPark.buyDinosaur(park, tyrannosaurus, trexDuplex);
