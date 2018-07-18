@@ -2,7 +2,7 @@
 
 <div>
 
-    <div class="add_new_button"></div><a href="/visitors/new"><button>New Visitor</button></a>
+    <div><a href="/visitors/new"><button class="add_new_button">New Visitor</button></a></div>
 </div>
 
 <div class="container">
@@ -18,7 +18,10 @@
             <td>$visitor.getWallet()</td>
             <td>$!visitor.getPaddock().getName()</td>
 
-            <td><div class="details_button"></div><a href="/visitors/$visitor.getId()"><button>Details</button></a></td>
+            <td><div></div><a href="/visitors/$visitor.getId()"><button class="details_button">Details</button></a></td>
+
+
+
 
         </tr>
         #end

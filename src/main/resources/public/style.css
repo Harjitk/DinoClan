@@ -1,4 +1,6 @@
-
+.input{
+    -webkit-appearance:none;
+    }
 
 .nav_stats {
     display: block;
@@ -21,22 +23,26 @@ color: white;
 
  }
 
-.edit button{
-background-color: red;
+.edit_button{
+background-color: orange;
+color: white;
 }
 
 .add_new_button{
-background-color: orange;
+background-color: green;
+color: white;
 }
 
 
 .delete_button{
 background-color: red;
+color: white;
 }
 
 
 .details_button{
-
+background-color: purple;
+color: white;
 }
 
 
