@@ -216,7 +216,8 @@ public abstract class Dinosaur {
     }
 
 
-    @OneToMany(mappedBy= "dinosaur")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy= "dinosaur")
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<Human> getHumanBelly() {
         return humanBelly;
     }
