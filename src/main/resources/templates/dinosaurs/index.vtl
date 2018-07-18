@@ -22,9 +22,23 @@
             <td><a href="/paddocks/$dinosaur.getPaddock().getId()">$dinosaur.getPaddock().getName()</a></td>
             <td>$dinosaur.getPrice()</td>
 
-
             <td><div class="edit_button"></div><a href="/dinosaurs/$dinosaur.getId()/edit"><button>Edit</button></a></td>
             <td><div class="details_button"></div><a href="/dinosaurs/$dinosaur.getId()"><button>Details</button></a></td>
+            <td>
+
+                <form action="/dinosaurs/$dinosaur.getId()/move" method="post">
+
+                    <label for="paddock">Move to paddock:</label>
+                    <select id="paddock" name="paddock">
+                        #foreach( $paddock in $paddocks )
+                        <option value="$paddock.getId()">$paddock.getName()</option>
+                        #end
+                    </select>
+
+                    <input type="submit" value="Save" class="button">
+                </form>
+
+            </td>
 
         </tr>
             #end
