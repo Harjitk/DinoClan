@@ -88,7 +88,7 @@ public class PaddocksController {
             Visitor visitor = (Visitor)visitorObj;
 
             DBVisitor.tauntDinosaursInPaddock(visitor);
-            res.redirect("/paddocks");
+            res.redirect("/paddocks/"+strId);
             return null;
 
         }, new VelocityTemplateEngine());
@@ -99,10 +99,10 @@ public class PaddocksController {
             Integer intId = Integer.parseInt(strId);
             Paddock paddock = DBHelper.find(Paddock.class, intId);
 
-            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 15);
+            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 16);
 
             DBParkStaff.calmDinosaursInPaddock(parkStaff, paddock);
-            res.redirect("/paddocks");
+            res.redirect("/paddocks/"+strId);
             return null;
 
         }, new VelocityTemplateEngine());

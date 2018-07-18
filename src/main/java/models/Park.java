@@ -156,7 +156,8 @@ public class Park {
         this.foodStock.add(food);
     }
 
-    @OneToMany(mappedBy = "park")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "park")
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<Dinosaur> getDinosaursInPark() {
         return dinosaursInPark;
     }
@@ -177,7 +178,8 @@ public class Park {
     }
 
 
-    @OneToMany(mappedBy = "park")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "park")
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<Visitor> getVisitors() {
         return visitors;
     }

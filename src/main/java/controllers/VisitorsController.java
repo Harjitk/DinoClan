@@ -43,6 +43,7 @@ public class VisitorsController {
         }, new VelocityTemplateEngine());
 
 
+
         get("/visitors/new", (req, res) -> {
             List<models.humans.Visitor> visitors = DBHelper.getAll(Visitor.class);
             Map<String, Object> model = ModelMaker.makeModel();
@@ -50,6 +51,7 @@ public class VisitorsController {
             model.put("template", "templates/visitors/create.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
 
 
         post("/visitors/new", (req, res) -> {
@@ -64,6 +66,8 @@ public class VisitorsController {
             res.redirect("/visitors");
             return null;
         }, new VelocityTemplateEngine());
+
+
 
         post("/visitors/generate", (req, res) -> {
             int numToGenerate = Integer.parseInt(req.queryParams("numToGenerate"));
@@ -80,6 +84,17 @@ public class VisitorsController {
         }, new VelocityTemplateEngine());
 
 
+
+        get("/visitors/generate", (req, res) -> {
+            List<models.humans.Visitor> visitors = DBHelper.getAll(Visitor.class);
+            Map<String, Object> model = ModelMaker.makeModel();
+            model.put("visitors", visitors);
+            model.put("template", "templates/workinprogress.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
+
         get("/visitors/:id", (req, res) -> {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
@@ -92,6 +107,8 @@ public class VisitorsController {
 
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+
 
         post ("/visitors/:id/move", (req, res) -> {
             String strId = req.params(":id");
@@ -109,6 +126,8 @@ public class VisitorsController {
 
         }, new VelocityTemplateEngine());
 
+
+
         get("/visitors/:id/edit", (req, res) -> {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
@@ -122,6 +141,7 @@ public class VisitorsController {
         }, new VelocityTemplateEngine());
 
 
+
         post("/visitors/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Visitor visitorrToDelete = DBHelper.find(Visitor.class, id);
@@ -129,6 +149,7 @@ public class VisitorsController {
             res.redirect("/visitors");
             return null;
         }, new VelocityTemplateEngine());
+
 
 
         post("/visitors/:id", (req, res) -> {

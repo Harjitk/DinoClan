@@ -3,6 +3,7 @@ package controllers;
 import db.DBFood;
 import db.DBHelper;
 import db.DBPark;
+import models.ModelMaker;
 import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
@@ -52,5 +53,16 @@ public class ParkAdminController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+
+        get("/parkadmin/generate", (req, res) -> {
+            Map<String, Object> model = ModelMaker.makeModel();
+            model.put("template", "templates/workinprogress.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
     }
+
+
+
 }

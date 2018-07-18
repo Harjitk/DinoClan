@@ -2,7 +2,7 @@
 
 <div>
 
-    <div><a href="/visitors/new"><button class="add_new_button">New Visitor</button></a></div>
+    <div><a href="/visitors/new"><button class="add_new_button">Add New Visitor</button></a></div>
 </div>
 
 <div class="container">
@@ -28,7 +28,7 @@
                         #end
                     </select>
 
-                    <input type="submit" value="Save" class="button">
+                    <input type="submit" value="Move visitor" class="button">
                 </form>
 
             </td>
@@ -42,7 +42,7 @@
         #end
     </table>
 
-    <form action="/visitors/generate" method="post">
+    <form action="/visitors/generate" method="get">
         <label for="numToGenerate">Generate Visitors:</label>
         <input class="inputbox" type="number" name="numToGenerate" required="true" id="numToGenerate">
         <input type="submit" value="Save" class="button">

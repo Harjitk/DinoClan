@@ -1,6 +1,14 @@
 <div>
     <p> Name: $visitor.getName()</p>
     <p> Wallet:$visitor.getWallet()</p>
+    <p> This visitor is in: <a href="/paddocks/$visitor.getPaddock().getId()">$!visitor.getPaddock().getName()</a></p>
+    <p> DinoDex:</p>
+        <ul>
+
+        #foreach( $dinosaur in $visitor.getDinosSeen() )
+    <li><a href="/dinosaurs/$dinosaur.getId()">$dinosaur.getName()</a>, $dinosaur.getClass().getSimpleName()</li>
+                #end
+        </ul>
 </div>
 
 <a href="/visitors/$visitor.getId()/edit" class="button">Edit</a>

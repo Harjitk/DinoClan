@@ -18,16 +18,7 @@
         </tr>
     </table>
 
-
-    <form action="/paddocks/$paddock.getId()/taunt" method="post">
-        <input type="submit" value="Taunt dinosaurs" class="button">
-    </form>
-
-    <form action="/paddocks/$paddock.getId()/calm" method="post">
-        <input type="submit" value="Calm dinosaurs" class="button">
-    </form>
-
-    <a href="/paddocks/$paddock.getId()/edit" class="edit_button">Edit</a>
+    <a href="/paddocks/$paddock.getId()/edit" class="button center">Edit</a>
 
     <form action="/paddocks/$paddock.getId()/delete" method="post">
         <input type="submit" value="delete" class="delete_button">
@@ -51,7 +42,7 @@
         <td>$dinosaur.getHappiness()</td>
         <td>$dinosaur.getDietType()</td>
         <td>
-            <form action="/dinosaurs/$dinosaur.getId()/eat" method="post">
+            <form action="/dinosaurs/$dinosaur.getId()/eat/paddock" method="post">
                 <input type="submit" value="Eat food" class="button">
             </form>
 
@@ -65,11 +56,19 @@
                 #end
             </select>
 
-            <input type="submit" value="Save" class="button">
+            <input type="submit" value="Move dinosaur" class="button">
         </form></td>
     </tr>
     #end
     </table>
+
+    <form action="/paddocks/$paddock.getId()/taunt" method="post">
+        <input type="submit" value="Taunt dinosaurs" class="button">
+    </form>
+
+    <form action="/paddocks/$paddock.getId()/calm" method="post">
+        <input type="submit" value="Calm dinosaurs" class="button">
+    </form>
 
     <p class="pageHeader">Visitors in $paddock.getName():</p>
         #foreach($visitor in $visitors)

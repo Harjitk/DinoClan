@@ -115,6 +115,7 @@ public abstract class Dinosaur {
                 this.eatVisitor(food);
             }
 //
+
             this.park.removeDinosaur(this);
 //                Should this be moved to the park?
             }
@@ -216,7 +217,8 @@ public abstract class Dinosaur {
     }
 
 
-    @OneToMany(mappedBy= "dinosaur")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy= "dinosaur")
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<Human> getHumanBelly() {
         return humanBelly;
     }

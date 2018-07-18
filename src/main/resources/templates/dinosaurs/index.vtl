@@ -30,6 +30,12 @@
 
 
             <td>
+                <form action="/dinosaurs/$dinosaur.getId()/rampage" method="post">
+                    <input type="submit" value="RAMPAGE" class="button">
+                </form>
+            </td>
+
+            <td>
                 <form action="/dinosaurs/$dinosaur.getId()/eat" method="post">
                     <input type="submit" value="Eat food" class="button">
                 </form>
@@ -45,7 +51,7 @@
                         #end
                     </select>
 
-                    <input type="submit" value="Save" class="button">
+                    <input type="submit" value="Move dinosaur" class="button">
                 </form>
 
             </td>
