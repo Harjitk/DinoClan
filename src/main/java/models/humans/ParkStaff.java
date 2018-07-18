@@ -74,7 +74,6 @@ public class ParkStaff extends Human {
                     food.setPark(null);
                     return food;
                 }
-
             }
 
         return null;
