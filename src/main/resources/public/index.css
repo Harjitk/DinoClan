@@ -6,17 +6,36 @@
 }
 
 .all_paddocks_container{
- display: flex;
- flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .paddock_container{
   color: white;
 }
 
-.dinosaur_img{
+.dinosaur_img_tyr{
+  position: relative;
+  top: -64px;
+  width: 200px;
+}
+
+.dinosaur_img_velo{
+  position: relative;
+  top: 30px;
   width: 150px;
-  margin-bottom: 200px;
+}
+
+.dinosaur_img_steg{
+  position: relative;
+  width: 165px;
+}
+
+.dinosaur_img_diplo{
+  width: 250px;
+  position: relative;
+  top: -45px;
+  left: -45px;
 }
 
 .cube_container {
@@ -82,7 +101,7 @@
 }
 
 .img_plane {
-    transform: translateZ(0px) rotateY(180deg) translateX(10px) translateY(-30px);
+  transform: translateZ(0px) rotateY(180deg);
 }
 
 .bottoml {

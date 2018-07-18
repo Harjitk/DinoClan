@@ -19,12 +19,30 @@
                     <!--</p>-->
                 </div>
                 <div class="back cube-face"><a class="paddock_container" href="/paddocks/$paddock.getId()">$paddock.getName()</a></div>
+
+
                 <div class="img_plane cube-face-img">
-                    <img class="dinosaur_img" src="https://i.imgur.com/gJPHShQ.png">
+
+                    #set($dino = $DBPaddock.getFirstDinosaurInPaddock($paddock))
+                    #if ($dino.getClass().getSimpleName() == "Tyrannosaurus")
+                    <a href="/paddocks/$paddock.getId()">
+                    <img class="dinosaur_img_tyr" src="https://i.imgur.com/gJPHShQ.png">
+                    </a>
+                    #elseif ($dino.getClass().getSimpleName() == "Velociraptor")
+                    <a href="/paddocks/$paddock.getId()">
+                    <img class="dinosaur_img_velo" src="https://i.imgur.com/tCdbLba.png">
+                    </a>
+                    #elseif ($dino.getClass().getSimpleName() == "Stegosaurus")
+                    <a href="/paddocks/$paddock.getId()">
+                    <img class="dinosaur_img_steg" src="https://i.imgur.com/r2825Fk.png">
+                    </a>
+                    #elseif ($dino.getClass().getSimpleName() == "Diplodocus")
+                    <a href="/paddocks/$paddock.getId()">
+                    <img class="dinosaur_img_diplo" src="https://i.imgur.com/9ORiYvR.png">
+                    </a>
+                    #end
+                </a>
                 </div>
-
-
-
                 <div class="bottoml cube-face-bottom"></div>
                 <div class="bottomr cube-face-bottom"></div>
                 <div class="left cube-face"></div>

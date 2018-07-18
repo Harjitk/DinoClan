@@ -65,20 +65,20 @@ public class DBPaddock {
     }
 
 
-    public static Object getFirstDinosaurInPaddock(Paddock paddock) {
+    public static Dinosaur getFirstDinosaurInPaddock(Paddock paddock) {
         session = HibernateUtil.getSessionFactory().openSession();
-        Object results = null;
+        Dinosaur result = null;
         try {
             Criteria cr = session.createCriteria(Dinosaur.class);
             cr.add(Restrictions.eq("paddock", paddock));
             cr.setMaxResults(1);
-            results = cr.uniqueResult();
+            result = (Dinosaur)cr.uniqueResult();
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
-        return results;
+        return result;
     }
 
 
