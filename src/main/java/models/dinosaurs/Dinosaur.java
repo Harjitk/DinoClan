@@ -115,6 +115,7 @@ public abstract class Dinosaur {
                 this.eatVisitor(food);
             }
 //
+
             this.park.removeDinosaur(this);
 //                Should this be moved to the park?
             }

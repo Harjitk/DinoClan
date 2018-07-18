@@ -59,7 +59,7 @@ public class Seeds {
         DBPark.addParkStaff(park, debzStaff);
 
         RandomGenerator randomGenerator = new RandomGenerator(richard, park);
-        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 10);
+        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 50);
 
         DBPark.generateFood(park, 30);
 
