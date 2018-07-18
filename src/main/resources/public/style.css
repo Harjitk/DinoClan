@@ -3,7 +3,7 @@
 .nav_stats {
     display: block;
     padding: 30px;
-    background-color: #2F4F4F;
+    background-color: silver;
     float: centre;
     color: white;
 
@@ -16,14 +16,34 @@ color: white;
 }
 
 .nav_element{
- padding-right: 40px;
+ padding-right: 80px;
  border-right: 1px solid white;
 
  }
 
-.nav_button{
-background-color: #2F4F4F;
-display: inline-block;
+.edit button{
+background-color: red;
+}
+
+.add_new_button{
+background-color: orange;
+}
+
+
+.delete_button{
+background-color: red;
+}
+
+
+.details_button{
+
+}
+
+
+
+
+.a{
+
 
 }
 
