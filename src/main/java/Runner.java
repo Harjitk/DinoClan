@@ -85,6 +85,10 @@ public class Runner {
 
        Object firstFood = DBFood.getFirstBitOfFoodInPaddock(velociraptorDen);
 
+
+       Object firstObjectInRaptorDen = DBPaddock.getFirstVisitorsInPaddock(velociraptorDen);
+       Visitor firstVisitorInRaptorDen = (Visitor)firstObjectInRaptorDen;
+
 //
 //        List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
 

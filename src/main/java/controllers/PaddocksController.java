@@ -1,9 +1,6 @@
 package controllers;
 
-import db.DBFood;
-import db.DBHelper;
-import db.DBPark;
-import db.DBParkStaff;
+import db.*;
 import models.ModelMaker;
 import models.Paddock;
 import models.Park;
@@ -79,6 +76,28 @@ public class PaddocksController {
             return null;
 
         }, new VelocityTemplateEngine());
+
+
+
+        post ("/paddocks/:id/taunt", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Paddock paddock = DBHelper.find(Paddock.class, intId);
+
+            Park park = DBHelper.find(Park.class, 1);
+            List<Food> foodStock = DBFood.getFoodInPark(park);
+            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 15);
+
+            Object visitorObj = DBPaddock.getFirstVisitorsInPaddock(paddock);
+            Visitor visitor = (Visitor)visitorObj;
+
+            DBVisitor.tauntDinosaursInPaddock(visitor);
+            res.redirect("/paddocks");
+            return null;
+
+        }, new VelocityTemplateEngine());
+
+
 
 
 

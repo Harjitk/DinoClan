@@ -4,6 +4,7 @@ import models.Paddock;
 import models.Park;
 import models.dinosaurs.Dinosaur;
 import models.foods.Food;
+import models.humans.Visitor;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -47,6 +48,21 @@ public class DBPaddock {
         return results;
     }
 
+    public static Object getFirstVisitorsInPaddock(Paddock paddock) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Object results = null;
+        try {
+            Criteria cr = session.createCriteria(Visitor.class);
+            cr.add(Restrictions.eq("paddock", paddock));
+            cr.setMaxResults(1);
+            results = cr.uniqueResult();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return results;
+    }
 
 
 
