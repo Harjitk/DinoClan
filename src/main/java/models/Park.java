@@ -186,7 +186,8 @@ public class Park {
         this.visitors = visitors;
     }
 
-    @OneToMany(mappedBy = "park")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "park")
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<Food> getFoodStock() {
         return foodStock;
     }
