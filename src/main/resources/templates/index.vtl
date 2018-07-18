@@ -1,12 +1,44 @@
-#foreach($paddock in $paddocks)
+
+<div class="page_settings">
+
+<div class ="all_paddocks_container">
+
+    #foreach($paddock in $paddocks)
+
+    <div class="paddock_container">
+
+    <div class ="cube_container">
+        <div class="wrap">
+            <div class="cube">
+                <div class="front cube-face">
+                    <a class="paddock_container" href="/paddocks/$paddock.getId()">$paddock.getName()</a>
+                    <!--<p class="paddock_container">-->
+                        <!--$paddock.getDinosaursInPaddock().size()-->
+                        <!--$paddock.getVisitorsInPaddock().size()-->
+                        <!--$paddock.getFoodStore().size()-->
+                    <!--</p>-->
+                </div>
+                <div class="back cube-face"><a class="paddock_container" href="/paddocks/$paddock.getId()">$paddock.getName()</a></div>
+                <div class="img_plane cube-face-img">
+                    <img class="dinosaur_img" src="https://i.imgur.com/gJPHShQ.png">
+                </div>
 
 
 
+                <div class="bottoml cube-face-bottom"></div>
+                <div class="bottomr cube-face-bottom"></div>
+                <div class="left cube-face"></div>
+                <div class="right cube-face"></div>
+            </div>
+        </div>
+    </div>
 
-<div class="parkadmin_container">
-    <div><p><a href="/paddocks/$paddock.getId()">$paddock.getName()</a></p></div>
-<div><p><td>$paddock.getDinosaursInPaddock().size()</td></p></div>
-<div><p><td>$paddock.getVisitorsInPaddock().size()</td></p></div>
-<div> <p><td>$paddock.getFoodStore().size()</td></p></div>
+
+
+    </div>
     #end
+
+
+</div>
+
 </div>

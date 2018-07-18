@@ -59,25 +59,25 @@ public class Seeds {
         DBPark.addParkStaff(park, debzStaff);
 
         RandomGenerator randomGenerator = new RandomGenerator(richard, park);
-        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 50);
+        DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 1);
 
-        DBPark.generateFood(park, 300);
+        DBPark.generateFood(park, 1);
 
         DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
-        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
-        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
-
-        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
-        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
-        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
-
-        DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
-        DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
-        DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
-
-        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
-        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
-        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+//        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+//        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+//
+//        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
+//        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
+//        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
+//
+//        DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
+//        DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
+//        DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
+//
+//        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+//        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+//        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
 
         velociraptor.setHappiness(0); DBHelper.saveOrUpdate(velociraptor);
         velociraptor2.setHappiness(0); DBHelper.saveOrUpdate(velociraptor2);
