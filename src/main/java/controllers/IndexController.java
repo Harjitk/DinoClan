@@ -1,6 +1,7 @@
 package controllers;
 
 import db.DBHelper;
+import db.DBPaddock;
 import db.DBPark;
 import db.Seeds;
 import models.ModelMaker;
@@ -36,6 +37,8 @@ public class IndexController {
         get ("/index", (req, res) -> {
             Map<String, Object> model = ModelMaker.makeModel();
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+
+            model.put("DBPaddock", DBPaddock.class);
             model.put("paddocks", paddocks);
             model.put("template", "templates/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");

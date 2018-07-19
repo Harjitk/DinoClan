@@ -13,6 +13,7 @@ import models.humans.Visitor;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CancellationException;
 
 public class Seeds {
 
@@ -22,12 +23,17 @@ public class Seeds {
         Park park = new Park("Dino Clan");
         DBHelper.saveOrUpdate(park);
 
+        ParkStaff debzStaff = new ParkStaff("debz", 1000, park);
+        DBPark.addParkStaff(park, debzStaff);
+
         Paddock holdingPen = new Paddock("Holding pen", 10, park);
         DBPark.addPaddock(park, holdingPen);
-        Paddock stegzDwelling = new Paddock("Stegz's dwelling", 1, park);
+        Paddock stegzDwelling = new Paddock("The Plains", 3, park);
         DBPark.addPaddock(park, stegzDwelling);
-        Paddock velociraptorDen = new Paddock("Velociraptor den", 5, park);
+        Paddock velociraptorDen = new Paddock("Raptor Den", 5, park);
         DBPark.addPaddock(park, velociraptorDen);
+        Paddock velociraptorCanyon = new Paddock("Raptor Canyon", 5, park);
+        DBPark.addPaddock(park, velociraptorCanyon);
         Paddock diploJungle = new Paddock("Diplojungle", 10, park);
         DBPark.addPaddock(park, diploJungle);
         Paddock trexDuplex = new Paddock("Trex Duplex", 1, park);
@@ -41,9 +47,17 @@ public class Seeds {
         DBPark.buyDinosaur(park, velociraptor3, velociraptorDen);
         Velociraptor velociraptor4 = new Velociraptor("Mr T", 150, 500000, 6, park, velociraptorDen);
         DBPark.buyDinosaur(park, velociraptor4, velociraptorDen);
+        Velociraptor velociraptor5 = new Velociraptor("Notorious", 180, 500000, 10, park, velociraptorCanyon);
+        DBPark.buyDinosaur(park, velociraptor5, velociraptorCanyon);
+        Velociraptor velociraptor6 = new Velociraptor("Biggie", 175, 500000, 9, park, velociraptorCanyon);
+        DBPark.buyDinosaur(park, velociraptor6, velociraptorCanyon);
+        Velociraptor velociraptor7 = new Velociraptor("Smalls", 220, 600000, 14, park, velociraptorCanyon);
+        DBPark.buyDinosaur(park, velociraptor7, velociraptorCanyon);
+
         Diplodocus diplodocus = new Diplodocus("Todd", 25000, 700000, 25, park, diploJungle);
         DBPark.buyDinosaur(park, diplodocus, diploJungle);
         Stegosaurus stegosaurus = new Stegosaurus("Stegz", 1500, 850000, 15, park, stegzDwelling);
+        Stegosaurus stegosaurus2 = new Stegosaurus("Sore", 1600, 890000, 15, park, stegzDwelling);
         DBPark.buyDinosaur(park, stegosaurus, stegzDwelling);
         Tyrannosaurus tyrannosaurus = new Tyrannosaurus("Rex", 15000, 950000, 60, park, trexDuplex);
         DBPark.buyDinosaur(park, tyrannosaurus, trexDuplex);
@@ -55,18 +69,20 @@ public class Seeds {
         DBPark.addVisitor(park, harjit);
         DBPark.moveVisitorToPaddock(park, harjit, velociraptorDen);
 
-        ParkStaff debzStaff = new ParkStaff("debz", 1000, park);
-        DBPark.addParkStaff(park, debzStaff);
-
         RandomGenerator randomGenerator = new RandomGenerator(richard, park);
         DBRandomGenerator.generateMultipleVisitors(park, randomGenerator, 50);
 
-        DBPark.generateFood(park, 300);
+        DBPark.generateFood(park, 50);
 
-        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
-        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
-        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorDen);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorCanyon);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorCanyon);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorCanyon);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorCanyon);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorCanyon);
+        DBParkStaff.addFoodToStore(park, debzStaff, velociraptorCanyon);
 
+        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
+        DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
         DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
         DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
         DBParkStaff.addFoodToStore(park, debzStaff, diploJungle);
@@ -75,6 +91,11 @@ public class Seeds {
         DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
         DBParkStaff.addFoodToStore(park, debzStaff, stegzDwelling);
 
+        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
+        DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
         DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
         DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);
         DBParkStaff.addFoodToStore(park, debzStaff, trexDuplex);

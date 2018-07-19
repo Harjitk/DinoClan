@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
 
+
     <link rel="stylesheet" type="text/css" href="/navbar.css"/>
     <link rel="stylesheet" type="text/css" href="/table.css"/>
     <link rel="stylesheet" type="text/css" href="/buttons.css"/>
     <link rel="stylesheet" type="text/css" href="/page_layout.css"/>
+    <link rel="stylesheet" type="text/css" href="/index.css"/>
 
-    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Rubik" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
 
 
     <title>Dino Info</title>
@@ -15,16 +18,20 @@
 
         <div class="nav_stats">
 
-            <div class="nav_element"><img src="/images/Money.png" height="25" width="25">$park.getTill()</a></div>
-            <div class="nav_element"><img src="/images/Visitor.png" height="25" width="25"><a href="/visitors">   $totalVisitors  </a></div>
-            <div class="nav_element"><img src="/images/Dino.png" height="25" width="25"><a href="/dinosaurs">   $totalDinosaurs  </a></div>
+            <div class="nav_element nav_button"><a href="/index">Home</a></div>
 
-            <a href="/dinosaurs">Dinosaurs</a>
-            <a href="/visitors">Visitors</a>
-            <a href="/paddocks">Paddocks</a>
-            <a href="/parkadmin">Park Admin</a>
+            <div class="nav_element2"><img class="nav_img" src="/images/Money.png" height="25" width="25">   $park.getTill()</div>
+            <div class="nav_element2"><img class="nav_img" src="/images/Visitor.png" height="25" width="25">   <a href="/visitors">$totalVisitors</a></div>
+            <div class="nav_element"><img class="nav_img" src="/images/t-rex_1f996.png" height="25" width="25">   <a href="/dinosaurs">$totalDinosaurs</a></div>
+
+            <div class="topnav_right">
+            <div class="nav_element2"><a href="/dinosaurs">Dinosaurs</a></div>
+            <div class="nav_element2"><a href="/visitors">Visitors</a></div>
+            <div class="nav_element2"><a href="/paddocks">Paddocks</a></div>
+            <div class="nav_element2"><a href="/parkadmin">Park Admin</a></div>
+            </div>
         </div>
-
+        </div>
     </nav>
 
 </head>
