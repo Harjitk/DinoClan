@@ -20,8 +20,8 @@ nav {
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  background: rgb(239, 239, 239);
-  /* background: linear-gradient(217deg, #3ffdcc, #2bd8ff, #ffde2b, #ffde2b); */
+  /* background: rgb(239, 239, 239); */
+  background: linear-gradient(217deg, #3ffdcc, #2bd8ff, #ffde2b, #ffde2b);
   color: black;
   font-size: 26;
 }

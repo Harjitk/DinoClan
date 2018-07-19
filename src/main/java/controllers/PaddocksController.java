@@ -69,7 +69,7 @@ public class PaddocksController {
             Paddock paddock = DBHelper.find(Paddock.class, intId);
             Park park = DBHelper.find(Park.class, 1);
             List<Food> foodStock = DBFood.getFoodInPark(park);
-            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 16);
+            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 2);
 
             DBParkStaff.addFoodToStore(park, parkStaff, paddock);
             res.redirect("/paddocks");
@@ -99,7 +99,7 @@ public class PaddocksController {
             Integer intId = Integer.parseInt(strId);
             Paddock paddock = DBHelper.find(Paddock.class, intId);
 
-            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 16);
+            ParkStaff parkStaff = DBHelper.find(ParkStaff.class, 2);
 
             DBParkStaff.calmDinosaursInPaddock(parkStaff, paddock);
             res.redirect("/paddocks/"+strId);
