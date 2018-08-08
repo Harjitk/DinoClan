@@ -4,7 +4,7 @@
 
 Goal: Create a web application in Spark with Hibernate/Java back end
 
-You have been asked to create a web app to allow the management in Jurassic Park manage the dinosaur population and visitor tracking of Jurassic Park. (No expense spared)
+You have been asked to create a web app to manage the dinosaur population and visitor tracking of Jurassic Park. (No expense spared)
 
 ### MVP
 
